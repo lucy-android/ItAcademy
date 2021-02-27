@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HomeWork1</string>
+    <string name="mainactivity">MainActivity</string>
+    <string name="go_to_activity_2">GO TO ACTIVITY 2</string>
+    <string name="go_to_activity_3">GO TO ACTIVITY 3</string>
+    <string name="activitythree">ActivityThree</string>
+    <string name="go_to_activity_1">GO TO ACTIVITY 1</string>
+    <string name="activitytwo">ActivityTwo</string>
+</resources>

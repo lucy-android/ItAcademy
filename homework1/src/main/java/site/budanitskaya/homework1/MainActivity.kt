@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class MainActivity : AppCompatActivity() {
     var button12: AppCompatButton? = null
     var button13: AppCompatButton? = null
     var clickListener: View.OnClickListener? = null
@@ -24,17 +24,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onStart() {
         super.onStart()
-        clickListener = this
+        clickListener = View.OnClickListener { p0: View? ->
+
+            when (p0?.id) {
+                R.id.button12 -> startActivity(ActivityTwo.createIntent())
+                R.id.button13 -> startActivity(ActivityThree.createIntent())
+            }
+        }
         button12?.setOnClickListener(clickListener)
         button13?.setOnClickListener(clickListener)
-    }
-
-    override fun onClick(p0: View?) {
-
-        when (p0?.id) {
-            R.id.button12 -> startActivity(ActivityTwo.createIntent())
-            R.id.button13 -> startActivity(ActivityThree.createIntent())
-        }
     }
 
     override fun onStop() {
@@ -49,24 +47,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
 
+        super.onCreateOptionsMenu(menu)
+
         val inflater = menuInflater
         inflater.inflate(R.menu.menu_items, menu)
         return true
     }
 
-
-    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
-
-
-        return super.onPrepareOptionsMenu(menu)
-    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        super.onOptionsItemSelected(item)
 
         when (item.itemId) {
             R.id.share -> startActivity(Intent.createChooser(Intent(Intent.ACTION_SEND), null))
         }
 
-        return super.onOptionsItemSelected(item)
+        return true
     }
 }
