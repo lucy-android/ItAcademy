@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ItAcademyAndroid" >
-        <activity android:name="site.budanitskaya.homework1.ActivityThree">
+        <activity android:name="site.budanitskaya.homework1.activities.ActivityThree">
             <intent-filter>
                 <action android:name="activity3" />
 
@@ -18,14 +18,14 @@
             </intent-filter>
 
         </activity>
-        <activity android:name="site.budanitskaya.homework1.ActivityTwo">
+        <activity android:name="site.budanitskaya.homework1.activities.ActivityTwo">
             <intent-filter>
                 <action android:name="activity2" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="site.budanitskaya.homework1.MainActivity">
+        <activity android:name="site.budanitskaya.homework1.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

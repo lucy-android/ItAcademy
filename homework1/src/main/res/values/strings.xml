@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ДЗ1</string>
+    <string name="app_name">Буданицкая ДЗ1</string>
     <string name="mainactivity">Главный экран</string>
     <string name="go_to_activity_2">НА ЭКРАН 2</string>
     <string name="go_to_activity_3">НА ЭКРАН 3</string>

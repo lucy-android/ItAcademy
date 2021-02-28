@@ -1,4 +1,4 @@
-package site.budanitskaya.homework1
+package site.budanitskaya.homework1.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import site.budanitskaya.homework1.R
 
 
 class MainActivity : AppCompatActivity() {

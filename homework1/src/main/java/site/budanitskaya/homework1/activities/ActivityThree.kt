@@ -1,4 +1,4 @@
-package site.budanitskaya.homework1
+package site.budanitskaya.homework1.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,18 +7,19 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.AppCompatButton
+import site.budanitskaya.homework1.R
 
-class ActivityTwo : AppCompatActivity() {
-    var button21: AppCompatButton? = null
-    var button23: AppCompatButton? = null
+class ActivityThree : AppCompatActivity() {
+    var button31: AppCompatButton? = null
+    var button32: AppCompatButton? = null
     var clickListener: View.OnClickListener? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_two)
-        button21 = findViewById(R.id.button21)
-        button23 = findViewById(R.id.button23)
+        setContentView(R.layout.activity_three)
+        button31 = findViewById(R.id.button31)
+        button32 = findViewById(R.id.button32)
     }
 
     override fun onStart() {
@@ -26,15 +27,14 @@ class ActivityTwo : AppCompatActivity() {
         clickListener = View.OnClickListener { p0: View? ->
 
             when (p0?.id) {
-                R.id.button21 -> startActivity(MainActivity.createIntent())
-                R.id.button23 -> startActivity(ActivityThree.createIntent())
+                R.id.button31 -> startActivity(MainActivity.createIntent())
+                R.id.button32 -> startActivity(ActivityTwo.createIntent())
             }
         }
 
-        button21?.setOnClickListener(clickListener)
-        button23?.setOnClickListener(clickListener)
+        button31?.setOnClickListener(clickListener)
+        button32?.setOnClickListener(clickListener)
     }
-
 
     override fun onStop() {
         super.onStop()
@@ -43,7 +43,7 @@ class ActivityTwo : AppCompatActivity() {
     }
 
     companion object {
-        fun createIntent(): Intent = Intent("activity2")
+        fun createIntent(): Intent = Intent("activity3")
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
