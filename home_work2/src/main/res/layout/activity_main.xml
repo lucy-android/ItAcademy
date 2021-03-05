@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <EditText
+            android:id="@+id/etTxt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="numberDecimal" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/oneBtn"
+            android:layout_width="0dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/calculator_button"
+            android:text="1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/twoBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/calculator_button"
+            android:text="2" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/threeBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/calculator_button"
+            android:text="3" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/zeroBtn"
+            android:layout_width="0dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/calculator_button"
+            android:text="0" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/fourBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/calculator_button"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:text="4" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/fiveBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/calculator_button"
+            android:text="5" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/sixBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/calculator_button"
+            android:text="6" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/equalsBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:background="@drawable/calculator_button"
+            android:text="=" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/sevenBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/calculator_button"
+            android:text="7" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/eightBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/calculator_button"
+            android:text="8" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/nineBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:background="@drawable/calculator_button"
+            android:text="9" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/plusBtn"
+            android:layout_width="0dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/calculator_button"
+            android:text="+" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/minusBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/calculator_button"
+            android:text="-" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/multiplyBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:background="@drawable/calculator_button"
+            android:text="*" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/divideBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/calculator_button"
+            android:text="/" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/pointBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_weight="1"
+            android:background="@drawable/calculator_button"
+            android:text="." />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/cBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/calculator_button"
+            android:text="C" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/sqrtBtn"
+            android:layout_width="0dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/calculator_button"
+            android:text="sqrt" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/powBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_weight="1"
+            android:background="@drawable/calculator_button"
+            android:text="x^y" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/negateBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_weight="1"
+            android:background="@drawable/calculator_button"
+            android:text="+/-" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

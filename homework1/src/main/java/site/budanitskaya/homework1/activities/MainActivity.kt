@@ -16,10 +16,11 @@ class MainActivity : AppCompatActivity() {
     lateinit var clickListener: View.OnClickListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         button12 = findViewById(R.id.button12)
         button13 = findViewById(R.id.button13)
+        super.onCreate(savedInstanceState)
+
     }
 
     override fun onStart() {
