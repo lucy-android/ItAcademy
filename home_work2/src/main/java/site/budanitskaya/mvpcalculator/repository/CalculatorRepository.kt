@@ -7,6 +7,7 @@ import kotlin.math.pow
 
 class CalculatorRepository : Repository {
 
+    // все исходные и промежуточные значения находятся в полях класса и инициализируются при нажатии соответствующих кнопок
     var number1: String? = null
     var binaryOperator: BinaryOperator? = null
     var number2: String? = null
@@ -23,7 +24,6 @@ class CalculatorRepository : Repository {
         }
         return str
     }
-
 
     private fun calculate(): String? {
 
@@ -60,27 +60,23 @@ class CalculatorRepository : Repository {
             }
         }
 
-        Log.d("31415", "onCreate: ${this.number1}, $binaryOperator, ${this.number2}")
-
         return number1
     }
+
+    // перегруженный метод getStringToBeDisplayedOnTheScreen(...) возвращает строку, которая должна отобразиться на экране
 
     override fun getStringToBeDisplayedOnTheScreen(digit: String): String {
         if (number1 == null && binaryOperator == null && number2 == null) {
             number1 = digit
-            Log.d("31415", "$number1, $binaryOperator, $number2")
             return number1!!
         } else if (number1 != null && binaryOperator == null && number2 == null) {
             number1 += digit
-            Log.d("31415", "$number1, $binaryOperator, $number2")
             return number1!!
         } else if (number1 != null && binaryOperator != null && number2 == null) {
             number2 = digit
-            Log.d("31415", "$number1, $binaryOperator, $number2")
             return number2!!
         } else if (number1 != null && binaryOperator != null && number2 != null) {
             number2 += digit
-            Log.d("31415", "$number1, $binaryOperator, $number2")
             return number2!!
         } else if (number1 != null && this.binaryOperator == null && number2 == null) {
             number1 = digit
@@ -101,57 +97,44 @@ class CalculatorRepository : Repository {
 
         if (number1 != null && this.binaryOperator == null && number2 == null) {
             this.binaryOperator = binaryOperator
-            Log.d("31415", "$number1, $binaryOperator, $number2")
             return number1!!
 
         } else if (number1 != null && this.binaryOperator == null && number2 == null) {
             this.binaryOperator = binaryOperator
-            Log.d("31415", "$number1, $binaryOperator, $number2")
             return number1!!
 
         } else if (number1 != null && this.binaryOperator != null && number2 == null) {
-            Log.d("31415", "$number1, $binaryOperator, $number2")
             return number1!!
         } else if (number1 != null && this.binaryOperator != null && number2 == null) {
             this.binaryOperator = binaryOperator
 
-            Log.d("31415", "$number1, $binaryOperator, $number2")
             return number1!!
         } else if (number1 != null && this.binaryOperator != null && number2 != null) {
             number1 = calculate()
             this.binaryOperator = binaryOperator
             number2 = null
-            Log.d("31415", "$number1, $binaryOperator, $number2")
             return number1!!
 
         } else if (number1 != null && this.binaryOperator != null && number2 != null) {
             this.binaryOperator = binaryOperator
             number2 = null
-            Log.d("31415", "$number1, $this.binaryOperator, $number2")
             return number1!!
         } else if (number1 != null && this.binaryOperator == null && number2 == null) {
             return number1!!
         }
-
-        Log.d("31415", "$number1, $binaryOperator, $number2")
-
         return ""
     }
 
     override fun getStringToBeDisplayedOnTheScreen(equals: Equals): String {
 
         if (number1 != null && binaryOperator == null && number2 == null) {
-            Log.d("31415", "$number1, $binaryOperator, $number2")
             return number1!!
         } else if (number1 != null && binaryOperator != null && number2 == null) {
-            Log.d("31415", "$number1, $binaryOperator, $number2")
             return number1!!
         } else if (number1 != null && binaryOperator != null && number2 != null) {
             number1 = calculate()
             binaryOperator = null
             number2 = null
-
-            Log.d("31415", "$number1, $binaryOperator, $number2")
             return number1!!
         }
         return ""
@@ -161,7 +144,6 @@ class CalculatorRepository : Repository {
         number1 = null
         binaryOperator = null
         number2 = null
-        Log.d("31415", "$number1, $binaryOperator, $number2")
         return ""
     }
 
@@ -172,15 +154,12 @@ class CalculatorRepository : Repository {
 
         if (number1 != null && !number1!!.contains(".") && binaryOperator == null && number2 == null) {
             number1 += "."
-            Log.d("31415", "$number1, $binaryOperator, $number2")
             return number1!!
         } else if (number1 != null && binaryOperator != null && number2 != null && !number2!!.contains(".")) {
             number2 += "."
-            Log.d("31415", "$number1, $binaryOperator, $number2")
             return number2!!
         }
 
-        Log.d("31415", "$number1, $binaryOperator, $number2")
         return ""
     }
 
@@ -189,13 +168,11 @@ class CalculatorRepository : Repository {
             this.unaryOperator = unaryOperator
             number1 = calculate()
             this.unaryOperator = null
-            Log.d("31415", "$number1, $binaryOperator, $number2")
             return number1!!
         } else if (number1 != null && this.binaryOperator != null && number2 != null) {
             this.unaryOperator = unaryOperator
             number2 = calculate()
             this.unaryOperator = null
-            Log.d("31415", "$number1, $binaryOperator, $number2")
             return number2!!
         }
         return ""

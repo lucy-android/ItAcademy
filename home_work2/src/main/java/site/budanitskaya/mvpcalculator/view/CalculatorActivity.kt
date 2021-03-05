@@ -4,11 +4,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import site.budanitskaya.mvpcalculator.presenter.CalculatorPresenter
 import site.budanitskaya.mvpcalculator.Presenter
 import site.budanitskaya.mvpcalculator.R
 import site.budanitskaya.mvpcalculator.databinding.ActivityMainBinding
 import site.budanitskaya.mvpcalculator.enums.*
+import site.budanitskaya.mvpcalculator.presenter.CalculatorPresenter
+
 
 class CalculatorActivity : AppCompatActivity(), site.budanitskaya.mvpcalculator.View {
 
