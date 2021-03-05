@@ -53,7 +53,6 @@ class CalculatorActivity : AppCompatActivity(), site.budanitskaya.mvpcalculator.
             }
         }
 
-        Log.d("31415", "onStart: $clickListener")
 
         binding.oneBtn.setOnClickListener(clickListener)
         binding.twoBtn.setOnClickListener(clickListener)
