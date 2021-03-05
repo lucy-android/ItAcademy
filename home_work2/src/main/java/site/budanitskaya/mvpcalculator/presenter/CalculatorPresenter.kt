@@ -16,7 +16,6 @@ class CalculatorPresenter(mView: View?) : Presenter {
         this.mRepository = CalculatorRepository();
     }
 
-    //Сообщение
     private var message: String? = null
 
     override fun onButtonWasClicked(digit: String) {
