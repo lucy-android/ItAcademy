@@ -42,11 +42,9 @@ class CalculatorRepository : Repository {
             }
         } else if (unaryOperator == UnaryOperator.NEGATE && this.number1 != null && this.number2 == null) {
             this.number1 = "-${this.number1}"
-            Log.d("31415", "onCreate: ${this.number1}, $binaryOperator, ${this.number2}")
             return this.number1
         } else if (unaryOperator == UnaryOperator.NEGATE && this.number2 != null) {
             this.number2 = "-${this.number2}"
-            Log.d("31415", "onCreate: ${this.number1}, $binaryOperator, ${this.number2}")
             return this.number2
         } else if (unaryOperator == UnaryOperator.SQRT && number1 != null && number2 == null) {
             if (number1?.toDouble()!! > 0) {
