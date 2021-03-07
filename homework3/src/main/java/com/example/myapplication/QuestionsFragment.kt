@@ -37,10 +37,7 @@ class QuestionsFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         view?.findViewById<Button>(R.id.button_yes)?.setOnClickListener {
-            (requireActivity() as MyInterface).answerQuestion(0, true)
-        }
-        view?.findViewById<Button>(R.id.button_no)?.setOnClickListener {
-            (requireActivity() as MyInterface).answerQuestion(0, false)
+            (requireActivity() as MyInterface).loadNextQuestionOrResult(DataUtils.counter)
         }
     }
 

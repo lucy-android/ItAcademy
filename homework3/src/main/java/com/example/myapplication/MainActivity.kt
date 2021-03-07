@@ -3,11 +3,11 @@ package com.example.myapplication
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.example.myapplication.DataUtils.Companion.counter
 
 interface MyInterface {
-    fun startQuestions()
-    fun finishQuestions()
-    fun answerQuestion(position: Int, result: Boolean)
+
+    fun loadNextQuestionOrResult(position: Int)
 }
 
 class MainActivity : AppCompatActivity(), MyInterface {
@@ -28,15 +28,13 @@ class MainActivity : AppCompatActivity(), MyInterface {
         transaction.commit()
     }
 
-    override fun finishQuestions() {
-        replaceFragment(ResultFragment())
-    }
+    override fun loadNextQuestionOrResult(position: Int) {
 
-    override fun startQuestions() {
-        replaceFragment(QuestionsFragment.newInstance("First"))
-    }
-
-    override fun answerQuestion(position: Int, result: Boolean) {
-        replaceFragment(QuestionsFragment.newInstance("Second"))
+        if (position < DataUtils.generateQuizItems().size) {
+            replaceFragment(QuestionsFragment.newInstance("$position"))
+            counter++
+        } else if (position == DataUtils.generateQuizItems().size) {
+            replaceFragment(ResultFragment.newInstance("", ""))
+        }
     }
 }

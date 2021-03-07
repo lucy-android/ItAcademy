@@ -18,7 +18,7 @@ class FirstFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         view?.findViewById<View>(R.id.button1)?.setOnClickListener {
-            (requireActivity() as MyInterface).startQuestions()
+            (requireActivity() as MyInterface).loadNextQuestionOrResult(0)
         }
     }
 
