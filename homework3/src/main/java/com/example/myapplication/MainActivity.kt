@@ -24,16 +24,16 @@ class MainActivity : AppCompatActivity(), MyInterface {
 
     private fun replaceFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, fragment)
+        transaction.addToBackStack(null).replace(R.id.fragment_container, fragment)
         transaction.commit()
     }
 
     override fun loadNextQuestionOrResult(position: Int) {
 
         if (position <= DataUtils.generateQuiz().size) {
-            replaceFragment(QuestionsFragment.newInstance(DataUtils.generateQuiz()[position]?.question))
+            replaceFragment(QuestionsFragment.newInstance("$counter. ${DataUtils.generateQuiz()[position]?.question}"))
         } else if (position > DataUtils.generateQuiz().size) {
-            replaceFragment(ResultFragment.newInstance("", ""))
+            replaceFragment(ResultFragment.newInstance())
         }
     }
 }

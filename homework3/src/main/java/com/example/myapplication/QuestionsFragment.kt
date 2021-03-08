@@ -27,7 +27,7 @@ class QuestionsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         val root = inflater.inflate(
             R.layout.fragment_questions,
             container,
@@ -41,7 +41,6 @@ class QuestionsFragment : Fragment() {
         super.onStart()
         view?.findViewById<Button>(R.id.button_yes)?.setOnClickListener {
 
-            Log.d("3141592", "onStart: $counter, $resultScore")
             when (DataUtils.generateQuiz()[counter]?.answer) {
                 false -> {
                     moveToNextScreen()
@@ -54,7 +53,7 @@ class QuestionsFragment : Fragment() {
         }
 
         view?.findViewById<Button>(R.id.button_no)?.setOnClickListener {
-            Log.d("3141592", "onStart: $counter, $resultScore")
+
             when (DataUtils.generateQuiz()[counter]?.answer) {
                 false -> {
                     resultScore++
