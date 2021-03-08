@@ -66,7 +66,7 @@ class QuestionsFragment : Fragment() {
         }
     }
 
-    fun moveToNextScreen() {
+    private fun moveToNextScreen() {
         counter++
         (requireActivity() as MyInterface).loadNextQuestionOrResult(counter)
     }

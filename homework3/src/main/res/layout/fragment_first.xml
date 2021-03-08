@@ -7,14 +7,12 @@
     android:orientation="vertical"
     tools:context=".FirstFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="Хотите пройти небольшую викторину?"
+        android:text="@string/do_you_want_to_take_a_small_quiz"
         android:textAlignment="center"
         android:textStyle="bold"
         android:textSize="20sp"
@@ -28,15 +26,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@color/purple_700"
+        android:background="@color/purple_500"
         android:padding="6dp"
-        android:text="Начать!"
+        android:text="@string/start"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

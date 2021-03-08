@@ -2,4 +2,9 @@
     <string name="app_name">My Application</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dz3">ДЗ3</string>
+    <string name="do_you_want_to_take_a_small_quiz">Хотите пройти небольшую викторину?</string>
+    <string name="start">Начать!</string>
+    <string name="yes">ДА</string>
+    <string name="no">НЕТ</string>
 </resources>

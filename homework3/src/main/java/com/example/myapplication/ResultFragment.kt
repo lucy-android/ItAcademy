@@ -12,11 +12,6 @@ import com.example.myapplication.DataUtils.Companion.resultScore
 
 class ResultFragment : Fragment() {
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,7 +22,16 @@ class ResultFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         val txt: TextView = view?.findViewById<View>(R.id.text_res) as TextView
-        txt.text = "Вы правильно ответили на $resultScore вопросов из ${generateQuiz().size}."
+        var text = "Вы правильно ответили на $resultScore вопросов из ${generateQuiz().size}.\nПравильные ответы: \n"
+
+        for (entrySet in generateQuiz()){
+
+            val answer = if (entrySet.value.answer) "да" else "нет"
+            val exp = "Вопрос ${entrySet.key}. ${entrySet.value.question} Ответ: $answer \n"
+            text += exp
+        }
+
+        txt.text = text
     }
 
     companion object {
