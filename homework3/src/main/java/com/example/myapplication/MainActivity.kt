@@ -30,10 +30,9 @@ class MainActivity : AppCompatActivity(), MyInterface {
 
     override fun loadNextQuestionOrResult(position: Int) {
 
-        if (position < DataUtils.generateQuizItems().size + 1) {
-            replaceFragment(QuestionsFragment.newInstance("$position"))
-            counter++
-        } else if (position == DataUtils.generateQuizItems().size + 1) {
+        if (position <= DataUtils.generateQuiz().size) {
+            replaceFragment(QuestionsFragment.newInstance(DataUtils.generateQuiz()[position]?.question))
+        } else if (position > DataUtils.generateQuiz().size) {
             replaceFragment(ResultFragment.newInstance("", ""))
         }
     }

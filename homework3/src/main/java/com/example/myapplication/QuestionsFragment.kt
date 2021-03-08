@@ -1,12 +1,15 @@
 package com.example.myapplication
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import com.example.myapplication.DataUtils.Companion.counter
+import com.example.myapplication.DataUtils.Companion.resultScore
 
 private const val TEXT = "param1"
 
@@ -37,13 +40,41 @@ class QuestionsFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         view?.findViewById<Button>(R.id.button_yes)?.setOnClickListener {
-            (requireActivity() as MyInterface).loadNextQuestionOrResult(DataUtils.counter)
+
+            Log.d("3141592", "onStart: $counter, $resultScore")
+            when (DataUtils.generateQuiz()[counter]?.answer) {
+                false -> {
+                    moveToNextScreen()
+                }
+                true -> {
+                    resultScore++
+                    moveToNextScreen()
+                }
+            }
         }
+
+        view?.findViewById<Button>(R.id.button_no)?.setOnClickListener {
+            Log.d("3141592", "onStart: $counter, $resultScore")
+            when (DataUtils.generateQuiz()[counter]?.answer) {
+                false -> {
+                    resultScore++
+                    moveToNextScreen()
+                }
+                true -> {
+                    moveToNextScreen()
+                }
+            }
+        }
+    }
+
+    fun moveToNextScreen() {
+        counter++
+        (requireActivity() as MyInterface).loadNextQuestionOrResult(counter)
     }
 
     companion object {
         @JvmStatic
-        fun newInstance(text: String) =
+        fun newInstance(text: String?) =
             QuestionsFragment().apply {
                 arguments = Bundle().apply {
                     putString(TEXT, text)

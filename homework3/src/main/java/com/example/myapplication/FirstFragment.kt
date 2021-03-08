@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.myapplication.DataUtils.Companion.counter
 
 class FirstFragment : Fragment() {
 
@@ -18,7 +19,7 @@ class FirstFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         view?.findViewById<View>(R.id.button1)?.setOnClickListener {
-            (requireActivity() as MyInterface).loadNextQuestionOrResult(0)
+            (requireActivity() as MyInterface).loadNextQuestionOrResult(counter)
         }
     }
 
