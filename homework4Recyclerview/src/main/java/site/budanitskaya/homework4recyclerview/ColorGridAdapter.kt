@@ -1,15 +1,22 @@
 package site.budanitskaya.homework4recyclerview
 
-import android.graphics.Color
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.color.MaterialColors.getColor
+import site.budanitskaya.homework4recyclerview.DataUtils.Companion.EXTRA_MESSAGE
+import java.lang.String
 
 
-class ColorGridAdapter(val dataSet: MutableList<Int>, private val onItemClick:() -> Unit) :
+class ColorGridAdapter(
+    private val dataSet: List<Int>,
+    context: Context
+) :
     RecyclerView.Adapter<ColorGridAdapter.ViewHolder>() {
+
+    var context: Context = context
 
     /**
      * Provide a reference to the type of views that you are using
@@ -32,20 +39,22 @@ class ColorGridAdapter(val dataSet: MutableList<Int>, private val onItemClick:()
         return ViewHolder(view)
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
 
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
+        var item = dataSet[position]
 
-        val item = dataSet[position]
+        val hexColor = String.format("#%06X", 0xFFFFFF and item)
 
-        viewHolder.itemView.setBackgroundColor((0xff000000 + Integer.parseInt(item.toString(),16)).toInt())
+        viewHolder.itemView.setBackgroundColor(item)
 
-        viewHolder.itemView.setOnClickListener{onItemClick()}
+        viewHolder.itemView.setOnClickListener {
+            var i = Intent(context, ColorActivity::class.java)
+
+            i.putExtra(EXTRA_MESSAGE,hexColor)
+            context.startActivity(i)
+        }
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = dataSet.size
 
 }

@@ -6,21 +6,28 @@ import java.util.*
 class DataUtils{
     companion object{
 
-        fun generateRandomColors(): MutableList<Int> {
+        val EXTRA_MESSAGE = "site.budanitskaya.homework4recyclerview.MESSAGE"
 
-            val rnd = Random()
+        var mutable_colorsList = generateColorList()
+
+        val colorsList = Collections.unmodifiableList(mutable_colorsList)
+
+        private fun generateColorList(): MutableList<Int> {
 
             var list = mutableListOf<Int>()
 
             for(i in 0..599){
                 val color: Int =
-                    Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256))
+                    generateRandomColor()
                 list.add(color)
             }
 
             return list
         }
+
+        private fun generateRandomColor(): Int {
+            val rnd = Random()
+            return Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256))
+        }
     }
-
-
 }
