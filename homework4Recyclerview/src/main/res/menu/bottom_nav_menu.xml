@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/colorGridFragment"
+        android:title="Color Grid"
+        android:icon="@drawable/baseline_view_module_white_18"
+        />
+
+
+    <item
+        android:id="@+id/startGameFragment"
+        android:title="Start Game"
+        android:icon="@drawable/baseline_extension_white_18"
+        />
+
+</menu>

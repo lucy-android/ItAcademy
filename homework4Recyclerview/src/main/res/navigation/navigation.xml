@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/colorGridFragment">
+
+    <fragment
+        android:id="@+id/colorGridFragment"
+        android:name="site.budanitskaya.homework4recyclerview.ColorGridFragment"
+        android:label="fragment_color_grid"
+        tools:layout="@layout/fragment_color_grid" />
+    <fragment
+        android:id="@+id/startGameFragment"
+        android:name="site.budanitskaya.homework4recyclerview.StartGameFragment"
+        android:label="fragment_start_game"
+        tools:layout="@layout/fragment_start_game" />
+</navigation>
