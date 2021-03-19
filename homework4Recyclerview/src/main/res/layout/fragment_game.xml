@@ -29,7 +29,6 @@
                 android:textSize="32sp"
                 tools:text="Sample text" />
 
-
         </FrameLayout>
 
         <LinearLayout
@@ -89,9 +88,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
-
         </LinearLayout>
-
 
     </LinearLayout>
 
