@@ -1,6 +1,5 @@
 package site.budanitskaya.homework4recyclerview
 
-import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -10,15 +9,11 @@ import site.budanitskaya.homework4recyclerview.DataUtils.Companion.INTENT_FLAG
 
 
 class ColorGridAdapter(
-    private val colorList: List<Int>,
-    context: Context
+    private val colorList: List<Int>
 ) :
     RecyclerView.Adapter<ColorGridAdapter.ViewHolder>() {
 
-    val context: Context = context
-
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
-
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
 
@@ -37,10 +32,10 @@ class ColorGridAdapter(
         viewHolder.itemView.setBackgroundColor(colorInt)
 
         viewHolder.itemView.setOnClickListener {
-            val intentToColorActivity = Intent(context, ColorActivity::class.java)
+            val intentToColorActivity = Intent(viewHolder.itemView.context, ColorActivity::class.java)
 
             intentToColorActivity.putExtra(INTENT_FLAG, colorString)
-            context.startActivity(intentToColorActivity)
+            viewHolder.itemView.context.startActivity(intentToColorActivity)
 
         }
     }

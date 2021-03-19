@@ -14,13 +14,13 @@ import java.lang.String
 
 class GameFragment : Fragment() {
 
-    lateinit var binding: FragmentGameBinding
-    lateinit var colorQuestion: ColorQuestion
+    private lateinit var binding: FragmentGameBinding
+    private lateinit var colorQuestion: ColorQuestion
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_game, container, false

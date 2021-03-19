@@ -39,7 +39,6 @@ class DataUtils {
             shuffle(answerKeys)
 
             return ColorQuestion(answerKeys, answer)
-
         }
     }
 }

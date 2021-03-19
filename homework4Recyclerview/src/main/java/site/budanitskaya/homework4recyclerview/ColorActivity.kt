@@ -14,8 +14,8 @@ import site.budanitskaya.homework4recyclerview.databinding.ActivityColorBinding
 
 class ColorActivity : AppCompatActivity() {
 
-    var pasteData: String = ""
-    lateinit var clipboard: ClipboardManager
+    private var pasteData: String = ""
+    private lateinit var clipboard: ClipboardManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

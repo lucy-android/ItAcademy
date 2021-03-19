@@ -18,7 +18,6 @@ class ColorGridFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
         val binding: FragmentColorGridBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_color_grid, container, false
         )
@@ -26,7 +25,7 @@ class ColorGridFragment : Fragment() {
         val recyclerView = binding.recyclerView
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 4)
 
-        val adapter = ColorGridAdapter(colorsList, requireContext())
+        val adapter = ColorGridAdapter(colorsList)
 
         recyclerView.adapter = adapter
 
