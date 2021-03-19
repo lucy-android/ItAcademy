@@ -40,7 +40,7 @@ class ColorActivity : AppCompatActivity() {
             Toast.makeText(this, "Color code copied to clipboard!", Toast.LENGTH_LONG).show()
         }
 
-        // button to paste color data from clipboard
+        // button to paste color data from clip
 
         binding.pasteColorButton.setOnClickListener {
 
