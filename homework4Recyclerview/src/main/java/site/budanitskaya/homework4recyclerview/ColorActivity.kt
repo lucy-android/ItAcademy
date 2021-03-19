@@ -37,7 +37,7 @@ class ColorActivity : AppCompatActivity() {
                 ClipData.newPlainText("Color Code", stringForColorFromRecyclerView)
             clipboard.setPrimaryClip(clip)
 
-            Toast.makeText(this, "Color code copied to clipboard!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.copied), Toast.LENGTH_LONG).show()
         }
 
         // button to paste color data from clip
@@ -50,7 +50,7 @@ class ColorActivity : AppCompatActivity() {
 
             binding.textField.setText(pasteData)
 
-            Toast.makeText(this, "Color code fetched from clipboard!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.fetched), Toast.LENGTH_LONG).show()
         }
     }
 }
