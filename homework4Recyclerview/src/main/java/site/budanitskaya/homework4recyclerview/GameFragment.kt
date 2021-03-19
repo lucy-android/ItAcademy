@@ -86,11 +86,16 @@ class GameFragment : Fragment() {
         binding.game = this
     }
 
-    fun updateScore(number: Int) {
+    private fun updateScore(number: Int) {
         if (colorQuestion.correctAnswer == colorQuestion.variants[number]) {
             score++
         } else {
             score--
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        score = 0
     }
 }
