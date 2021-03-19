@@ -25,46 +25,39 @@ class GameFragment : Fragment() {
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_game, container, false
         )
-
         setGameScreen()
 
         binding.button1.setOnClickListener {
-
             updateScore(0)
             binding.invalidateAll()
             setGameScreen()
         }
 
         binding.button2.setOnClickListener {
-
             updateScore(1)
             binding.invalidateAll()
             setGameScreen()
         }
 
         binding.button3.setOnClickListener {
-
             updateScore(2)
             binding.invalidateAll()
             setGameScreen()
         }
 
         binding.button4.setOnClickListener {
-
             updateScore(3)
             binding.invalidateAll()
             setGameScreen()
         }
 
         binding.button5.setOnClickListener {
-
             updateScore(4)
             binding.invalidateAll()
             setGameScreen()
         }
 
         binding.button6.setOnClickListener {
-
             updateScore(5)
             binding.invalidateAll()
             setGameScreen()
