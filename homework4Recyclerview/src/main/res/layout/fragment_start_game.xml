@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".StartGameFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
 
-    <TextView
-        android:layout_gravity="center_horizontal|center_vertical"
-        android:layout_width="wrap_content"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
-        android:layout_height="wrap_content"
-        android:text="Start Game Fragment"/>
+    </data>
 
-</FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".StartGameFragment">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/startGame"
+            android:background="@color/purple_200"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+            android:text="Start Game Fragment" />
+
+    </FrameLayout>
+</layout>

@@ -14,5 +14,14 @@
         android:id="@+id/startGameFragment"
         android:name="site.budanitskaya.homework4recyclerview.StartGameFragment"
         android:label="fragment_start_game"
-        tools:layout="@layout/fragment_start_game" />
+        tools:layout="@layout/fragment_start_game" >
+        <action
+            android:id="@+id/action_startGameFragment_to_gameFragment"
+            app:destination="@id/gameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="site.budanitskaya.homework4recyclerview.GameFragment"
+        android:label="fragment_game"
+        tools:layout="@layout/fragment_game" />
 </navigation>

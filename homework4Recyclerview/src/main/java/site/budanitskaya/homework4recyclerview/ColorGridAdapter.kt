@@ -50,8 +50,12 @@ class ColorGridAdapter(
         viewHolder.itemView.setOnClickListener {
             var i = Intent(context, ColorActivity::class.java)
 
+        /*    var i = ColorActivity.createIntent()*/
+
             i.putExtra(EXTRA_MESSAGE,hexColor)
             context.startActivity(i)
+
+
         }
     }
 
