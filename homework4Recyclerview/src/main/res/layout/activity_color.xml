@@ -7,11 +7,45 @@
 
     </data>
 
-    <View
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/colorView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </View>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/copyColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="COPY COLOR"
+            app:layout_constraintBottom_toTopOf="@+id/textField"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pasteColor" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/pasteColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PASTE COLOR"
+            app:layout_constraintBottom_toTopOf="@+id/copyColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/textField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Color code"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/copyColor" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
