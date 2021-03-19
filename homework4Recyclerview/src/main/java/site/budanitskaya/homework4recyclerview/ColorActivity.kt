@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import site.budanitskaya.homework4recyclerview.DataUtils.Companion.EXTRA_MESSAGE
+import site.budanitskaya.homework4recyclerview.DataUtils.Companion.INTENT_FLAG
 import site.budanitskaya.homework4recyclerview.databinding.ActivityColorBinding
 
 
@@ -23,7 +23,7 @@ class ColorActivity : AppCompatActivity() {
         val binding =
             DataBindingUtil.setContentView<ActivityColorBinding>(this, R.layout.activity_color)
 
-        val stringForColorFromRecyclerView = intent.getStringExtra(EXTRA_MESSAGE)
+        val stringForColorFromRecyclerView = intent.getStringExtra(INTENT_FLAG)
         val colorBackground = binding.colorBackground
 
         colorBackground.setBackgroundColor(Color.parseColor(stringForColorFromRecyclerView))

@@ -6,33 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import site.budanitskaya.homework4recyclerview.DataUtils.Companion.EXTRA_MESSAGE
-import java.lang.String
+import site.budanitskaya.homework4recyclerview.DataUtils.Companion.INTENT_FLAG
 
 
 class ColorGridAdapter(
-    private val dataSet: List<Int>,
+    private val colorList: List<Int>,
     context: Context
 ) :
     RecyclerView.Adapter<ColorGridAdapter.ViewHolder>() {
 
-    var context: Context = context
+    val context: Context = context
 
-    /**
-     * Provide a reference to the type of views that you are using
-     * (custom ViewHolder).
-     */
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val view_view: View = view.findViewById(R.id.view_view)
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
-        init {
-            // Define click listener for the ViewHolder's View.
-        }
-    }
 
-    // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        // Create a new view, which defines the UI of the list item
+
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.grid_item, viewGroup, false)
 
@@ -41,24 +30,21 @@ class ColorGridAdapter(
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
 
-        var item = dataSet[position]
+        val colorInt = colorList[position]
 
-        val hexColor = String.format("#%06X", 0xFFFFFF and item)
+        val colorString = String.format("#%06X", 0xFFFFFF and colorInt)
 
-        viewHolder.itemView.setBackgroundColor(item)
+        viewHolder.itemView.setBackgroundColor(colorInt)
 
         viewHolder.itemView.setOnClickListener {
-            var i = Intent(context, ColorActivity::class.java)
+            val intentToColorActivity = Intent(context, ColorActivity::class.java)
 
-        /*    var i = ColorActivity.createIntent()*/
-
-            i.putExtra(EXTRA_MESSAGE,hexColor)
-            context.startActivity(i)
-
+            intentToColorActivity.putExtra(INTENT_FLAG, colorString)
+            context.startActivity(intentToColorActivity)
 
         }
     }
 
-    override fun getItemCount() = dataSet.size
+    override fun getItemCount() = colorList.size
 
 }
