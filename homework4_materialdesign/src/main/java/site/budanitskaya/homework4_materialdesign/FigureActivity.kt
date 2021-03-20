@@ -1,11 +1,14 @@
 package site.budanitskaya.homework4_materialdesign
 
 
+
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 
@@ -15,12 +18,13 @@ class FigureActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_figure)
 
-        val transferredPhoto = findViewById<View>(R.id.transferredPhoto)
+        val transferredPhoto = findViewById<ImageView>(R.id.transferredPhoto)
         val bundle = intent.extras
         if (bundle != null) {
             val picture = bundle.getInt(EXTRA_COLOR)
             val drawable: Drawable = ResourcesCompat.getDrawable(resources, picture, null)!!
-            transferredPhoto.background = drawable
+
+            transferredPhoto.setImageResource(picture)
         }
     }
 
