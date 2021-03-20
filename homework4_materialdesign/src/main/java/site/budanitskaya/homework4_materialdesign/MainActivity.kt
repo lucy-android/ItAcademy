@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -28,6 +29,8 @@ class MainActivity : AppCompatActivity() {
         drawableList.add(7, R.drawable.slippers)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+
+        recyclerView.suppressLayout(true)
         recyclerView.layoutManager = GridLayoutManager(this, 4)
 
         recyclerView.adapter = FigureAdapter(drawableList,
@@ -40,5 +43,7 @@ class MainActivity : AppCompatActivity() {
                 )
             }
         )
+
+        ViewCompat.setNestedScrollingEnabled(recyclerView, false)
     }
 }
