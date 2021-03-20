@@ -1,71 +1,71 @@
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+<androidx.coordinatorlayout.widget.CoordinatorLayout android:layout_gravity="bottom"
     android:layout_height="match_parent"
-    android:layout_gravity="bottom">
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
+        android:id="@+id/fab"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
         app:layout_anchor="@id/bar" />
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
 
         <LinearLayout xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="15dp"
+            android:layout_width="match_parent"
             android:orientation="vertical"
             tools:context=".MainActivity">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_width="match_parent"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="140dp"
                         android:layout_height="140dp"
                         android:layout_margin="5dp"
+                        android:layout_width="140dp"
                         android:src="@drawable/profile_photo" />
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_margin="5dp"
+                        android:layout_width="wrap_content"
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:gravity="center_vertical"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:gravity="center_vertical"
+                            android:layout_width="wrap_content"
                             android:text="Stasenka"
 
                             android:textSize="12sp" />
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:gravity="center_vertical"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:gravity="center_vertical"
+                            android:layout_width="wrap_content"
                             android:text="Cat photomodel"
                             android:textSize="12sp" />
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:gravity="center_vertical"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:gravity="center_vertical"
+                            android:layout_width="wrap_content"
                             android:text="https://www.instagram.com/stasenka_the_cat"
                             android:textSize="12sp" />
 
@@ -78,19 +78,19 @@
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
                 android:background="@drawable/lines"
+                android:layout_height="140dp"
+                android:layout_width="match_parent"
                 android:padding="15dp">
 
                 <TextView
+                    android:gravity="center_horizontal"
                     android:id="@+id/no_of_posts"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:gravity="center_horizontal"
+                    android:layout_width="0dp"
                     android:text="186"
                     android:textSize="12sp"
                     android:textStyle="bold"
@@ -102,13 +102,13 @@
                     app:layout_constraintVertical_chainStyle="packed" />
 
                 <TextView
+                    android:gravity="center_horizontal"
                     android:id="@+id/posts"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:gravity="center_horizontal"
+                    android:layout_width="0dp"
                     android:text="Posts"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -118,13 +118,13 @@
                     app:layout_constraintTop_toBottomOf="@+id/no_of_posts" />
 
                 <TextView
+                    android:gravity="center_horizontal"
                     android:id="@+id/no_of_followers"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:gravity="center_horizontal"
+                    android:layout_width="0dp"
                     android:text="344"
                     android:textSize="12sp"
                     android:textStyle="bold"
@@ -136,13 +136,13 @@
                     app:layout_constraintVertical_chainStyle="packed" />
 
                 <TextView
+                    android:gravity="center_horizontal"
                     android:id="@+id/followers"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:gravity="center_horizontal"
+                    android:layout_width="0dp"
                     android:text="followers"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -152,13 +152,13 @@
                     app:layout_constraintTop_toBottomOf="@+id/no_of_followers" />
 
                 <TextView
+                    android:gravity="center_horizontal"
                     android:id="@+id/no_of_following"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:gravity="center_horizontal"
+                    android:layout_width="0dp"
                     android:text="603"
                     android:textSize="12sp"
                     android:textStyle="bold"
@@ -170,13 +170,13 @@
                     app:layout_constraintVertical_chainStyle="packed" />
 
                 <TextView
+                    android:gravity="center_horizontal"
                     android:id="@+id/following"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
-                    android:gravity="center_horizontal"
+                    android:layout_width="0dp"
                     android:text="following"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -189,26 +189,26 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_width="match_parent"
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:layout_width="0dp"
+                    android:background="@color/purple_700"
                     android:layout_height="wrap_content"
                     android:layout_margin="30dp"
                     android:layout_weight="4"
-                    android:background="@color/purple_700"
+                    android:layout_width="0dp"
                     android:padding="15dp"
                     android:text="Follow"
                     android:textColor="@color/white" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
-                    android:layout_width="0dp"
+                    android:background="#E8E8E8"
                     android:layout_height="wrap_content"
                     android:layout_margin="30dp"
                     android:layout_weight="1"
-                    android:background="#E8E8E8"
+                    android:layout_width="0dp"
 
                     android:padding="15dp"
                     android:src="@drawable/baseline_share_black_18dp" />
@@ -216,30 +216,40 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_height="200dp"
+                    android:layout_width="match_parent" />
+            </LinearLayout>
+
         </LinearLayout>
 
     </ScrollView>
 
     <com.google.android.material.bottomappbar.BottomAppBar
+        android:backgroundTint="@color/design_default_color_primary_variant"
         android:id="@+id/bar"
-        android:layout_width="match_parent"
-        android:layout_height="58dp"
         android:layout_gravity="bottom"
-        android:backgroundTint="@color/design_default_color_primary_variant">
+        android:layout_height="58dp"
+        android:layout_width="match_parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_width="match_parent"
             android:orientation="horizontal">
 
             <TextView
                 style="?android:attr/borderlessButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:background="?android:attr/selectableItemBackground"
                 android:drawableTop="@drawable/baseline_send_white_16"
                 android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_width="0dp"
                 android:orientation="vertical"
                 android:text="Personal"
                 android:textColor="#FFFFFF">
@@ -248,12 +258,12 @@
 
             <TextView
                 style="?android:attr/borderlessButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:background="?android:attr/selectableItemBackground"
                 android:drawableTop="@drawable/baseline_send_white_16"
                 android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_width="0dp"
                 android:orientation="vertical"
                 android:text="Personal"
                 android:textColor="#FFFFFF">
@@ -262,12 +272,12 @@
 
             <TextView
                 style="?android:attr/borderlessButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:background="?android:attr/selectableItemBackground"
                 android:drawableTop="@drawable/baseline_send_white_16"
                 android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_width="0dp"
                 android:orientation="vertical"
                 android:textColor="#FFFFFF"
                 android:visibility="invisible">
@@ -276,12 +286,12 @@
 
             <TextView
                 style="?android:attr/borderlessButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:background="?android:attr/selectableItemBackground"
                 android:drawableTop="@drawable/baseline_send_white_16"
                 android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_width="0dp"
                 android:orientation="vertical"
                 android:text="Personal"
                 android:textColor="#FFFFFF">
@@ -290,12 +300,12 @@
 
             <TextView
                 style="?android:attr/borderlessButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:background="?android:attr/selectableItemBackground"
                 android:drawableTop="@drawable/baseline_send_white_16"
                 android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_width="0dp"
                 android:orientation="vertical"
                 android:text="Personal"
                 android:textColor="#FFFFFF">
