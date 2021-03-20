@@ -1,8 +1,10 @@
 package site.budanitskaya.homework4_materialdesign
 
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -29,11 +31,12 @@ class FigureAdapter(
         private val onClick: (Int) -> Unit
     ) : RecyclerView.ViewHolder(view) {
 
+
         private val root: View = view.rootView
-        private val name: TextView = root.findViewById(R.id.figure)
+        private val firstPhoto: ImageView = root.findViewById(R.id.first_photo)
 
         fun bind(figure: Int) {
-            name.text = figure.toString()
+            firstPhoto.setImageResource(figure)
             root.setOnClickListener {
                 onClick(figure)
             }

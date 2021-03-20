@@ -5,11 +5,18 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
+<!--    <TextView
         android:id="@+id/activity_figure"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        tools:text="This is text!" />
+        tools:text="This is text!" />-->
+
+    <ImageView
+        android:id="@+id/transferredPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </ImageView>
 
 </FrameLayout>

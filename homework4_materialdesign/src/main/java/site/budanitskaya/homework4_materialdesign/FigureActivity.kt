@@ -1,19 +1,27 @@
 package site.budanitskaya.homework4_materialdesign
 
+
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.widget.TextView
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
+
 
 class FigureActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_figure)
 
-        val i = intent.getStringExtra(EXTRA_COLOR) as String
-
-        findViewById<TextView>(R.id.activity_figure).text = i
+        val transferredPhoto = findViewById<View>(R.id.transferredPhoto)
+        val bundle = intent.extras
+        if (bundle != null) {
+            val picture = bundle.getInt(EXTRA_COLOR)
+            val drawable: Drawable = ResourcesCompat.getDrawable(resources, picture, null)!!
+            transferredPhoto.background = drawable
+        }
     }
 
     companion object {
@@ -22,7 +30,7 @@ class FigureActivity : AppCompatActivity() {
 
         fun getStartIntent(context: Context, figure: Int) =
             Intent(context, FigureActivity::class.java).apply {
-                putExtra(EXTRA_COLOR, figure.toString())
+                putExtra(EXTRA_COLOR, figure)
             }
     }
 }

@@ -204,6 +204,7 @@
                     android:textColor="@color/white" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/image"
                     android:background="#E8E8E8"
                     android:layout_height="wrap_content"
                     android:layout_margin="30dp"
