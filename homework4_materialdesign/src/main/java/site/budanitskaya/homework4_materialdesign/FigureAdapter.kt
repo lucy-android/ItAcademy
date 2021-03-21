@@ -41,5 +41,6 @@ class FigureAdapter(
                 onClick(figure)
             }
         }
+
     }
 }
