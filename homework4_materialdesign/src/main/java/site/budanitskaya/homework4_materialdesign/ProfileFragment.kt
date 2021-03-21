@@ -1,13 +1,16 @@
 package site.budanitskaya.homework4_materialdesign
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.SimpleOnItemTouchListener
+
 
 class ProfileFragment : Fragment() {
 
@@ -27,7 +30,6 @@ class ProfileFragment : Fragment() {
 
         avatarRecyclerView.adapter = CommonAdapter()
 
-/*
         drawableList.add(0, R.drawable.balance)
         drawableList.add(1, R.drawable.fight)
         drawableList.add(2, R.drawable.ginger)
@@ -39,9 +41,17 @@ class ProfileFragment : Fragment() {
         drawableList.add(8, R.drawable.balance)
         drawableList.add(9, R.drawable.fight)
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.child_recyclerView)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.figure_recyclerView)
 
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 4)
+
+
+        recyclerView.addOnItemTouchListener(object : SimpleOnItemTouchListener() {
+            override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
+                // Stop only scrolling.
+                return rv.scrollState == RecyclerView.SCROLL_STATE_DRAGGING
+            }
+        })
 
         recyclerView.adapter = FigureAdapter(drawableList,
             onClick = {
@@ -52,7 +62,7 @@ class ProfileFragment : Fragment() {
                     )
                 )
             }
-        )*/
+        )
 
         return view
     }
