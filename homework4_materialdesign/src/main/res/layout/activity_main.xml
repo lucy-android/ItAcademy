@@ -98,6 +98,8 @@
 
     </com.google.android.material.bottomappbar.BottomAppBar>
 
+
+
     <fragment
         android:id="@+id/profileFragment"
         android:name="site.budanitskaya.homework4_materialdesign.ProfileFragment"

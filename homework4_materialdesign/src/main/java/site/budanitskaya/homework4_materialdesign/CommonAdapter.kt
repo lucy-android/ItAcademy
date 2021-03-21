@@ -56,6 +56,6 @@ class CommonAdapter(
 
     }
 
-    override fun getItemCount(): Int = 3
+    override fun getItemCount(): Int = 2
 
 }
