@@ -30,24 +30,23 @@ class ProfileFragment : Fragment() {
 
         avatarRecyclerView.adapter = CommonAdapter()
 
-/*        drawableList.add(0, R.drawable.balance)*/
+
         drawableList.add(0, R.drawable.fight)
         drawableList.add(1, R.drawable.ginger)
-/*        drawableList.add(3, R.drawable.kanapka)*/
+
         drawableList.add(2, R.drawable.mastered_dzen)
         drawableList.add(3, R.drawable.on_the_floor)
         drawableList.add(4, R.drawable.pumik_plus_stasenka)
         drawableList.add(5, R.drawable.slippers)
-/*        drawableList.add(8, R.drawable.balance)*/
-/*        drawableList.add(9, R.drawable.having_a_rest)*/
+
         drawableList.add(6, R.drawable.sweet_boy)
-/*        drawableList.add(11, R.drawable.me)*/
+
         drawableList.add(7, R.drawable.dangerous)
         drawableList.add(8, R.drawable.awesome)
         drawableList.add(9, R.drawable.kanapka_angry)
         drawableList.add(10, R.drawable.my_cats)
         drawableList.add(11, R.drawable.pumik_and_vaksa)
-/*        drawableList.add(17, R.drawable.spring_time)*/
+
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.figure_recyclerView)
 

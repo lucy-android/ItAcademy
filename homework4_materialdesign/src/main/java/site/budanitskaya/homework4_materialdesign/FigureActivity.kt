@@ -17,8 +17,7 @@ class FigureActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_figure)
-
-        val transferredPhoto = findViewById<ImageView>(R.id.transferredPhoto)
+        val transferredPhoto = findViewById<ImageView>(R.id.transferred_photo)
         val bundle = intent.extras
         if (bundle != null) {
             val picture = bundle.getInt(EXTRA_COLOR)
