@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view_for_comment_one"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="0dp"
+    android:padding="0dp"
+    card_view:cardCornerRadius="6dp">
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/sweet_boy" />
+
+
+
+
+        </androidx.cardview.widget.CardView>

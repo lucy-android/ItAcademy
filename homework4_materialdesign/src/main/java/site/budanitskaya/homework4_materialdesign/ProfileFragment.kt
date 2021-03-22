@@ -37,7 +37,7 @@ class ProfileFragment : Fragment() {
         drawableList.add(2, R.drawable.mastered_dzen)
         drawableList.add(3, R.drawable.on_the_floor)
         drawableList.add(4, R.drawable.pumik_plus_stasenka)
-        drawableList.add(5, R.drawable.slippers)
+        drawableList.add(5, R.drawable.spring_time)
 
         drawableList.add(6, R.drawable.sweet_boy)
 
