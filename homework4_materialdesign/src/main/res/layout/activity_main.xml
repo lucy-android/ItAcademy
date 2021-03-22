@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
+        app:backgroundTint="@color/secondaryDarkColor"
         app:layout_anchor="@id/bar" />
 
     <com.google.android.material.bottomappbar.BottomAppBar
@@ -17,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="bottom"
-        android:backgroundTint="@color/design_default_color_primary_variant">
+        android:backgroundTint="@color/primaryLightColor">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,11 +26,9 @@
             android:orientation="horizontal">
 
             <TextView
-                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="?android:attr/selectableItemBackground"
                 android:drawableTop="@drawable/baseline_send_white_16"
                 android:gravity="center"
                 android:orientation="vertical"
@@ -39,11 +38,9 @@
             </TextView>
 
             <TextView
-                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="?android:attr/selectableItemBackground"
                 android:drawableTop="@drawable/baseline_send_white_16"
                 android:gravity="center"
                 android:orientation="vertical"
@@ -53,25 +50,9 @@
             </TextView>
 
             <TextView
-                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="?android:attr/selectableItemBackground"
-                android:drawableTop="@drawable/baseline_send_white_16"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:textColor="#FFFFFF"
-                android:visibility="invisible">
-
-            </TextView>
-
-            <TextView
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="?android:attr/selectableItemBackground"
                 android:drawableTop="@drawable/baseline_send_white_16"
                 android:gravity="center"
                 android:orientation="vertical"
@@ -81,11 +62,9 @@
             </TextView>
 
             <TextView
-                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="?android:attr/selectableItemBackground"
                 android:drawableTop="@drawable/baseline_send_white_16"
                 android:gravity="center"
                 android:orientation="vertical"

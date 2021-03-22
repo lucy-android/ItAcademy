@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ItAcademyAndroid">
-        <activity android:name=".FigureActivity" android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"></activity>
+        <activity android:name=".FigureActivity" android:theme="@style/Theme.SecondScreen"></activity>
         <activity android:name=".MainActivity">
 
 
