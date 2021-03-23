@@ -1,16 +1,14 @@
 package site.budanitskaya.homework4_materialdesign
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.SimpleOnItemTouchListener
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 
 class ProfileFragment : Fragment() {
@@ -26,10 +24,10 @@ class ProfileFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
 
 
-        val avatarRecyclerView = view.findViewById<RecyclerView>(R.id.avatarRecyclerView)
+        /*val avatarRecyclerView = view.findViewById<RecyclerView>(R.id.avatarRecyclerView)
         avatarRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        avatarRecyclerView.adapter = CommonAdapter({})
+        avatarRecyclerView.adapter = CommonAdapter({})*/
 
 
         drawableList.add(0, R.drawable.fight)
@@ -49,12 +47,19 @@ class ProfileFragment : Fragment() {
         drawableList.add(11, R.drawable.pumik_and_vaksa)
 
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.figure_recyclerView)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.avatarRecyclerView)
 
-        recyclerView.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        recyclerView.adapter = FigureAdapter(drawableList,
-            onClick = {
+        recyclerView.adapter = CommonTwoAdapter(drawableList,
+            {
+                val intent = Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://www.instagram.com/stasenka_the_cat")
+                )
+                startActivity(intent)
+            },
+            {
                 startActivity(
                     FigureActivity.getStartIntent(
                         context = requireContext(),
