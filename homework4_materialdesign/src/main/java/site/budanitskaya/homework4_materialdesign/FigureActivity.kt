@@ -1,7 +1,6 @@
 package site.budanitskaya.homework4_materialdesign
 
 
-
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
@@ -11,12 +10,37 @@ import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 
 class FigureActivity : AppCompatActivity() {
+
+    private lateinit var like:ImageView
+    private var likeFlag = false
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_figure)
+        like = findViewById(R.id.like)
+
+        like.setOnClickListener{
+
+            like.invalidate()
+            like.setBackgroundResource(R.drawable.ic_baseline_favorite_24)
+
+           /* likeFlag = if(!likeFlag){
+
+                true
+            } else {
+                like.invalidate()
+                like.setBackgroundResource(R.drawable.ic_baseline_favorite_border_24)
+                false
+            }*/
+
+        }
+
         val transferredPhoto = findViewById<ImageView>(R.id.transferred_photo)
         val bundle = intent.extras
         if (bundle != null) {
@@ -25,6 +49,12 @@ class FigureActivity : AppCompatActivity() {
 
             transferredPhoto.setImageResource(picture)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+
     }
 
     companion object {

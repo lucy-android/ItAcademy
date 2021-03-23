@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS
 import java.lang.Exception
 
 class CommonTwoAdapter(
@@ -145,9 +146,9 @@ class CommonTwoAdapter(
             val adapter = FigureAdapter(figures, onPhotoClick)
 
             reCycler.adapter = adapter
-
-            reCycler.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
-
+            reCycler.layoutManager = GridLayoutManager(this.itemView.context, 2)
+/*            (reCycler.layoutManager as StaggeredGridLayoutManager).gapStrategy =
+                GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS*/
         }
 
     }
