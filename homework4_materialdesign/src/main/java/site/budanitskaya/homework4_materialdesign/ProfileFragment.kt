@@ -28,7 +28,7 @@ class ProfileFragment : Fragment() {
         val avatarRecyclerView = view.findViewById<RecyclerView>(R.id.avatarRecyclerView)
         avatarRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        avatarRecyclerView.adapter = CommonAdapter()
+        avatarRecyclerView.adapter = CommonAdapter({})
 
 
         drawableList.add(0, R.drawable.fight)
