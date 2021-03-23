@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!--<androidx.cardview.widget.CardView android:id="@+id/card_view_for_comment_one"
+<androidx.cardview.widget.CardView android:id="@+id/card_view_for_comment_one"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:layout_marginStart="20dp"
-    card_view:cardCornerRadius="40dp"
+    android:layout_marginTop="40dp"
+    card_view:cardCornerRadius="4dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:card_view="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -21,8 +20,10 @@
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            android:backgroundTint="@android:color/transparent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintVertical_bias="0.879"
             tools:src="@drawable/sweet_boy">
 
         </ImageView>
@@ -32,22 +33,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="64dp"
+            android:layout_marginBottom="64dp"
             android:src="@drawable/ic_baseline_favorite_border_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.879" />
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toStartOf="@+id/textView"
+            card_view:layout_constraintStart_toStartOf="parent"
+            android:backgroundTint="@android:color/transparent"
+            card_view:layout_constraintTop_toTopOf="parent"
+            card_view:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="65dp"
             android:layout_height="24dp"
-            android:layout_marginBottom="53dp"
+            android:layout_marginBottom="64dp"
             android:text="likes"
-            app:layout_constraintBottom_toBottomOf="@+id/transferred_photo"
-            app:layout_constraintStart_toEndOf="@id/like"
-            app:layout_constraintEnd_toStartOf="@id/comments"/>
+            android:backgroundTint="@android:color/transparent"
+            card_view:layout_constraintBottom_toBottomOf="@+id/transferred_photo"
+            card_view:layout_constraintStart_toEndOf="@id/like"
+            card_view:layout_constraintEnd_toStartOf="@id/comments"/>
 
 
         <ImageView
@@ -55,82 +59,39 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
+            android:layout_marginBottom="64dp"
             android:src="@drawable/ic_baseline_mode_comment_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView1"
-            app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.879" />
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toStartOf="@+id/textView1"
+            android:backgroundTint="@android:color/transparent"
+            card_view:layout_constraintStart_toEndOf="@+id/textView"
+            card_view:layout_constraintTop_toTopOf="parent"
+            card_view:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="65dp"
             android:layout_height="24dp"
             android:layout_marginStart="0dp"
-            android:backgroundTintMode="src_over"
+            android:backgroundTint="@android:color/transparent"
             android:text="comments"
-            app:layout_constraintBottom_toBottomOf="@+id/transferred_photo"
-            app:layout_constraintStart_toEndOf="@id/comments"
-            android:layout_marginBottom="53dp"/>
+            card_view:layout_constraintBottom_toBottomOf="@+id/transferred_photo"
+            card_view:layout_constraintStart_toEndOf="@id/comments"
+            android:layout_marginBottom="64dp"/>
 
         <ImageView
             android:id="@+id/bookmark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="64dp"
-            android:layout_marginBottom="53dp"
             android:src="@drawable/ic_baseline_bookmark_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/textView1"
-            app:layout_constraintVertical_bias="0.879" />
+            android:backgroundTint="@android:color/transparent"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toEndOf="@id/textView1"
+            android:layout_marginBottom="64dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
-
-
-</androidx.cardview.widget.CardView>-->
-
-
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-
-
-    <ImageView
-        android:id="@+id/transferred_photo"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        tools:src="@drawable/sweet_boy" />
-
-    <ImageView
-        android:id="@+id/like"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/transparent_heart"
-        android:backgroundTint="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.126"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.153" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-
-
+</androidx.cardview.widget.CardView>

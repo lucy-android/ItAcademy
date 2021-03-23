@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/comment_one"
+    android:id="@+id/comment_two"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
@@ -30,7 +30,7 @@
 
 
                     android:padding="0dp"
-                    android:src="@drawable/sweet_boy" />
+                    android:src="@drawable/awesome" />
             </androidx.cardview.widget.CardView>
         </LinearLayout>
 
@@ -43,12 +43,12 @@
             android:weightSum="2">
 
             <TextView
-                android:id="@+id/pumik_the_black_cat"
+                android:id="@+id/miss_kanapka"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:textStyle="bold"
-                android:text="pumik_the_black_cat" />
+                android:text="miss_kanapka" />
 
             <TextView
                 android:layout_margin="10dp"

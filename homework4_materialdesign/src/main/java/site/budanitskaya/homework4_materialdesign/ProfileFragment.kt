@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.SimpleOnItemTouchListener
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 
 class ProfileFragment : Fragment() {
@@ -50,7 +51,7 @@ class ProfileFragment : Fragment() {
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.figure_recyclerView)
 
-        recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+        recyclerView.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
 
         recyclerView.adapter = FigureAdapter(drawableList,
             onClick = {
