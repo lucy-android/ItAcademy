@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
-        app:backgroundTint="@color/secondaryDarkColor"
+        android:src="@drawable/add"
+        app:backgroundTint="@color/secondaryLightColor"
         app:layout_anchor="@id/bar" />
 
     <com.google.android.material.bottomappbar.BottomAppBar
@@ -25,65 +26,45 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
+            <ImageView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawableTop="@drawable/baseline_send_white_16"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:text="Personal"
-                android:textColor="#FFFFFF">
+                android:src="@drawable/ic_baseline_home_24"/>
 
-            </TextView>
-
-            <TextView
+            <ImageView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawableTop="@drawable/baseline_send_white_16"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:text="Personal"
-                android:textColor="#FFFFFF">
+                android:src="@drawable/search"/>
 
-            </TextView>
-
-            <TextView
+            <ImageView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawableTop="@drawable/baseline_send_white_16"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:text="Personal"
-                android:textColor="#FFFFFF">
+                android:src="@drawable/appbar_bookmark"/>
 
-            </TextView>
-
-            <TextView
+            <ImageView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawableTop="@drawable/baseline_send_white_16"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:text="Personal"
-                android:textColor="#FFFFFF">
-
-            </TextView>
+                android:src="@drawable/appbar_favorite"/>
 
         </LinearLayout>
-
     </com.google.android.material.bottomappbar.BottomAppBar>
-
-
 
     <fragment
         android:id="@+id/profileFragment"
         android:name="site.budanitskaya.homework4_materialdesign.ProfileFragment"
         android:layout_width="match_parent"
         android:layout_height="600dp" />
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

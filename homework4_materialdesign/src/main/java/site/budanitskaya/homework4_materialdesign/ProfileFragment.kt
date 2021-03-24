@@ -22,7 +22,7 @@ class ProfileFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
 
-        drawableList.add(0, R.drawable.sweet_boy)
+        drawableList.add(0, R.drawable.pumik)
         drawableList.add(1, R.drawable.ginger)
         drawableList.add(2, R.drawable.mastered_dzen)
         drawableList.add(3, R.drawable.on_the_floor)
@@ -30,7 +30,7 @@ class ProfileFragment : Fragment() {
         drawableList.add(5, R.drawable.spring_time)
         drawableList.add(6, R.drawable.knopka)
         drawableList.add(7, R.drawable.dangerous)
-        drawableList.add(8, R.drawable.awesome)
+        drawableList.add(8, R.drawable.kanapka_on_sofa)
         drawableList.add(9, R.drawable.kanapka_angry)
         drawableList.add(10, R.drawable.my_cats)
         drawableList.add(11, R.drawable.pumik_and_vaksa)
@@ -39,7 +39,7 @@ class ProfileFragment : Fragment() {
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        recyclerView.adapter = CommonTwoAdapter(drawableList,
+        recyclerView.adapter = FirstScreenAdapter(drawableList,
             {
                 val intent = Intent(
                     Intent.ACTION_VIEW,

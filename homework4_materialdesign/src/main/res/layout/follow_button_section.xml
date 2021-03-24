@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
@@ -11,35 +9,33 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:weightSum="4"
-        android:layout_height="match_parent">
-
+        android:weightSum="4">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/follow_button"
             android:layout_width="0dp"
-            android:layout_margin="10dp"
             android:layout_height="40dp"
+            android:layout_margin="10dp"
             android:layout_weight="3"
-            android:text="Follow"
+            android:textColor="@color/primaryTextColor"
             android:background="@drawable/custom_button"
-            >
+            android:text="@string/follow">
 
         </androidx.appcompat.widget.AppCompatButton>
 
         <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/share_button"
             android:layout_width="0dp"
-            android:layout_margin="10dp"
             android:layout_height="40dp"
+            android:layout_margin="10dp"
             android:layout_weight="1"
-            android:src="@drawable/ic_baseline_sh"
             android:background="@drawable/custom_button"
-            >
+            android:src="@drawable/share">
 
         </androidx.appcompat.widget.AppCompatImageButton>
 
     </LinearLayout>
-
 
 </androidx.cardview.widget.CardView>

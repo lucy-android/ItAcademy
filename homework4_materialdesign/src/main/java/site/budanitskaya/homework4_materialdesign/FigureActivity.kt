@@ -3,15 +3,11 @@ package site.budanitskaya.homework4_materialdesign
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 
 
 class FigureActivity : AppCompatActivity() {
@@ -41,7 +37,7 @@ class FigureActivity : AppCompatActivity() {
 
         }
 
-        val transferredPhoto = findViewById<ImageView>(R.id.transferred_photo)
+        val transferredPhoto = findViewById<ImageView>(R.id.passed_photo)
         val bundle = intent.extras
         if (bundle != null) {
             val picture = bundle.getInt(EXTRA_COLOR)

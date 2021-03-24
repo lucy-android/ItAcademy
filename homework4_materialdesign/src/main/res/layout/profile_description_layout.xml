@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     card_view:cardCornerRadius="4dp">
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,35 +28,29 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/stasenka"
+                    android:id="@+id/profile_name_view"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
-                    android:text="Stasenka"
-                    />
+                    android:text="@string/profile_name_string" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
-                    android:text="Cat model &amp; her friends" />
+                    android:text="@string/profile_desc_string" />
 
                 <TextView
-                    android:id="@+id/internet_address"
+                    android:id="@+id/url_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
-                    android:text="https://www.instagram.com/stasenka_the_cat" />
-
+                    android:text="@string/url_string" />
 
             </LinearLayout>
-
         </LinearLayout>
-
-
     </LinearLayout>
-
 </androidx.cardview.widget.CardView>

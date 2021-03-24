@@ -1,27 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/comment_two"
+    android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     card_view:cardCornerRadius="4dp">
 
     <LinearLayout
-        android:id="@+id/enter"
-        android:layout_margin="5dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="4">
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:background="@drawable/backwithborder"
-            android:ems="10"
-            android:hint="Write something..."
+            android:layout_margin="10dp"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="40dp"
+            android:background="@drawable/view_border"
+            android:hint="@string/comment_hint"
             android:padding="5dp" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_button"
+            android:src="@drawable/ic_baseline_send_24">
+
+        </androidx.appcompat.widget.AppCompatImageButton>
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

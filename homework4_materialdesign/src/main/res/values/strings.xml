@@ -2,4 +2,24 @@
     <string name="app_name">Material Design</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="profile_name_string">Stasenka</string>
+    <string name="profile_desc_string"><![CDATA[Cat model & her friends]]></string>
+    <string name="url_string">https://www.instagram.com/stasenka_the_cat</string>
+    <string name="comment_hint">Write something...</string>
+    <string name="_3">no_comments</string>
+    <string name="comments">comments</string>
+    <string name="no_likes">200</string>
+    <string name="no_comments">3</string>
+    <string name="cat_two_name">pumik_the_black_cat</string>
+    <string name="comment_string_one">Subscribe!</string>
+    <string name="kanapka_name">miss_kanapka</string>
+    <string name="comment_two_string">You are awesome!</string>
+    <string name="comment_three">So cute</string>
+    <string name="follow">Follow</string>
+    <string name="no_posts">186</string>
+    <string name="posts">Posts</string>
+    <string name="no_followers">344</string>
+    <string name="followers">followers</string>
+    <string name="no_following">603</string>
+    <string name="following">following</string>
 </resources>

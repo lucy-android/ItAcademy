@@ -3,29 +3,24 @@ package site.budanitskaya.homework4_materialdesign
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS
 import java.lang.Exception
 
-class CommonTwoAdapter(
+class FirstScreenAdapter(
 
     private val figures: List<Int>,
-
-    private val onClick: () -> Unit,
+    private val onUrlClick: () -> Unit,
     private val onPhotoClick: (Int) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view1 = LayoutInflater.from(parent.context)
-            .inflate(R.layout.avatar, parent, false)
+            .inflate(R.layout.profile_description_layout, parent, false)
 
         val view2 = LayoutInflater.from(parent.context)
-            .inflate(R.layout.followers, parent, false)
+            .inflate(R.layout.subscription_section, parent, false)
 
         val view3 = LayoutInflater.from(parent.context)
             .inflate(R.layout.follow_button_section, parent, false)
@@ -34,9 +29,9 @@ class CommonTwoAdapter(
             .inflate(R.layout.recycler, parent, false)
 
         return when (viewType) {
-            0 -> AvatarViewHolder(view1, onClick)
-            1 -> FollowersViewHolder(view2, onClick)
-            2 -> ButtonsViewHolder(view3, onClick)
+            0 -> AvatarViewHolder(view1, onUrlClick)
+            1 -> FollowersViewHolder(view2)
+            2 -> ButtonsViewHolder(view3)
             3 -> RecyclerViewHolder(view4, figures, onPhotoClick)
             else -> throw Exception()
         }
@@ -81,7 +76,7 @@ class CommonTwoAdapter(
 
 
         private val root: View = view.rootView
-        private val internetAddress: TextView = root.findViewById(R.id.internet_address)
+        private val internetAddress: TextView = root.findViewById(R.id.url_textview)
 
         fun bind() {
 
@@ -93,37 +88,26 @@ class CommonTwoAdapter(
     }
 
     class FollowersViewHolder(
-        view: View,
-        private val onClick: () -> Unit
+        view: View
     ) : RecyclerView.ViewHolder(view) {
 
 
         private val root: View = view.rootView
-/*        private val internetAddress: TextView = root.findViewById(R.id.internet_address)*/
 
         fun bind() {
 
             root.setOnClickListener {
-                onClick()
+
             }
         }
 
     }
 
     class ButtonsViewHolder(
-        view: View,
-        private val onClick: () -> Unit
+        view: View
     ) : RecyclerView.ViewHolder(view) {
 
-
-        private val root: View = view.rootView
-/*        private val internetAddress: TextView = root.findViewById(R.id.internet_address)*/
-
         fun bind() {
-
-/*            root.setOnClickListener {
-                onClick()
-            }*/
         }
 
     }
@@ -136,8 +120,6 @@ class CommonTwoAdapter(
 
 
         private val root: View = view.rootView
-        /*private val firstPhoto: ImageView = root.findViewById(R.id.first_photo)*/
-
         private val reCycler = root.findViewById<RecyclerView>(R.id.figure_recyclerView)
 
 
