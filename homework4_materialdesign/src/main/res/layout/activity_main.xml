@@ -38,7 +38,7 @@
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="site.budanitskaya.homework4_materialdesign.ProfileFragment"
+        android:name="site.budanitskaya.homework4_materialdesign.FirstScreenFragment"
 
         android:layout_width="match_parent"
         android:layout_height="658dp" />
