@@ -20,7 +20,7 @@
             android:layout_margin="10dp"
             android:layout_weight="3"
             android:textColor="@color/primaryTextColor"
-            android:background="@drawable/custom_button"
+            android:background="@drawable/button"
             android:text="@string/follow">
 
         </androidx.appcompat.widget.AppCompatButton>
@@ -31,7 +31,7 @@
             android:layout_height="40dp"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:background="@drawable/custom_button"
+            android:background="@drawable/button"
             android:src="@drawable/share">
 
         </androidx.appcompat.widget.AppCompatImageButton>

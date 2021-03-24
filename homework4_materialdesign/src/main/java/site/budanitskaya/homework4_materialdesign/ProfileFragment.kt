@@ -6,14 +6,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
 class ProfileFragment : Fragment() {
-
-    private val drawableList = mutableListOf<Int>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,34 +21,24 @@ class ProfileFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
 
-        drawableList.add(0, R.drawable.pumik)
-        drawableList.add(1, R.drawable.ginger)
-        drawableList.add(2, R.drawable.mastered_dzen)
-        drawableList.add(3, R.drawable.on_the_floor)
-        drawableList.add(4, R.drawable.pumik_plus_stasenka)
-        drawableList.add(5, R.drawable.spring_time)
-        drawableList.add(6, R.drawable.knopka)
-        drawableList.add(7, R.drawable.dangerous)
-        drawableList.add(8, R.drawable.kanapka_on_sofa)
-        drawableList.add(9, R.drawable.kanapka_angry)
-        drawableList.add(10, R.drawable.my_cats)
-        drawableList.add(11, R.drawable.pumik_and_vaksa)
+        val drawableList = generateDrawableList()
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.avatarRecyclerView)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.first_screen_recyclerview)
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        val urlTextView = view.findViewById<TextView>(R.id.url_textview)
 
         recyclerView.adapter = FirstScreenAdapter(drawableList,
             {
                 val intent = Intent(
                     Intent.ACTION_VIEW,
-                    Uri.parse("https://www.instagram.com/stasenka_the_cat")
+                    Uri.parse(urlTextView.text.toString())
                 )
                 startActivity(intent)
             },
             {
                 startActivity(
-                    FigureActivity.getStartIntent(
+                    ImageActivity.getStartIntent(
                         context = requireContext(),
                         figure = it
                     )

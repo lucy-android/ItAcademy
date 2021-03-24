@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.lang.Exception
 
+
 class FirstScreenAdapter(
 
     private val figures: List<Int>,
@@ -26,7 +27,7 @@ class FirstScreenAdapter(
             .inflate(R.layout.follow_button_section, parent, false)
 
         val view4 = LayoutInflater.from(parent.context)
-            .inflate(R.layout.recycler, parent, false)
+            .inflate(R.layout.child_recycler_view, parent, false)
 
         return when (viewType) {
             0 -> AvatarViewHolder(view1, onUrlClick)
@@ -35,7 +36,6 @@ class FirstScreenAdapter(
             3 -> RecyclerViewHolder(view4, figures, onPhotoClick)
             else -> throw Exception()
         }
-
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -120,12 +120,12 @@ class FirstScreenAdapter(
 
 
         private val root: View = view.rootView
-        private val reCycler = root.findViewById<RecyclerView>(R.id.figure_recyclerView)
+        private val reCycler = root.findViewById<RecyclerView>(R.id.child_recyclerview)
 
 
         fun bind() {
 
-            val adapter = FigureAdapter(figures, onPhotoClick)
+            val adapter = ImageAdapter(figures, onPhotoClick)
 
             reCycler.adapter = adapter
             reCycler.layoutManager = GridLayoutManager(this.itemView.context, 2)

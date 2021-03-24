@@ -17,18 +17,18 @@
             android:layout_margin="10dp"
             android:layout_width="0dp"
             android:layout_weight="3"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/view_border"
             android:hint="@string/comment_hint"
-            android:padding="5dp" />
+            android:padding="15dp" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:padding="5dp"
+            android:padding="15dp"
             android:layout_weight="1"
-            android:background="@drawable/custom_button"
+            android:background="@drawable/button"
             android:src="@drawable/ic_baseline_send_24">
 
         </androidx.appcompat.widget.AppCompatImageButton>
