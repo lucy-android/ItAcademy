@@ -4,13 +4,13 @@
     android:id="@+id/comment_two"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    card_view:cardCornerRadius="30dp">
+    android:layout_margin="@dimen/dimens_petite"
+    card_view:cardCornerRadius="@dimen/dimens_corner">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="@dimen/dimens_petite"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -18,8 +18,8 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="@dimen/dimens_middle_plus"
+                android:layout_height="@dimen/dimens_middle_plus"
                 android:src="@drawable/kanapka_on_sofa" />
 
         </LinearLayout>
@@ -28,7 +28,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/dimens_petite"
             android:orientation="vertical"
             android:weightSum="2">
 
@@ -37,17 +37,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text="@string/kanapka_name"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:text="@string/kanapka_name" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="@dimen/dimens_petite"
                 android:gravity="center_vertical"
-                android:text="@string/comment_three"
-                android:textSize="16sp" />
-
+                android:text="@string/comment_three" />
 
         </LinearLayout>
     </LinearLayout>

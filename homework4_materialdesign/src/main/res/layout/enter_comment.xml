@@ -4,8 +4,8 @@
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    card_view:cardCornerRadius="4dp">
+    android:layout_margin="@dimen/dimens_petite"
+    card_view:cardCornerRadius="@dimen/dimens_petite">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,19 +14,19 @@
         android:weightSum="4">
 
         <EditText
-            android:layout_margin="10dp"
+            android:layout_margin="@dimen/dimens_petite"
             android:layout_width="0dp"
             android:layout_weight="3"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/dimens_middle"
             android:background="@drawable/view_border"
             android:hint="@string/comment_hint"
-            android:padding="15dp" />
+            android:padding="@dimen/dimens_petite" />
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="15dp"
+            android:layout_width="@dimen/zero"
+            android:layout_height="@dimen/dimens_middle"
+            android:layout_margin="@dimen/dimens_petite"
+            android:padding="@dimen/dimens_petite"
             android:layout_weight="1"
             android:background="@drawable/button"
             android:src="@drawable/ic_baseline_send_24">

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    card_view:cardCornerRadius="30dp">
+    android:layout_margin="@dimen/dimens_petite"
+    card_view:cardCornerRadius="@dimen/dimens_corner">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
@@ -17,78 +16,84 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
+            android:backgroundTint="@android:color/transparent"
+            android:padding="@dimen/zero"
             android:scaleType="fitCenter"
             card_view:layout_constraintBottom_toBottomOf="parent"
-            android:backgroundTint="@android:color/transparent"
             card_view:layout_constraintStart_toStartOf="parent"
-            tools:src="@drawable/pumik"/>
+            tools:src="@drawable/pumik" />
 
         <ImageView
             android:id="@+id/like"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginBottom="64dp"
+            android:layout_marginStart="@dimen/dimens_middle"
+            android:layout_marginBottom="@dimen/dimens_middle"
+            android:backgroundTint="@android:color/transparent"
             android:clickable="true"
+            android:focusable="true"
+            android:padding="@dimen/zero"
             android:src="@drawable/border_favorite"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toStartOf="@+id/how_many_likes"
             card_view:layout_constraintStart_toStartOf="parent"
-            android:backgroundTint="@android:color/transparent"
             card_view:layout_constraintTop_toTopOf="parent"
-            android:focusable="true"
-            card_view:layout_constraintVertical_bias="1.0"/>
+            card_view:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/how_many_likes"
-            android:layout_width="65dp"
-            android:layout_height="24dp"
-            android:layout_marginBottom="64dp"
-            android:layout_marginStart="3dp"
+            android:layout_width="@dimen/dimens_middle"
+            android:layout_height="@dimen/dimens_corner"
+            android:layout_marginStart="@dimen/dimens_petite"
+            android:layout_marginBottom="@dimen/dimens_middle"
+            android:backgroundTint="@android:color/transparent"
+            android:padding="@dimen/zero"
             android:text="@string/no_likes"
             android:textColor="@color/secondaryLightColor"
-            android:backgroundTint="@android:color/transparent"
             card_view:layout_constraintBottom_toBottomOf="@+id/passed_photo"
-            card_view:layout_constraintStart_toEndOf="@id/like"
-            card_view:layout_constraintEnd_toStartOf="@id/comments"/>
+            card_view:layout_constraintEnd_toStartOf="@id/comments"
+            card_view:layout_constraintStart_toEndOf="@id/like" />
 
         <ImageView
             android:id="@+id/comments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="64dp"
+            android:layout_marginStart="@dimen/dimens_corner"
+            android:layout_marginBottom="@dimen/dimens_middle"
+            android:backgroundTint="@android:color/transparent"
+            android:padding="@dimen/zero"
             android:src="@drawable/comment"
             card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toStartOf="@+id/textView1"
-            android:backgroundTint="@android:color/transparent"
+            card_view:layout_constraintEnd_toStartOf="@+id/no_comments"
             card_view:layout_constraintStart_toEndOf="@+id/how_many_likes"
             card_view:layout_constraintTop_toTopOf="parent"
             card_view:layout_constraintVertical_bias="1.0" />
 
         <TextView
-            android:id="@+id/textView1"
-            android:layout_width="65dp"
-            android:layout_height="24dp"
+            android:id="@+id/no_comments"
+            android:layout_width="@dimen/dimens_middle"
+            android:layout_height="@dimen/dimens_corner"
+            android:layout_marginStart="@dimen/dimens_petite"
+            android:layout_marginBottom="@dimen/dimens_middle"
             android:backgroundTint="@android:color/transparent"
+            android:padding="@dimen/zero"
             android:text="@string/no_comments"
-            android:layout_marginStart="3dp"
             android:textColor="@color/secondaryLightColor"
             card_view:layout_constraintBottom_toBottomOf="@+id/passed_photo"
-            card_view:layout_constraintStart_toEndOf="@id/comments"
-            android:layout_marginBottom="64dp"/>
+            card_view:layout_constraintStart_toEndOf="@id/comments" />
 
         <ImageView
             android:id="@+id/bookmark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:src="@drawable/bookmark"
+            android:layout_width="@dimen/dimens_middle"
+            android:layout_height="@dimen/dimens_corner"
+            android:layout_marginStart="@dimen/dimens_petite"
+            android:layout_marginBottom="@dimen/dimens_middle"
             android:backgroundTint="@android:color/transparent"
+            android:padding="@dimen/zero"
+            android:src="@drawable/bookmark"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toEndOf="@id/textView1"
-            android:layout_marginBottom="64dp" />
+            card_view:layout_constraintStart_toEndOf="@id/no_comments" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dimens_grand">660dp</dimen>
+    <dimen name="dimens_middle_plus">80dp</dimen>
+    <dimen name="dimens_middle">50dp</dimen>
+    <dimen name="dimens_petite">9dp</dimen>
+    <dimen name="dimens_corner">30dp</dimen>
+    <dimen name="zero">0dp</dimen>
+    <dimen name="comment_text">16sp</dimen>
+    <dimen name="card">120dp</dimen>
+    <dimen name="photo_size">140dp</dimen>
+    <dimen name="grid_size">210dp</dimen>
+    <dimen name="stroke">3dp</dimen>
+    <dimen name="dimens_photo_margin">5dp</dimen>
+
+</resources>
