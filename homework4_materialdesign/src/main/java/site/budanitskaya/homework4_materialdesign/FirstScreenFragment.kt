@@ -26,13 +26,12 @@ class FirstScreenFragment : Fragment() {
         val recyclerView = view.findViewById<RecyclerView>(R.id.first_screen_recyclerview)
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        val urlTextView = view.findViewById<TextView>(R.id.url_textview)
 
         recyclerView.adapter = FirstScreenAdapter(drawableList,
             {
                 val intent = Intent(
                     Intent.ACTION_VIEW,
-                    Uri.parse(urlTextView.text.toString())
+                    Uri.parse("https://www.instagram.com/stasenka_the_cat")
                 )
                 startActivity(intent)
             },
