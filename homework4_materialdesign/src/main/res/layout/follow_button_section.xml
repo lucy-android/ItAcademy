@@ -16,11 +16,8 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/follow_button"
             android:layout_width="@dimen/zero"
-            android:layout_height="@dimen/dimens_middle"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="@dimen/dimens_petite"
+            style="@style/Theme.CustomButton"
             android:layout_weight="3"
-            android:background="@drawable/button"
             android:text="@string/follow"
             android:textColor="@color/primaryTextColor">
 
@@ -29,11 +26,8 @@
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/share_button"
             android:layout_width="@dimen/zero"
-            android:layout_height="@dimen/dimens_middle"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="@dimen/dimens_petite"
             android:layout_weight="1"
-            android:background="@drawable/button"
+            style="@style/Theme.CustomButton"
             android:src="@drawable/share">
 
         </androidx.appcompat.widget.AppCompatImageButton>
