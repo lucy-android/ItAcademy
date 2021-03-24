@@ -38,6 +38,6 @@
         android:id="@+id/profileFragment"
         android:name="site.budanitskaya.homework4_materialdesign.FirstScreenFragment"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimens_grand" />
+        android:layout_height="752dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
