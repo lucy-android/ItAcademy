@@ -37,14 +37,12 @@ class SecondFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 
-        inflater.inflate(R.menu.menu_items, menu)
+        inflater.inflate(R.menu.fragment_two_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onViewCreated(view: View, @Nullable savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val toolbar: Toolbar = view.findViewById(R.id.toolbar) as Toolbar
-        (activity as MainActivity?)!!.setSupportActionBar(toolbar)
         setHasOptionsMenu(true)
     }
 

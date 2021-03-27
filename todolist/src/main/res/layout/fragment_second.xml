@@ -9,15 +9,6 @@
     android:orientation="vertical"
     tools:context=".firstscreen.FirstFragment">
 
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        style="@style/Toolbar"
-        android:layout_height="?android:attr/actionBarSize"
-        app:title="TODO List">
-
-    </androidx.appcompat.widget.Toolbar>
-
     <TextView
         android:id="@+id/task_name"
         android:layout_width="match_parent"
