@@ -3,6 +3,7 @@ package site.budanitskaya.todolist.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.database.Task
@@ -11,30 +12,32 @@ class ToDoListAdapter(
     private val tasks: List<Task>
 
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    class TodoItemViewHolder(view: View, val tasks: List<Task>) : RecyclerView.ViewHolder(view) {
 
+        private val root: View = view.rootView
+        private val taskName: TextView = root.findViewById<TextView>(R.id.task_name)
+        private val taskDecription = root.findViewById<TextView>(R.id.task_description)
+
+        fun bind(position: Int) {
+            taskName.text = tasks[position].taskTitle
+            taskDecription.text = tasks[position].taskDescription
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-
         val taskItemLayout = LayoutInflater.from(parent.context)
             .inflate(R.layout.task_item_layout, parent, false)
 
-        return TodoItemViewHolder(taskItemLayout)
-    }
-
-    class TodoItemViewHolder(taskItemLayout: View) : RecyclerView.ViewHolder(taskItemLayout) {
-
-        private val root: View = taskItemLayout.rootView
-
-        fun bind() {
-        }
-
+        return TodoItemViewHolder(taskItemLayout, tasks)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is TodoItemViewHolder -> holder.bind()
+            is TodoItemViewHolder -> holder.bind(position)
         }
     }
 
     override fun getItemCount(): Int = tasks.size
+
+
 }

@@ -94,7 +94,10 @@ class FirstScreenAdapter(
         private val root: View = view.rootView
         private val childRecyclerView = root.findViewById<RecyclerView>(R.id.child_recyclerview)
 
+
         fun bind() {
+
+
 
             val adapter = ImageAdapter(figures, onPhotoClick)
 
