@@ -1,0 +1,11 @@
+include ':todolist'
+include ':homework4_materialdesign'
+include ':homework4Recyclerview'
+include ':homework3'
+include ':home_work2'
+include ':homework2'
+include ':mycalculator'
+include ':homework1'
+include ':app'
+include 'old-module', "new-module"
+rootProject.name = "ItAcademyAndroid"
