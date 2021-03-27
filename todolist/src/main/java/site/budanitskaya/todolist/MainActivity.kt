@@ -1,10 +1,14 @@
 package site.budanitskaya.todolist
 
-import androidx.appcompat.app.AppCompatActivity
+
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import site.budanitskaya.todolist.database.Task
 import site.budanitskaya.todolist.database.TaskDatabase
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,5 +30,7 @@ class MainActivity : AppCompatActivity() {
         if (taskDatabaseDao != null) {
             Log.d("3141592", "onCreate: ${taskDatabaseDao.getRowCount()}")
         }
+
+
     }
 }
