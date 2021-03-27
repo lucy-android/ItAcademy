@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import site.budanitskaya.todolist.database.Task
 import site.budanitskaya.todolist.database.TaskDatabase
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         val taskDatabaseDao = taskDataBase.taskDao()
 
-        val task = Task()
+/*        val task = Task()
         task.taskTitle = "Get up!"
         task.taskDescription = "Wake up early in the morning and get up from bed"
 
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         }
         if (taskDatabaseDao != null) {
             Log.d("3141592", "onCreate: ${taskDatabaseDao.getRowCount()}")
-        }
+        }*/
 
         val navController = this.findNavController(R.id.nav_host_fragment)
 
@@ -42,8 +43,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = this.findNavController(R.id.nav_host_fragment)
-        return navController.navigateUp()
+/*        val navController = this.findNavController(R.id.nav_host_fragment)*/
+
+        this.findNavController(R.id.nav_host_fragment).navigate(R.id.action_secondFragment_to_firstFragment)
+        return true
     }
 
 }
