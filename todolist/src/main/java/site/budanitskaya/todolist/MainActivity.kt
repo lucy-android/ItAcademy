@@ -3,9 +3,13 @@ package site.budanitskaya.todolist
 
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import site.budanitskaya.todolist.database.Task
 import site.budanitskaya.todolist.database.TaskDatabase
 
@@ -31,6 +35,8 @@ class MainActivity : AppCompatActivity() {
             Log.d("3141592", "onCreate: ${taskDatabaseDao.getRowCount()}")
         }
 
-
     }
+
 }
+
+

@@ -57,15 +57,20 @@ class SecondFragment : Fragment() {
                 val taskDatabaseDao = taskDataBase.taskDao()
 
                 val task = Task()
-                task.taskTitle = enterTaskName.text.toString()
-                task.taskDescription = describeTask.text.toString()
+                if (enterTaskName.text.toString() != "" && describeTask.text.toString() != "") {
+                    task.taskTitle = enterTaskName.text.toString()
+                    task.taskDescription = describeTask.text.toString()
 
-                taskDatabaseDao?.insert(task)
+                    taskDatabaseDao?.insert(task)
+                }
+
 
                 findNavController().navigate(R.id.action_secondFragment_to_firstFragment)
             }
 
         }
+
+
 
         return false
     }

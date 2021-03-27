@@ -19,4 +19,7 @@ interface TaskDatabaseDao {
 
     @Query("SELECT * FROM todo_list_table")
     fun getTaskList(): List<Task>
+
+    @Query("DELETE FROM todo_list_table")
+    fun clear()
 }
