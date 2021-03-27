@@ -1,9 +1,6 @@
 package site.budanitskaya.todolist.database
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Update
+import androidx.room.*
 
 @Dao
 interface TaskDatabaseDao {
@@ -16,4 +13,10 @@ interface TaskDatabaseDao {
 
     @Delete
     fun delete(task: Task)
+
+    @Query("SELECT COUNT(task_title) FROM todo_list_table")
+    fun getRowCount(): Int
+
+    @Query("SELECT * FROM todo_list_table")
+    fun getTaskList(): List<Task>
 }

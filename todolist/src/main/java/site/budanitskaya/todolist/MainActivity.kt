@@ -23,5 +23,8 @@ class MainActivity : AppCompatActivity() {
             taskDatabaseDao.insert(task)
             Log.d("3141592", "onCreate: ${task.taskTitle}, ${task.taskDescription}")
         }
+        if (taskDatabaseDao != null) {
+            Log.d("3141592", "onCreate: ${taskDatabaseDao.getRowCount()}")
+        }
     }
 }
