@@ -1,14 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".secondscreen.SecondFragment">
+    android:layout_margin="5dp"
+    android:orientation="vertical"
+    tools:context=".firstscreen.FirstFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/Toolbar"
+        android:layout_height="?android:attr/actionBarSize"
+        app:title="TODO List">
+
+    </androidx.appcompat.widget.Toolbar>
+
     <TextView
+        android:id="@+id/task_name"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Task name" />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/enter_task_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:ems="10"
+        android:hint="Name the task"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/task_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Task description" />
+
+    <EditText
+        android:id="@+id/describe_task"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:ems="10"
+        android:hint="Describe the task"
+        android:inputType="textPersonName" />
+
+</LinearLayout>
