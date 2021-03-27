@@ -1,6 +1,7 @@
 package site.budanitskaya.todolist.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import site.budanitskaya.todolist.R
@@ -17,14 +18,23 @@ class ToDoListAdapter(
         val taskItemLayout = LayoutInflater.from(parent.context)
             .inflate(R.layout.task_item_layout, parent, false)
 
-        return
+        return TodoItemViewHolder(taskItemLayout)
+    }
+
+    class TodoItemViewHolder(taskItemLayout: View) : RecyclerView.ViewHolder(taskItemLayout) {
+
+        private val root: View = taskItemLayout.rootView
+
+        fun bind() {
+        }
+
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        when (holder) {
+            is TodoItemViewHolder -> holder.bind()
+        }
     }
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getItemCount(): Int = tasks.size
 }
