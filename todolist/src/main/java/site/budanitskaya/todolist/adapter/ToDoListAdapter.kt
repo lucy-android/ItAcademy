@@ -9,26 +9,16 @@ import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.database.Task
 
 class ToDoListAdapter(
-    private val tasks: List<Task>
+    private val tasks: List<Task>,
+    private val onLongClick:() -> Boolean
 
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    class TodoItemViewHolder(view: View, val tasks: List<Task>) : RecyclerView.ViewHolder(view) {
-
-        private val root: View = view.rootView
-        private val taskName: TextView = root.findViewById<TextView>(R.id.task_name)
-        private val taskDecription = root.findViewById<TextView>(R.id.task_description)
-
-        fun bind(position: Int) {
-            taskName.text = tasks[position].taskTitle
-            taskDecription.text = tasks[position].taskDescription
-        }
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val taskItemLayout = LayoutInflater.from(parent.context)
             .inflate(R.layout.task_item_layout, parent, false)
 
-        return TodoItemViewHolder(taskItemLayout, tasks)
+        return TodoItemViewHolder(taskItemLayout, tasks, onLongClick)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -39,5 +29,21 @@ class ToDoListAdapter(
 
     override fun getItemCount(): Int = tasks.size
 
+
+    class TodoItemViewHolder(view: View, val tasks: List<Task>, private val onLongClick:() -> Boolean) : RecyclerView.ViewHolder(view) {
+
+        private val root: View = view.rootView
+        private val taskName: TextView = root.findViewById<TextView>(R.id.task_name)
+        private val taskDecription = root.findViewById<TextView>(R.id.task_description)
+
+        fun bind(position: Int) {
+            taskName.text = tasks[position].taskTitle
+            taskDecription.text = tasks[position].taskDescription
+
+            root.setOnLongClickListener{
+                onLongClick()
+            }
+        }
+    }
 
 }

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,7 +33,11 @@ class FirstFragment : Fragment() {
         Log.d("" ,"onCreateView: $taskDatabaseDao")
 
         val taskList = taskDatabaseDao.getTaskList()
-        val adapter = ToDoListAdapter(taskList)
+        val adapter = ToDoListAdapter(taskList
+        ) {
+            Toast.makeText(requireContext(), "message", Toast.LENGTH_LONG).show()
+            return@ToDoListAdapter true
+        }
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter

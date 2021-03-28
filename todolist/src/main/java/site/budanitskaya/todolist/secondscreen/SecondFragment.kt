@@ -60,10 +60,11 @@ class SecondFragment : Fragment() {
                     task.taskDescription = describeTask.text.toString()
 
                     taskDatabaseDao?.insert(task)
+                    findNavController().navigate(R.id.action_secondFragment_to_firstFragment)
                 }
 
 
-                findNavController().navigate(R.id.action_secondFragment_to_firstFragment)
+
             }
 
         }
