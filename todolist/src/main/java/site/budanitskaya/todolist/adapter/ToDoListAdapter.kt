@@ -25,7 +25,9 @@ class ToDoListAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is TodoItemViewHolder -> holder.bind(position)
+            is TodoItemViewHolder -> {
+                holder.bind(position)
+            }
         }
     }
 
@@ -47,16 +49,9 @@ class ToDoListAdapter(
             taskDecription.text = tasks[position].taskDescription
 
             root.setOnLongClickListener {
+
                 onLongClick(position)
             }
-
-            /*val taskDataBase = TaskDatabase.getInstance(root.context)
-
-            val taskDatabaseDao = taskDataBase.taskDao()!!
-
-            val task: Task = taskDatabaseDao.getTaskList()[position]
-
-            taskDatabaseDao.delete(task)*/
 
         }
 

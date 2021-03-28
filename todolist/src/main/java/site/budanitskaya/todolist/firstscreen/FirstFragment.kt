@@ -4,8 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,7 +13,6 @@ import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.adapter.ToDoListAdapter
 import site.budanitskaya.todolist.database.Task
 import site.budanitskaya.todolist.database.TaskDatabase
-import javax.security.auth.callback.Callback
 
 
 class FirstFragment : Fragment() {
@@ -60,10 +57,10 @@ class FirstFragment : Fragment() {
 
         view.invalidate()
 
-        adapter.notifyDataSetChanged()
-
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
+
+        recyclerView.post { adapter.notifyDataSetChanged() }
 
         val fab = view.findViewById<FloatingActionButton>(R.id.fab)
 
