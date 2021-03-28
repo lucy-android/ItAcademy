@@ -1,5 +1,6 @@
 package site.budanitskaya.todolist.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,10 +8,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.database.Task
+import site.budanitskaya.todolist.database.TaskDatabase
 
 class ToDoListAdapter(
     private val tasks: List<Task>,
-    private val onLongClick: () -> Boolean
+    private val onLongClick: (Int) -> Boolean
 
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -33,7 +35,7 @@ class ToDoListAdapter(
     class TodoItemViewHolder(
         view: View,
         val tasks: List<Task>,
-        private val onLongClick: () -> Boolean
+        private val onLongClick: (Int) -> Boolean
     ) : RecyclerView.ViewHolder(view) {
 
         private val root: View = view.rootView
@@ -45,9 +47,18 @@ class ToDoListAdapter(
             taskDecription.text = tasks[position].taskDescription
 
             root.setOnLongClickListener {
-                onLongClick()
+                onLongClick(position)
             }
-        }
-    }
 
+            /*val taskDataBase = TaskDatabase.getInstance(root.context)
+
+            val taskDatabaseDao = taskDataBase.taskDao()!!
+
+            val task: Task = taskDatabaseDao.getTaskList()[position]
+
+            taskDatabaseDao.delete(task)*/
+
+        }
+
+    }
 }
