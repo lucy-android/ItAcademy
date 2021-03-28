@@ -35,7 +35,8 @@ class FirstFragment : Fragment() {
         val taskList = taskDatabaseDao.getTaskList()
         val adapter = ToDoListAdapter(taskList
         ) {
-            Toast.makeText(requireContext(), "message", Toast.LENGTH_LONG).show()
+
+            Toast.makeText(requireContext(), "$it", Toast.LENGTH_LONG).show()
             return@ToDoListAdapter true
         }
 
@@ -47,9 +48,6 @@ class FirstFragment : Fragment() {
         fab.setOnClickListener{
             findNavController().navigate(R.id.action_firstFragment_to_secondFragment)
         }
-
-
-
 
         return view
     }

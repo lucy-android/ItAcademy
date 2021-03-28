@@ -10,7 +10,7 @@ import site.budanitskaya.todolist.database.Task
 
 class ToDoListAdapter(
     private val tasks: List<Task>,
-    private val onLongClick:() -> Boolean
+    private val onLongClick: (Int) -> Boolean
 
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -30,7 +30,11 @@ class ToDoListAdapter(
     override fun getItemCount(): Int = tasks.size
 
 
-    class TodoItemViewHolder(view: View, val tasks: List<Task>, private val onLongClick:() -> Boolean) : RecyclerView.ViewHolder(view) {
+    class TodoItemViewHolder(
+        view: View,
+        val tasks: List<Task>,
+        private val onLongClick: (Int) -> Boolean
+    ) : RecyclerView.ViewHolder(view) {
 
         private val root: View = view.rootView
         private val taskName: TextView = root.findViewById<TextView>(R.id.task_name)
@@ -40,8 +44,8 @@ class ToDoListAdapter(
             taskName.text = tasks[position].taskTitle
             taskDecription.text = tasks[position].taskDescription
 
-            root.setOnLongClickListener{
-                onLongClick()
+            root.setOnLongClickListener {
+                onLongClick(position)
             }
         }
     }
