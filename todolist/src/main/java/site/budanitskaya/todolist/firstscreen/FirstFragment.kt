@@ -99,16 +99,16 @@ class FirstFragment : Fragment() {
             when (item.itemId) {
                 R.id.delete -> {
 
-/*                    val task: Task = tasks[position]
+                    val task: Task = tasks[position]
 
-                    TaskList.deleteTask(task)*/
+                    TaskList.deleteTask(task)
 
                     recyclerView.removeViewAt(it!!)
                     adapter.notifyItemRemoved(it!!)
                     adapter.notifyItemRangeChanged(it!!, tasks.size)
                 }
                 R.id.edit -> {
-                    Toast.makeText(requireContext(), "Edit presseed", Toast.LENGTH_LONG).show()
+
                     firstFragmentView!!.findNavController().navigate(FirstFragmentDirections.actionFirstFragmentToSecondFragment(it!!, false))
 
                 }

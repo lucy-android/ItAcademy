@@ -22,27 +22,32 @@ class SecondFragment : Fragment() {
     private lateinit var secondFragmentView: View
     private lateinit var enterTaskName: EditText
     private lateinit var describeTask: EditText
+    private var isNew: Boolean? = null
+    private lateinit var task: Task
+
     private var adapterPosition: Int? = null
-    private var isNew : Boolean? = null
-    init {
-        val args = SecondFragmentArgs.fromBundle(requireArguments())
-        isNew = args.isNew
-    }
+
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
 
         setHasOptionsMenu(true)
         // Inflate the layout for this fragment
         secondFragmentView = inflater.inflate(R.layout.fragment_second, container, false)
         enterTaskName = secondFragmentView.findViewById(R.id.enter_task_name)
-
         describeTask = secondFragmentView.findViewById(R.id.describe_task)
-        val args = SecondFragmentArgs.fromBundle(requireArguments())
 
+        val args = SecondFragmentArgs.fromBundle(requireArguments())
+        isNew = args.isNew
         adapterPosition = args.adapterPosition
+
+        if (!isNew!!) {
+            task = TaskList.taskList[adapterPosition!!]
+            enterTaskName.setText(task.taskTitle)
+            describeTask.setText(task.taskDescription)
+        }
 
         return secondFragmentView
     }
@@ -63,15 +68,19 @@ class SecondFragment : Fragment() {
         when (item.itemId) {
             R.id.save -> {
 
-                val task = Task()
-                if () {
+                if (enterTaskName.text.toString() != "" && describeTask.text.toString() != "" && this.isNew!!) {
                     task.taskTitle = enterTaskName.text.toString()
                     task.taskDescription = describeTask.text.toString()
 
-                    TaskList.insertTask(task, adapterPosition!!)
-                    findNavController().navigate(R.id.action_secondFragment_to_firstFragment)
-                } else if(enterTaskName.text.toString() != "" && describeTask.text.toString() != "" && adapterPosition!! == -1){
-                    TaskList.insertTask(task, 0)
+                    TaskList.insertTask(task)
+                    findNavController().navigate(SecondFragmentDirections.actionSecondFragmentToFirstFragment())
+                } else if (enterTaskName.text.toString() != "" && describeTask.text.toString() != "" && !isNew!!) {
+
+                    task.taskTitle = enterTaskName.text.toString()
+                    task.taskDescription = describeTask.text.toString()
+
+                    TaskList.updateTask(this.task)
+                    findNavController().navigate(SecondFragmentDirections.actionSecondFragmentToFirstFragment())
                 }
             }
         }

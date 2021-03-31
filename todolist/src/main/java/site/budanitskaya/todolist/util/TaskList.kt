@@ -3,16 +3,16 @@ package site.budanitskaya.todolist.util
 import site.budanitskaya.todolist.MainApplication
 import site.budanitskaya.todolist.database.Task
 import site.budanitskaya.todolist.database.TaskDatabase
-import java.util.*
 
 class TaskList {
 
     companion object {
         private val taskDataBase = TaskDatabase.getInstance(MainApplication.applicationContext())
 
-        private val taskDatabaseDao = taskDataBase.taskDao()
+        val taskDatabaseDao = taskDataBase.taskDao()
 
-        private val _taskList: MutableList<Task> = mutableListOf()
+        private val _taskList: MutableList<Task> = taskDatabaseDao?.getTaskList()?.toMutableList()!!
+
 
         val taskList: List<Task>
             get() = _taskList
@@ -31,20 +31,15 @@ class TaskList {
         }
 
 
-        fun updateTask(newTask: Task, position: Int) {
+        fun updateTask(oldTask: Task) {
 
-            taskDatabaseDao?.update(newTask)
+            taskDatabaseDao!!.update(oldTask)
 
-            for (i in _taskList.indices) {
-                if (i == position) {
-                    _taskList[position] = newTask
-                }
-            }
         }
 
 
-        fun insertTask(task: Task, position: Int) {
-            _taskList.add(position, task)
+        fun insertTask(task: Task) {
+            _taskList.add(task)
             taskDatabaseDao!!.insert(task)
         }
     }
