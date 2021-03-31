@@ -4,21 +4,15 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
 import android.text.format.DateUtils
-import android.util.Log
 import android.view.*
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
-
 import androidx.annotation.Nullable
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import site.budanitskaya.todolist.MainActivity
 import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.database.Task
-import site.budanitskaya.todolist.database.TaskDatabase
 import site.budanitskaya.todolist.util.TaskList
 import java.util.*
 
@@ -30,20 +24,16 @@ class SecondFragment : Fragment() {
     private lateinit var describeTask: EditText
     private var isNew: Boolean? = null
     private lateinit var task: Task
-
-
-    var currentDateTime: TextView? = null
-    var dateAndTime = Calendar.getInstance()
-
+    private var currentDateTime: TextView? = null
+    private var dateAndTime: Calendar = Calendar.getInstance()
     private var adapterPosition: Int? = null
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
 
         setHasOptionsMenu(true)
-        // Inflate the layout for this fragment
         secondFragmentView = inflater.inflate(R.layout.fragment_second, container, false)
         enterTaskName = secondFragmentView.findViewById(R.id.enter_task_name)
         describeTask = secondFragmentView.findViewById(R.id.describe_task)
@@ -65,23 +55,18 @@ class SecondFragment : Fragment() {
 
         val timeButton = secondFragmentView.findViewById<Button>(R.id.timeButton)
 
-        timeButton.setOnClickListener{
+        timeButton.setOnClickListener {
             setTime(secondFragmentView)
         }
 
         val dateButton = secondFragmentView.findViewById<Button>(R.id.dateButton)
-
-        dateButton.setOnClickListener{
+        dateButton.setOnClickListener {
             setDate(secondFragmentView)
         }
-
-
-
         return secondFragmentView
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-
         inflater.inflate(R.menu.fragment_two_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
@@ -92,10 +77,8 @@ class SecondFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
         when (item.itemId) {
             R.id.save -> {
-
                 if (enterTaskName.text.toString() != "" && describeTask.text.toString() != "" && this.isNew!!) {
                     task.taskTitle = enterTaskName.text.toString()
                     task.taskDescription = describeTask.text.toString()
@@ -103,6 +86,7 @@ class SecondFragment : Fragment() {
 
                     TaskList.insertTask(task)
                     findNavController().navigate(SecondFragmentDirections.actionSecondFragmentToFirstFragment())
+
                 } else if (enterTaskName.text.toString() != "" && describeTask.text.toString() != "" && !isNew!!) {
 
                     task.taskTitle = enterTaskName.text.toString()
@@ -114,45 +98,44 @@ class SecondFragment : Fragment() {
                 }
             }
         }
-
         return false
     }
 
-
-    // отображаем диалоговое окно для выбора даты
-    fun setDate(v: View?) {
-        DatePickerDialog(requireContext(), d,
+    private fun setDate(v: View?) {
+        DatePickerDialog(
+            requireContext(), date,
             dateAndTime[Calendar.YEAR],
             dateAndTime[Calendar.MONTH],
-            dateAndTime[Calendar.DAY_OF_MONTH])
+            dateAndTime[Calendar.DAY_OF_MONTH]
+        )
             .show()
     }
 
-    // отображаем диалоговое окно для выбора времени
-    fun setTime(v: View?) {
-        TimePickerDialog(requireContext(), t,
+    private fun setTime(v: View?) {
+        TimePickerDialog(
+            requireContext(), time,
             dateAndTime[Calendar.HOUR_OF_DAY],
-            dateAndTime[Calendar.MINUTE], true)
+            dateAndTime[Calendar.MINUTE], true
+        )
             .show()
     }
 
-    // установка начальных даты и времени
     private fun setInitialDateTime() {
-        currentDateTime!!.text = DateUtils.formatDateTime(requireContext(),
+        currentDateTime!!.text = DateUtils.formatDateTime(
+            requireContext(),
             dateAndTime.timeInMillis,
             DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_SHOW_YEAR
-                    or DateUtils.FORMAT_SHOW_TIME)
+                    or DateUtils.FORMAT_SHOW_TIME
+        )
     }
 
-    // установка обработчика выбора времени
-    var t = TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
+    private var time = TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
         dateAndTime[Calendar.HOUR_OF_DAY] = hourOfDay
         dateAndTime[Calendar.MINUTE] = minute
         setInitialDateTime()
     }
 
-    // установка обработчика выбора даты
-    var d = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+    private var date = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
         dateAndTime[Calendar.YEAR] = year
         dateAndTime[Calendar.MONTH] = monthOfYear
         dateAndTime[Calendar.DAY_OF_MONTH] = dayOfMonth

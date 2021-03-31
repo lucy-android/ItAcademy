@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordLayout"
     android:layout_width="match_parent"
@@ -14,43 +13,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="Task name" />
+        android:text="@string/task_name" />
 
     <EditText
         android:id="@+id/enter_task_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:ems="10"
-        android:hint="Name the task"
-        android:inputType="textPersonName" />
+        android:hint="@string/name_the_task"
+        style="@style/edittexts"/>
 
     <TextView
         android:id="@+id/task_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Task description" />
+        android:text="@string/task_description"
+        style="@style/texts" />
 
     <EditText
         android:id="@+id/describe_task"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:ems="10"
-        android:hint="Describe the task"
-        android:inputType="textPersonName" />
-
+        android:hint="@string/describe_the_task"
+        style="@style/edittexts" />
 
     <TextView
         android:id="@+id/current_date_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="Время и дата начала">
-
-
-    </TextView>
+        android:text="@string/due_date_and_time"
+        style="@style/texts" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -58,20 +41,13 @@
 
         <Button
             android:id="@+id/timeButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-
-            android:text="Изменить время" />
+            style="@style/buttons"
+            android:text="@string/change_due_time" />
 
         <Button
             android:id="@+id/dateButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-
-            android:text="Изменить дату" />
+            android:text="@string/change_due_date"
+            style="@style/buttons" />
 
     </LinearLayout>
-
 </LinearLayout>

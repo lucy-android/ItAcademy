@@ -1,6 +1,5 @@
 package site.budanitskaya.todolist.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +7,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.database.Task
-import site.budanitskaya.todolist.database.TaskDatabase
 
 class ToDoListAdapter(
     private val tasks: List<Task>,
@@ -19,7 +17,6 @@ class ToDoListAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val taskItemLayout = LayoutInflater.from(parent.context)
             .inflate(R.layout.task_item_layout, parent, false)
-
         return TodoItemViewHolder(taskItemLayout, tasks, onLongClick)
     }
 
@@ -32,7 +29,6 @@ class ToDoListAdapter(
     }
 
     override fun getItemCount(): Int = tasks.size
-
 
     class TodoItemViewHolder(
         view: View,
@@ -51,11 +47,8 @@ class ToDoListAdapter(
             dateAndTime.text = tasks[position].dateAndTime
 
             root.setOnLongClickListener {
-
                 onLongClick(position)
             }
-
         }
-
     }
 }
