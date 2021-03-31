@@ -30,7 +30,7 @@
 
     <TextView
         android:id="@+id/current_date_time"
-        android:text="@string/due_date_and_time"
+        android:text="@string/deadline_date_and_time"
         style="@style/texts" />
 
     <LinearLayout
@@ -40,11 +40,11 @@
         <Button
             android:id="@+id/timeButton"
             style="@style/buttons"
-            android:text="@string/change_due_time" />
+            android:text="@string/change_deadline_time" />
 
         <Button
             android:id="@+id/dateButton"
-            android:text="@string/change_due_date"
+            android:text="@string/change_deadline_date"
             style="@style/buttons" />
 
     </LinearLayout>
