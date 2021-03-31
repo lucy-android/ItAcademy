@@ -15,6 +15,7 @@ import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.adapter.ToDoListAdapter
 import site.budanitskaya.todolist.database.Task
 import site.budanitskaya.todolist.database.TaskDatabase
+import site.budanitskaya.todolist.secondscreen.SecondFragmentArgs
 import site.budanitskaya.todolist.util.TaskList
 
 
@@ -99,13 +100,14 @@ class FirstFragment : Fragment() {
             when (item.itemId) {
                 R.id.delete -> {
 
-                    val task: Task = tasks[position]
+                    val task: Task = tasks[it!!]
 
                     TaskList.deleteTask(task)
 
                     recyclerView.removeViewAt(it!!)
                     adapter.notifyItemRemoved(it!!)
                     adapter.notifyItemRangeChanged(it!!, tasks.size)
+
                 }
                 R.id.edit -> {
 

@@ -1,9 +1,14 @@
 package site.budanitskaya.todolist.secondscreen
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.os.Bundle
+import android.text.format.DateUtils
 import android.util.Log
 import android.view.*
+import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 
 import androidx.annotation.Nullable
@@ -15,6 +20,7 @@ import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.database.Task
 import site.budanitskaya.todolist.database.TaskDatabase
 import site.budanitskaya.todolist.util.TaskList
+import java.util.*
 
 
 class SecondFragment : Fragment() {
@@ -25,8 +31,11 @@ class SecondFragment : Fragment() {
     private var isNew: Boolean? = null
     private lateinit var task: Task
 
-    private var adapterPosition: Int? = null
 
+    var currentDateTime: TextView? = null
+    var dateAndTime = Calendar.getInstance()
+
+    private var adapterPosition: Int? = null
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +56,23 @@ class SecondFragment : Fragment() {
             task = TaskList.taskList[adapterPosition!!]
             enterTaskName.setText(task.taskTitle)
             describeTask.setText(task.taskDescription)
+        } else {
+            task = Task()
+        }
+
+        currentDateTime = secondFragmentView.findViewById<View>(R.id.current_date_time) as TextView
+        setInitialDateTime()
+
+        val timeButton = secondFragmentView.findViewById<Button>(R.id.timeButton)
+
+        timeButton.setOnClickListener{
+            setTime(secondFragmentView)
+        }
+
+        val dateButton = secondFragmentView.findViewById<Button>(R.id.dateButton)
+
+        dateButton.setOnClickListener{
+            setDate(secondFragmentView)
         }
 
         return secondFragmentView
@@ -86,5 +112,46 @@ class SecondFragment : Fragment() {
         }
 
         return false
+    }
+
+
+    // отображаем диалоговое окно для выбора даты
+    fun setDate(v: View?) {
+        DatePickerDialog(requireContext(), d,
+            dateAndTime[Calendar.YEAR],
+            dateAndTime[Calendar.MONTH],
+            dateAndTime[Calendar.DAY_OF_MONTH])
+            .show()
+    }
+
+    // отображаем диалоговое окно для выбора времени
+    fun setTime(v: View?) {
+        TimePickerDialog(requireContext(), t,
+            dateAndTime[Calendar.HOUR_OF_DAY],
+            dateAndTime[Calendar.MINUTE], true)
+            .show()
+    }
+
+    // установка начальных даты и времени
+    private fun setInitialDateTime() {
+        currentDateTime!!.text = DateUtils.formatDateTime(requireContext(),
+            dateAndTime.timeInMillis,
+            DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_SHOW_YEAR
+                    or DateUtils.FORMAT_SHOW_TIME)
+    }
+
+    // установка обработчика выбора времени
+    var t = TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
+        dateAndTime[Calendar.HOUR_OF_DAY] = hourOfDay
+        dateAndTime[Calendar.MINUTE] = minute
+        setInitialDateTime()
+    }
+
+    // установка обработчика выбора даты
+    var d = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+        dateAndTime[Calendar.YEAR] = year
+        dateAndTime[Calendar.MONTH] = monthOfYear
+        dateAndTime[Calendar.DAY_OF_MONTH] = dayOfMonth
+        setInitialDateTime()
     }
 }

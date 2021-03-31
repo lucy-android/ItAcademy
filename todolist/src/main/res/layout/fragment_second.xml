@@ -20,8 +20,8 @@
         android:id="@+id/enter_task_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:layout_margin="10dp"
+        android:ems="10"
         android:hint="Name the task"
         android:inputType="textPersonName" />
 
@@ -40,5 +40,38 @@
         android:ems="10"
         android:hint="Describe the task"
         android:inputType="textPersonName" />
+
+
+    <TextView
+        android:id="@+id/current_date_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Время и дата начала">
+
+
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/timeButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:text="Изменить время" />
+
+        <Button
+            android:id="@+id/dateButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:text="Изменить дату" />
+
+    </LinearLayout>
 
 </LinearLayout>
