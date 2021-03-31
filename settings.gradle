@@ -1,3 +1,4 @@
+include ':homework6'
 include ':todolist'
 include ':homework4_materialdesign'
 include ':homework4Recyclerview'

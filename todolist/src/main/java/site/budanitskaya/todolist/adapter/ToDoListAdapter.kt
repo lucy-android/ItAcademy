@@ -43,10 +43,12 @@ class ToDoListAdapter(
         private val root: View = view.rootView
         private val taskName: TextView = root.findViewById<TextView>(R.id.task_name)
         private val taskDecription = root.findViewById<TextView>(R.id.task_description)
+        private val dateAndTime = root.findViewById<TextView>(R.id.date_and_time)
 
         fun bind(position: Int) {
             taskName.text = tasks[position].taskTitle
             taskDecription.text = tasks[position].taskDescription
+            dateAndTime.text = tasks[position].dateAndTime
 
             root.setOnLongClickListener {
 

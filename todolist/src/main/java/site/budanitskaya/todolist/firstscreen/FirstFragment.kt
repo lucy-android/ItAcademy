@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import site.budanitskaya.todolist.MainApplication
 import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.adapter.ToDoListAdapter
 import site.budanitskaya.todolist.database.Task
@@ -40,6 +41,7 @@ class FirstFragment : Fragment() {
         recyclerView = firstFragmentView!!.findViewById<RecyclerView>(R.id.recycler_view)
 
         tasks = TaskList.taskList
+
         adapter = ToDoListAdapter(
                 tasks
         ) {
@@ -62,7 +64,6 @@ class FirstFragment : Fragment() {
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
-
 
         val fab = firstFragmentView!!.findViewById<FloatingActionButton>(R.id.fab)
 
