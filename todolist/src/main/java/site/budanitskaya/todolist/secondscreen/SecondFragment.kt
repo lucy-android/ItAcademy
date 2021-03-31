@@ -82,7 +82,7 @@ class SecondFragment : Fragment() {
                 if (enterTaskName.text.toString() != "" && describeTask.text.toString() != "" && this.isNew!!) {
                     task.taskTitle = enterTaskName.text.toString()
                     task.taskDescription = describeTask.text.toString()
-                    task.dateAndTime = "Due date: ${currentDateTime?.text as String}"
+                    task.dateAndTime = "Deadline date: ${currentDateTime?.text as String}"
 
                     TaskList.insertTask(task)
                     findNavController().navigate(SecondFragmentDirections.actionSecondFragmentToFirstFragment())
