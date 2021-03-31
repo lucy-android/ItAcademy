@@ -1,8 +1,10 @@
 package site.budanitskaya.todolist.secondscreen
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.EditText
+import android.widget.Toast
 
 import androidx.annotation.Nullable
 import androidx.appcompat.widget.Toolbar
@@ -12,6 +14,7 @@ import site.budanitskaya.todolist.MainActivity
 import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.database.Task
 import site.budanitskaya.todolist.database.TaskDatabase
+import site.budanitskaya.todolist.util.TaskList
 
 
 class SecondFragment : Fragment() {
@@ -19,6 +22,12 @@ class SecondFragment : Fragment() {
     private lateinit var secondFragmentView: View
     private lateinit var enterTaskName: EditText
     private lateinit var describeTask: EditText
+    private var adapterPosition: Int? = null
+    private var isNew : Boolean? = null
+    init {
+        val args = SecondFragmentArgs.fromBundle(requireArguments())
+        isNew = args.isNew
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +40,9 @@ class SecondFragment : Fragment() {
         enterTaskName = secondFragmentView.findViewById(R.id.enter_task_name)
 
         describeTask = secondFragmentView.findViewById(R.id.describe_task)
+        val args = SecondFragmentArgs.fromBundle(requireArguments())
+
+        adapterPosition = args.adapterPosition
 
         return secondFragmentView
     }
@@ -50,22 +62,19 @@ class SecondFragment : Fragment() {
 
         when (item.itemId) {
             R.id.save -> {
-                val taskDataBase = TaskDatabase.getInstance(requireContext())
-
-                val taskDatabaseDao = taskDataBase.taskDao()
 
                 val task = Task()
-                if (enterTaskName.text.toString() != "" && describeTask.text.toString() != "") {
+                if () {
                     task.taskTitle = enterTaskName.text.toString()
                     task.taskDescription = describeTask.text.toString()
 
-                    taskDatabaseDao?.insert(task)
+                    TaskList.insertTask(task, adapterPosition!!)
                     findNavController().navigate(R.id.action_secondFragment_to_firstFragment)
+                } else if(enterTaskName.text.toString() != "" && describeTask.text.toString() != "" && adapterPosition!! == -1){
+                    TaskList.insertTask(task, 0)
                 }
             }
         }
-
-
 
         return false
     }

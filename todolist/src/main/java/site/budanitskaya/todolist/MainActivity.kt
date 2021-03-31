@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import site.budanitskaya.todolist.database.Task
 import site.budanitskaya.todolist.database.TaskDatabase
+import site.budanitskaya.todolist.secondscreen.SecondFragmentDirections
 
 
 class MainActivity : AppCompatActivity() {
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
 /*        val navController = this.findNavController(R.id.nav_host_fragment)*/
 
-        this.findNavController(R.id.nav_host_fragment).navigate(R.id.action_secondFragment_to_firstFragment)
+        this.findNavController(R.id.nav_host_fragment).navigate(SecondFragmentDirections.actionSecondFragmentToFirstFragment())
         return true
     }
 

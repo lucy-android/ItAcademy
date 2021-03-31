@@ -4,7 +4,9 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,11 +15,10 @@ import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.adapter.ToDoListAdapter
 import site.budanitskaya.todolist.database.Task
 import site.budanitskaya.todolist.database.TaskDatabase
+import site.budanitskaya.todolist.util.TaskList
 
 
 class FirstFragment : Fragment() {
-
-    val LOG_TAG = "myLogs"
 
     var it: Int? = null
 
@@ -25,23 +26,19 @@ class FirstFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
 
-    private lateinit var tasks: MutableList<Task>
+    private lateinit var tasks: List<Task>
+
+    private var firstFragmentView: View? = null
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_first, container, false)
-        recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
+        firstFragmentView = inflater.inflate(R.layout.fragment_first, container, false)
+        recyclerView = firstFragmentView!!.findViewById<RecyclerView>(R.id.recycler_view)
 
-        val taskDataBase = TaskDatabase.getInstance(requireContext())
-
-        val taskDatabaseDao = taskDataBase.taskDao()!!
-
-        Log.d("", "onCreateView: $taskDatabaseDao")
-
-        tasks = taskDatabaseDao.getTaskList().toMutableList()
+        tasks = TaskList.taskList
         adapter = ToDoListAdapter(
                 tasks
         ) {
@@ -53,30 +50,26 @@ class FirstFragment : Fragment() {
                 null -> {
                     // Start the CAB using the ActionMode.Callback defined above
                     actionModeCallback.actionMode = activity?.startActionMode(actionModeCallback)
-                    view.isSelected = true
+                    firstFragmentView!!.isSelected = true
                 }
 
             }
-
-
 
             return@ToDoListAdapter true
 
         }
 
-        view.invalidate()
-
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
 
 
-        val fab = view.findViewById<FloatingActionButton>(R.id.fab)
+        val fab = firstFragmentView!!.findViewById<FloatingActionButton>(R.id.fab)
 
         fab.setOnClickListener {
-            findNavController().navigate(R.id.action_firstFragment_to_secondFragment)
+            findNavController().navigate(FirstFragmentDirections.actionFirstFragmentToSecondFragment(-1, true))
         }
 
-        return view
+        return firstFragmentView!!
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -106,15 +99,18 @@ class FirstFragment : Fragment() {
             when (item.itemId) {
                 R.id.delete -> {
 
-                    val task: Task = tasks[position]
-                    val taskDataBase = TaskDatabase.getInstance(requireContext())
+/*                    val task: Task = tasks[position]
 
-                    val taskDatabaseDao = taskDataBase.taskDao()!!
-                    taskDatabaseDao.delete(task)
-                    tasks.remove(task)
+                    TaskList.deleteTask(task)*/
+
                     recyclerView.removeViewAt(it!!)
                     adapter.notifyItemRemoved(it!!)
                     adapter.notifyItemRangeChanged(it!!, tasks.size)
+                }
+                R.id.edit -> {
+                    Toast.makeText(requireContext(), "Edit presseed", Toast.LENGTH_LONG).show()
+                    firstFragmentView!!.findNavController().navigate(FirstFragmentDirections.actionFirstFragmentToSecondFragment(it!!, false))
+
                 }
             }
             return true

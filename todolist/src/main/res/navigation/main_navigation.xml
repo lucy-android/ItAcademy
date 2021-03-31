@@ -30,5 +30,11 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             app:destination="@id/firstFragment" />
+        <argument
+            android:name="adapterPosition"
+            app:argType="integer" />
+        <argument
+            android:name="isNew"
+            app:argType="boolean" />
     </fragment>
 </navigation>
