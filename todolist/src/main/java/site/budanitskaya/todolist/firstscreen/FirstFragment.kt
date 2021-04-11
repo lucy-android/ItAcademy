@@ -7,9 +7,10 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.arellomobile.mvp.MvpAppCompatFragment
+import com.arellomobile.mvp.presenter.InjectPresenter
+import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import moxy.MvpAppCompatFragment
-import moxy.presenter.InjectPresenter
 import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.adapter.ToDoListAdapter
 import site.budanitskaya.todolist.database.Task
@@ -24,7 +25,7 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
     private var it: Int? = null
     private lateinit var adapter: ToDoListAdapter
     private lateinit var recyclerView: RecyclerView
-    private lateinit var tasks: List<Task>
+    private lateinit var tasks: MutableList<Task>
     private var firstFragmentView: View? = null
 
     override fun onCreateView(
@@ -33,7 +34,7 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
     ): View? {
         firstFragmentView = inflater.inflate(R.layout.fragment_first, container, false)
         recyclerView = firstFragmentView!!.findViewById<RecyclerView>(R.id.recycler_view)
-        tasks = TaskDataSource.taskList
+        tasks = TaskDataSource.taskList.toMutableList()
 
         adapter = ToDoListAdapter(
             tasks
@@ -66,6 +67,11 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
         return firstFragmentView!!
     }
 
+/*    @ProvidePresenter
+    fun providePresenter(): FirstScreenPresenter{
+        return FirstScreenPresenter()
+    }*/
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.context, menu)
         super.onCreateOptionsMenu(menu, inflater)
@@ -91,9 +97,10 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
                 R.id.delete -> {
                     val task: Task = tasks[it!!]
                     TaskDataSource.deleteTask(task)
-                    recyclerView.removeViewAt(it!!)
-                    adapter.notifyItemRemoved(it!!)
-                    adapter.notifyItemRangeChanged(it!!, tasks.size)
+                    tasks.removeAt(position)
+                    recyclerView.removeViewAt(position)
+                    adapter.notifyItemRemoved(position)
+                    adapter.notifyItemRangeChanged(position, tasks.size)
                 }
                 R.id.edit -> {
                     firstFragmentView!!.findNavController().navigate(
@@ -111,4 +118,5 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
             actionMode = null
         }
     }
+
 }

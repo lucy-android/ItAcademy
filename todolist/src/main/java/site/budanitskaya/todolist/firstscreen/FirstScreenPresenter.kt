@@ -1,6 +1,11 @@
 package site.budanitskaya.todolist.firstscreen
 
-import moxy.MvpPresenter
+import com.arellomobile.mvp.InjectViewState
+import com.arellomobile.mvp.MvpPresenter
 
-class FirstScreenPresenter: MvpPresenter<FirstScreenView>()  {
+
+@InjectViewState
+
+class FirstScreenPresenter : MvpPresenter<FirstScreenView>() {
+
 }

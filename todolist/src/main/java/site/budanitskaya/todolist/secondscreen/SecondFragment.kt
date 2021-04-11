@@ -10,15 +10,16 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.annotation.Nullable
 import androidx.navigation.fragment.findNavController
-import moxy.MvpAppCompatFragment
-import moxy.presenter.InjectPresenter
+import com.arellomobile.mvp.MvpAppCompatFragment
+import com.arellomobile.mvp.presenter.InjectPresenter
+
 import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.database.Task
 import site.budanitskaya.todolist.util.TaskDataSource
 import java.util.*
 
 
-class SecondFragment : MvpAppCompatFragment() {
+class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
 
     @InjectPresenter
     lateinit var presenter: SecondScreenPresenter
