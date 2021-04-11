@@ -1,6 +1,7 @@
 package site.budanitskaya.todolist.database
 
 import androidx.room.*
+import io.reactivex.Flowable
 
 @Dao
 interface TaskDatabaseDao {
@@ -18,7 +19,7 @@ interface TaskDatabaseDao {
     fun getRowCount(): Int
 
     @Query("SELECT * FROM todo_list_table")
-    fun getTaskList(): List<Task>
+    fun getTaskList(): Flowable<List<Task>>
 
     @Query("DELETE FROM todo_list_table")
     fun clear()

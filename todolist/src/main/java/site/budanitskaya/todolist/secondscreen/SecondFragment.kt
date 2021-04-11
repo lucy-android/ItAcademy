@@ -47,7 +47,7 @@ class SecondFragment : MvpAppCompatFragment() {
         adapterPosition = args.adapterPosition
 
         if (!isNew!!) {
-            task = TaskList.taskList[adapterPosition!!]
+/*            task = TaskList.taskList[adapterPosition!!]*/
             enterTaskName.setText(task.taskTitle)
             describeTask.setText(task.taskDescription)
         } else {
@@ -88,7 +88,7 @@ class SecondFragment : MvpAppCompatFragment() {
                     task.taskDescription = describeTask.text.toString()
                     task.dateAndTime = "Deadline date: ${currentDateTime?.text as String}"
 
-                    TaskList.insertTask(task)
+/*                    TaskList.insertTask(task)*/
                     findNavController().navigate(SecondFragmentDirections.actionSecondFragmentToFirstFragment())
 
                 } else if (enterTaskName.text.toString() != "" && describeTask.text.toString() != "" && !isNew!!) {
@@ -97,7 +97,7 @@ class SecondFragment : MvpAppCompatFragment() {
                     task.taskDescription = describeTask.text.toString()
                     task.dateAndTime = "Due date: ${currentDateTime?.text as String}"
 
-                    TaskList.updateTask(this.task)
+/*                    TaskList.updateTask(this.task)*/
                     findNavController().navigate(SecondFragmentDirections.actionSecondFragmentToFirstFragment())
                 }
             }

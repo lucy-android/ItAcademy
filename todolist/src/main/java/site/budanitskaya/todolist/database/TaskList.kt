@@ -1,10 +1,16 @@
 package site.budanitskaya.todolist.database
 
+import io.reactivex.Flowable
+import site.budanitskaya.todolist.Injection
 import site.budanitskaya.todolist.MainApplication
 
-class TaskList {
+object TaskList {
 
-    companion object {
+    fun getTaskList(): Flowable<List<Task>> {
+        return Injection.provideTaskDataSource()!!.getTaskList()
+    }
+
+    /*companion object {
         private val taskDataBase = TaskDatabase.getInstance(MainApplication.applicationContext())
         private val taskDatabaseDao = taskDataBase.taskDao()
         private val _taskList: MutableList<Task> = taskDatabaseDao?.getTaskList()?.toMutableList()!!
@@ -30,5 +36,5 @@ class TaskList {
             _taskList.add(task)
             taskDatabaseDao!!.insert(task)
         }
-    }
+    }*/
 }
