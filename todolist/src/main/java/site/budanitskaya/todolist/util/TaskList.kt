@@ -1,13 +1,8 @@
 package site.budanitskaya.todolist.util
 
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import site.budanitskaya.todolist.Injection
-import site.budanitskaya.todolist.MainApplication
 import site.budanitskaya.todolist.database.Task
-import site.budanitskaya.todolist.database.TaskDatabase
 
 object TaskList {
 
@@ -28,7 +23,7 @@ object TaskList {
     fun deleteTask(task: Task) {
         when {
             _taskList.isNotEmpty() -> {
-                GlobalScope.launch {
+                CoroutineScope(Dispatchers.Main).launch {
                     taskDatabaseDao?.delete(task)
                     _taskList.remove(task)
                 }
@@ -39,13 +34,13 @@ object TaskList {
     }
 
     fun updateTask(oldTask: Task) {
-        GlobalScope.launch {
+        CoroutineScope(Dispatchers.Main).launch {
             taskDatabaseDao!!.update(oldTask)
         }
     }
 
     fun insertTask(task: Task) {
-        GlobalScope.launch {
+        CoroutineScope(Dispatchers.Main).launch {
             _taskList.add(task)
             taskDatabaseDao!!.insert(task)
         }
