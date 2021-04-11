@@ -9,13 +9,18 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import moxy.MvpAppCompatFragment
+import moxy.presenter.InjectPresenter
 import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.adapter.ToDoListAdapter
 import site.budanitskaya.todolist.database.Task
 import site.budanitskaya.todolist.util.TaskList
 
 
-class FirstFragment : Fragment() {
+class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
+
+    @InjectPresenter
+    lateinit var presenter: FirstScreenPresenter
 
     private var it: Int? = null
     private lateinit var adapter: ToDoListAdapter
