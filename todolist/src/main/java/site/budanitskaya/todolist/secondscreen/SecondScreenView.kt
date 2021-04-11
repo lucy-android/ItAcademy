@@ -7,12 +7,10 @@ import site.budanitskaya.todolist.database.Task
 
 
 @StateStrategyType(value = AddToEndSingleStrategy::class)
-interface SecondScreenView: MvpView {
+interface SecondScreenView : MvpView {
 
-    fun onTaskInserted()
-
-    fun onTaskUpdated()
-
+    fun onTaskSaved()
     fun onTaskOpened(task: Task)
+    fun setInitialDateTime()
 
 }

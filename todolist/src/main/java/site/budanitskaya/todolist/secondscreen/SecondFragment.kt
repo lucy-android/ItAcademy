@@ -5,15 +5,12 @@ import android.app.TimePickerDialog
 import android.os.Bundle
 import android.text.format.DateUtils
 import android.view.*
-import androidx.annotation.Nullable
 import androidx.navigation.fragment.findNavController
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
-
 import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.database.Task
 import site.budanitskaya.todolist.databinding.FragmentSecondBinding
-import site.budanitskaya.todolist.util.TaskDataSource
 import java.util.*
 
 
@@ -23,7 +20,6 @@ class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
     lateinit var presenter: SecondScreenPresenter
     private lateinit var args: SecondFragmentArgs
     private lateinit var binding: FragmentSecondBinding
-    private var dateAndTime: Calendar = Calendar.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,17 +37,18 @@ class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
 
 
         } else {
-            presenter.task = Task()
+            val task = Task()
+            presenter.loadTask(task)
         }
 
         setInitialDateTime()
 
         binding.timeButton.setOnClickListener {
-            setTime()
+            presenter.setTime(requireContext())
         }
 
         binding.dateButton.setOnClickListener {
-            setDate()
+            presenter.setDate(requireContext())
         }
         return binding.root
     }
@@ -65,73 +62,37 @@ class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
         when (item.itemId) {
             R.id.save -> {
                 if (binding.enterTaskName.text.toString() != "" && binding.describeTask.text.toString() != "" && args.isNew!!) {
-                    presenter.insertTask()
+                    presenter.insertTask(
+                        binding.enterTaskName.text.toString(),
+                        binding.describeTask.text.toString(),
+                        "Deadline date: ${binding.currentDateTime.text as String}"
+                    )
 
                 } else if (binding.enterTaskName.text.toString() != "" && binding.describeTask.text.toString() != "" && !args.isNew!!) {
-                    presenter.updateTask()
+                    presenter.updateTask(
+                        binding.enterTaskName.text.toString(),
+                        binding.describeTask.text.toString(),
+                        "Deadline date: ${binding.currentDateTime.text as String}"
+                    )
                 }
             }
         }
         return false
     }
 
-    override fun onTaskInserted() {
-        presenter.task.taskTitle = binding.enterTaskName.text.toString()
-        presenter.task.taskDescription = binding.describeTask.text.toString()
-        presenter.task.dateAndTime = "Deadline date: ${binding.currentDateTime.text as String}"
-        findNavController().navigate(SecondFragmentDirections.actionSecondFragmentToFirstFragment())
-    }
-
-    override fun onTaskUpdated() {
-        presenter.task.taskTitle = binding.enterTaskName.text.toString()
-        presenter.task.taskDescription = binding.describeTask.text.toString()
-        presenter.task.dateAndTime = "Deadline date: ${binding.currentDateTime.text as String}"
+    override fun onTaskSaved() {
         findNavController().navigate(SecondFragmentDirections.actionSecondFragmentToFirstFragment())
     }
 
     override fun onTaskOpened(task: Task) {
         binding.enterTaskName.setText(task.taskTitle)
         binding.describeTask.setText(task.taskDescription)
+        binding.currentDateTime.text = task.dateAndTime
     }
 
-    private fun setInitialDateTime() {
-        binding.currentDateTime.text = DateUtils.formatDateTime(
-            requireContext(),
-            dateAndTime.timeInMillis,
-            DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_SHOW_YEAR
-                    or DateUtils.FORMAT_SHOW_TIME
-        )
+    override fun setInitialDateTime() {
+        binding.currentDateTime.text = presenter.formatDateTime(requireContext())
     }
 
-    private fun setDate() {
-        DatePickerDialog(
-            requireContext(), date,
-            dateAndTime[Calendar.YEAR],
-            dateAndTime[Calendar.MONTH],
-            dateAndTime[Calendar.DAY_OF_MONTH]
-        )
-            .show()
-    }
 
-    private fun setTime() {
-        TimePickerDialog(
-            requireContext(), time,
-            dateAndTime[Calendar.HOUR_OF_DAY],
-            dateAndTime[Calendar.MINUTE], true
-        )
-            .show()
-    }
-
-    private var time = TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
-        dateAndTime[Calendar.HOUR_OF_DAY] = hourOfDay
-        dateAndTime[Calendar.MINUTE] = minute
-        setInitialDateTime()
-    }
-
-    private var date = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-        dateAndTime[Calendar.YEAR] = year
-        dateAndTime[Calendar.MONTH] = monthOfYear
-        dateAndTime[Calendar.DAY_OF_MONTH] = dayOfMonth
-        setInitialDateTime()
-    }
 }
