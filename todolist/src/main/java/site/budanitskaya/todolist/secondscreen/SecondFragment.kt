@@ -9,14 +9,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.annotation.Nullable
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import moxy.MvpAppCompatFragment
 import moxy.presenter.InjectPresenter
 import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.database.Task
-import site.budanitskaya.todolist.firstscreen.FirstScreenPresenter
-import site.budanitskaya.todolist.util.TaskList
+import site.budanitskaya.todolist.util.TaskDataSource
 import java.util.*
 
 
@@ -49,7 +47,7 @@ class SecondFragment : MvpAppCompatFragment() {
         adapterPosition = args.adapterPosition
 
         if (!isNew!!) {
-            task = TaskList.taskList[adapterPosition!!]
+            task = TaskDataSource.taskList[adapterPosition!!]
             enterTaskName.setText(task.taskTitle)
             describeTask.setText(task.taskDescription)
         } else {
@@ -90,7 +88,7 @@ class SecondFragment : MvpAppCompatFragment() {
                     task.taskDescription = describeTask.text.toString()
                     task.dateAndTime = "Deadline date: ${currentDateTime?.text as String}"
 
-                    TaskList.insertTask(task)
+                    TaskDataSource.insertTask(task)
                     findNavController().navigate(SecondFragmentDirections.actionSecondFragmentToFirstFragment())
 
                 } else if (enterTaskName.text.toString() != "" && describeTask.text.toString() != "" && !isNew!!) {
@@ -99,7 +97,7 @@ class SecondFragment : MvpAppCompatFragment() {
                     task.taskDescription = describeTask.text.toString()
                     task.dateAndTime = "Due date: ${currentDateTime?.text as String}"
 
-                    TaskList.updateTask(this.task)
+                    TaskDataSource.updateTask(this.task)
                     findNavController().navigate(SecondFragmentDirections.actionSecondFragmentToFirstFragment())
                 }
             }

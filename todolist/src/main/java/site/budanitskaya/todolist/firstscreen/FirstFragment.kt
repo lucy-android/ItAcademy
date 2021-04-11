@@ -3,7 +3,6 @@ package site.budanitskaya.todolist.firstscreen
 import android.content.Context
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,7 +13,7 @@ import moxy.presenter.InjectPresenter
 import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.adapter.ToDoListAdapter
 import site.budanitskaya.todolist.database.Task
-import site.budanitskaya.todolist.util.TaskList
+import site.budanitskaya.todolist.util.TaskDataSource
 
 
 class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
@@ -34,7 +33,7 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
     ): View? {
         firstFragmentView = inflater.inflate(R.layout.fragment_first, container, false)
         recyclerView = firstFragmentView!!.findViewById<RecyclerView>(R.id.recycler_view)
-        tasks = TaskList.taskList
+        tasks = TaskDataSource.taskList
 
         adapter = ToDoListAdapter(
             tasks
@@ -91,7 +90,7 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
             when (item.itemId) {
                 R.id.delete -> {
                     val task: Task = tasks[it!!]
-                    TaskList.deleteTask(task)
+                    TaskDataSource.deleteTask(task)
                     recyclerView.removeViewAt(it!!)
                     adapter.notifyItemRemoved(it!!)
                     adapter.notifyItemRangeChanged(it!!, tasks.size)

@@ -1,12 +1,18 @@
 package site.budanitskaya.todolist.util
 
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.*
-import site.budanitskaya.todolist.Injection
+import site.budanitskaya.todolist.MainApplication.Companion.applicationContext
 import site.budanitskaya.todolist.database.Task
+import site.budanitskaya.todolist.di.DataBaseModule
 
-object TaskList {
+@InstallIn(SingletonComponent::class)
+@Module
+object TaskDataSource: ITaskDataSource {
 
-    private val taskDatabaseDao = Injection.provideTaskDataSource()
+    private val taskDatabaseDao = DataBaseModule.provideLogDao(DataBaseModule.provideDatabase(applicationContext()))
     private var _taskList: MutableList<Task>
 
     init {
@@ -20,7 +26,7 @@ object TaskList {
     val taskList: List<Task>
         get() = _taskList
 
-    fun deleteTask(task: Task) {
+    override fun deleteTask(task: Task) {
         when {
             _taskList.isNotEmpty() -> {
                 CoroutineScope(Dispatchers.Main).launch {
@@ -33,13 +39,13 @@ object TaskList {
         }
     }
 
-    fun updateTask(oldTask: Task) {
+    override fun updateTask(oldTask: Task) {
         CoroutineScope(Dispatchers.Main).launch {
             taskDatabaseDao!!.update(oldTask)
         }
     }
 
-    fun insertTask(task: Task) {
+    override fun insertTask(task: Task) {
         CoroutineScope(Dispatchers.Main).launch {
             _taskList.add(task)
             taskDatabaseDao!!.insert(task)
