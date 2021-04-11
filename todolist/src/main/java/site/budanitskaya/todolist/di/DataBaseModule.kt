@@ -7,7 +7,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import site.budanitskaya.todolist.MainApplication
 import site.budanitskaya.todolist.database.Task
 import site.budanitskaya.todolist.database.TaskDatabase
 import site.budanitskaya.todolist.database.TaskDatabaseDao
@@ -28,7 +27,7 @@ object DataBaseModule {
     }
 
     @Provides
-    fun provideLogDao(database: TaskDatabase): TaskDatabaseDao? {
+    fun provideTaskDao(database: TaskDatabase): TaskDatabaseDao? {
         return database.taskDao()
     }
 
