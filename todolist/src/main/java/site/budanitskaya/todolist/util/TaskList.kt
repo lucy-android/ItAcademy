@@ -1,5 +1,9 @@
 package site.budanitskaya.todolist.util
 
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import site.budanitskaya.todolist.Injection
 import site.budanitskaya.todolist.MainApplication
 import site.budanitskaya.todolist.database.Task
@@ -8,7 +12,15 @@ import site.budanitskaya.todolist.database.TaskDatabase
 object TaskList {
 
     private val taskDatabaseDao = Injection.provideTaskDataSource()
-    private val _taskList: MutableList<Task> = taskDatabaseDao?.getTaskList()?.toMutableList()!!
+    private var _taskList: MutableList<Task>
+
+    init {
+        runBlocking {
+            _taskList = taskDatabaseDao!!.getTaskList().toMutableList()
+            delay(1000L)
+
+        }
+    }
 
     val taskList: List<Task>
         get() = _taskList
@@ -16,20 +28,27 @@ object TaskList {
     fun deleteTask(task: Task) {
         when {
             _taskList.isNotEmpty() -> {
-                taskDatabaseDao?.delete(task)
-                _taskList.remove(task)
+                GlobalScope.launch {
+                    taskDatabaseDao?.delete(task)
+                    _taskList.remove(task)
+                }
+
             }
             else -> _taskList
         }
     }
 
     fun updateTask(oldTask: Task) {
-        taskDatabaseDao!!.update(oldTask)
+        GlobalScope.launch {
+            taskDatabaseDao!!.update(oldTask)
+        }
     }
 
     fun insertTask(task: Task) {
-        _taskList.add(task)
-        taskDatabaseDao!!.insert(task)
+        GlobalScope.launch {
+            _taskList.add(task)
+            taskDatabaseDao!!.insert(task)
+        }
     }
 
 }
