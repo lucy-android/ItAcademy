@@ -10,17 +10,20 @@ abstract class TaskDatabase : RoomDatabase() {
     abstract fun taskDao(): TaskDatabaseDao?
 
     companion object {
+        @Volatile
         private var INSTANCE: TaskDatabase? = null
         fun getInstance(context: Context): TaskDatabase {
-            var instance = INSTANCE
-            if (instance == null) {
-                instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    TaskDatabase::class.java, "todo_list_table"
-                ).allowMainThreadQueries().build()
-                INSTANCE = instance
+            synchronized(this) {
+                var instance = INSTANCE
+                if (instance == null) {
+                    instance = Room.databaseBuilder(
+                        context.applicationContext,
+                        TaskDatabase::class.java, "todo_list_table"
+                    ).build()
+                    INSTANCE = instance
+                }
+                return instance
             }
-            return instance
 
         }
     }

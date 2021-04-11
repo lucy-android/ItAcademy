@@ -6,20 +6,20 @@ import androidx.room.*
 interface TaskDatabaseDao {
 
     @Insert
-    fun insert(task: Task)
+    suspend fun insert(task: Task)
 
     @Update
-    fun update(task: Task)
+    suspend fun update(task: Task)
 
     @Delete
-    fun delete(task: Task)
+    suspend fun delete(task: Task)
 
     @Query("SELECT COUNT(task_title) FROM todo_list_table")
-    fun getRowCount(): Int
+    suspend fun getRowCount(): Int
 
     @Query("SELECT * FROM todo_list_table")
-    fun getTaskList(): List<Task>
+    suspend fun getTaskList(): List<Task>
 
     @Query("DELETE FROM todo_list_table")
-    fun clear()
+    suspend fun clear()
 }
