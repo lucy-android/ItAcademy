@@ -1,4 +1,4 @@
-package site.budanitskaya.todolist.util
+package site.budanitskaya.todolist.datasource
 
 import site.budanitskaya.todolist.database.Task
 

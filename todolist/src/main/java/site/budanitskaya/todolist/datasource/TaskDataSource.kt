@@ -1,4 +1,4 @@
-package site.budanitskaya.todolist.util
+package site.budanitskaya.todolist.datasource
 
 import dagger.Module
 import dagger.hilt.InstallIn

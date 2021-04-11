@@ -3,7 +3,7 @@ package site.budanitskaya.todolist.firstscreen
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import site.budanitskaya.todolist.database.Task
-import site.budanitskaya.todolist.util.TaskDataSource
+import site.budanitskaya.todolist.datasource.TaskDataSource
 
 
 @InjectViewState
