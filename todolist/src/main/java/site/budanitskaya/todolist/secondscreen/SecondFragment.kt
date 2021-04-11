@@ -5,9 +5,6 @@ import android.app.TimePickerDialog
 import android.os.Bundle
 import android.text.format.DateUtils
 import android.view.*
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import androidx.annotation.Nullable
 import androidx.navigation.fragment.findNavController
 import com.arellomobile.mvp.MvpAppCompatFragment
@@ -15,6 +12,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 
 import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.database.Task
+import site.budanitskaya.todolist.databinding.FragmentSecondBinding
 import site.budanitskaya.todolist.util.TaskDataSource
 import java.util.*
 
@@ -23,52 +21,41 @@ class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
 
     @InjectPresenter
     lateinit var presenter: SecondScreenPresenter
-
-    private lateinit var secondFragmentView: View
-    private lateinit var enterTaskName: EditText
-    private lateinit var describeTask: EditText
-    private var isNew: Boolean? = null
+    private lateinit var args: SecondFragmentArgs
+    private lateinit var binding: FragmentSecondBinding
     private lateinit var task: Task
-    private var currentDateTime: TextView? = null
     private var dateAndTime: Calendar = Calendar.getInstance()
-    private var adapterPosition: Int? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
+        binding = FragmentSecondBinding.inflate(inflater)
         setHasOptionsMenu(true)
-        secondFragmentView = inflater.inflate(R.layout.fragment_second, container, false)
-        enterTaskName = secondFragmentView.findViewById(R.id.enter_task_name)
-        describeTask = secondFragmentView.findViewById(R.id.describe_task)
 
-        val args = SecondFragmentArgs.fromBundle(requireArguments())
-        isNew = args.isNew
-        adapterPosition = args.adapterPosition
+        args = SecondFragmentArgs.fromBundle(requireArguments())
+        val isNew = args.isNew
+        val adapterPosition = args.adapterPosition
 
-        if (!isNew!!) {
-            task = TaskDataSource.taskList[adapterPosition!!]
-            enterTaskName.setText(task.taskTitle)
-            describeTask.setText(task.taskDescription)
+        if (!isNew) {
+            task = TaskDataSource.taskList[adapterPosition]
+            binding.enterTaskName.setText(task.taskTitle)
+            binding.describeTask.setText(task.taskDescription)
         } else {
             task = Task()
         }
 
-        currentDateTime = secondFragmentView.findViewById<View>(R.id.current_date_time) as TextView
         setInitialDateTime()
 
-        val timeButton = secondFragmentView.findViewById<Button>(R.id.timeButton)
-
-        timeButton.setOnClickListener {
-            setTime(secondFragmentView)
+        binding.timeButton.setOnClickListener {
+            setTime()
         }
 
-        val dateButton = secondFragmentView.findViewById<Button>(R.id.dateButton)
-        dateButton.setOnClickListener {
-            setDate(secondFragmentView)
+        binding.dateButton.setOnClickListener {
+            setDate()
         }
-        return secondFragmentView
+        return binding.root
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -84,19 +71,19 @@ class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.save -> {
-                if (enterTaskName.text.toString() != "" && describeTask.text.toString() != "" && this.isNew!!) {
-                    task.taskTitle = enterTaskName.text.toString()
-                    task.taskDescription = describeTask.text.toString()
-                    task.dateAndTime = "Deadline date: ${currentDateTime?.text as String}"
+                if (binding.enterTaskName.text.toString() != "" && binding.describeTask.text.toString() != "" && args.isNew!!) {
+                    task.taskTitle = binding.enterTaskName.text.toString()
+                    task.taskDescription = binding.describeTask.text.toString()
+                    task.dateAndTime = "Deadline date: ${binding.currentDateTime.text as String}"
 
                     TaskDataSource.insertTask(task)
                     findNavController().navigate(SecondFragmentDirections.actionSecondFragmentToFirstFragment())
 
-                } else if (enterTaskName.text.toString() != "" && describeTask.text.toString() != "" && !isNew!!) {
+                } else if (binding.enterTaskName.text.toString() != "" && binding.describeTask.text.toString() != "" && !args.isNew!!) {
 
-                    task.taskTitle = enterTaskName.text.toString()
-                    task.taskDescription = describeTask.text.toString()
-                    task.dateAndTime = "Due date: ${currentDateTime?.text as String}"
+                    task.taskTitle = binding.enterTaskName.text.toString()
+                    task.taskDescription = binding.describeTask.text.toString()
+                    task.dateAndTime = "Deadline date: ${binding.currentDateTime.text as String}"
 
                     TaskDataSource.updateTask(this.task)
                     findNavController().navigate(SecondFragmentDirections.actionSecondFragmentToFirstFragment())
@@ -106,7 +93,7 @@ class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
         return false
     }
 
-    private fun setDate(v: View?) {
+    private fun setDate() {
         DatePickerDialog(
             requireContext(), date,
             dateAndTime[Calendar.YEAR],
@@ -116,7 +103,7 @@ class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
             .show()
     }
 
-    private fun setTime(v: View?) {
+    private fun setTime() {
         TimePickerDialog(
             requireContext(), time,
             dateAndTime[Calendar.HOUR_OF_DAY],
@@ -126,7 +113,7 @@ class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
     }
 
     private fun setInitialDateTime() {
-        currentDateTime!!.text = DateUtils.formatDateTime(
+        binding.currentDateTime.text = DateUtils.formatDateTime(
             requireContext(),
             dateAndTime.timeInMillis,
             DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_SHOW_YEAR

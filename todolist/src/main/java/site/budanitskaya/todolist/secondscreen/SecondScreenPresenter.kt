@@ -1,7 +1,8 @@
 package site.budanitskaya.todolist.secondscreen
 
+import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import site.budanitskaya.todolist.firstscreen.FirstScreenView
 
+@InjectViewState
 class SecondScreenPresenter: MvpPresenter<SecondScreenView>() {
 }
