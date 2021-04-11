@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import moxy.MvpAppCompatFragment
 import moxy.presenter.InjectPresenter
-import site.budanitskaya.todolist.Injection
 import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.adapter.ToDoListAdapter
 import site.budanitskaya.todolist.database.Task
@@ -34,7 +33,7 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
     ): View? {
         firstFragmentView = inflater.inflate(R.layout.fragment_first, container, false)
         recyclerView = firstFragmentView!!.findViewById<RecyclerView>(R.id.recycler_view)
-/*        tasks = TaskList.taskList*/
+        tasks = TaskList.taskList
 
         adapter = ToDoListAdapter(
             tasks
@@ -90,9 +89,7 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
         override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
             when (item.itemId) {
                 R.id.delete -> {
-/*                    val task: Task = Injection.getTaskList[position]
-                    TaskList.deleteTask(task)*/
-                    updateView(position)
+                    presenter.deleteTask(position)
 
                 }
                 R.id.edit -> {
