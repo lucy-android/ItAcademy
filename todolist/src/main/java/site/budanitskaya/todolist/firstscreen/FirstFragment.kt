@@ -6,14 +6,12 @@ import android.view.*
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
-import com.arellomobile.mvp.presenter.ProvidePresenter
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.adapter.ToDoListAdapter
 import site.budanitskaya.todolist.database.Task
+import site.budanitskaya.todolist.databinding.FragmentFirstBinding
 import site.budanitskaya.todolist.util.TaskDataSource
 
 
@@ -21,19 +19,16 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
 
     @InjectPresenter
     lateinit var presenter: FirstScreenPresenter
-
+    private lateinit var binding: FragmentFirstBinding
     private var it: Int? = null
     private lateinit var adapter: ToDoListAdapter
-    private lateinit var recyclerView: RecyclerView
     private lateinit var tasks: MutableList<Task>
-    private var firstFragmentView: View? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        firstFragmentView = inflater.inflate(R.layout.fragment_first, container, false)
-        recyclerView = firstFragmentView!!.findViewById<RecyclerView>(R.id.recycler_view)
+        binding = FragmentFirstBinding.inflate(inflater)
         tasks = TaskDataSource.taskList.toMutableList()
 
         adapter = ToDoListAdapter(
@@ -43,18 +38,17 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
             val actionModeCallback = ActionModeCallBackImpl(requireContext(), it)
             when (actionModeCallback.actionMode) {
                 null -> {
-                    // Start the CAB using the ActionMode.Callback defined above
                     actionModeCallback.actionMode = activity?.startActionMode(actionModeCallback)
-                    firstFragmentView!!.isSelected = true
+                    binding.coordLayout.isSelected = true
                 }
             }
             return@ToDoListAdapter true
         }
 
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = adapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.adapter = adapter
 
-        val fab = firstFragmentView!!.findViewById<FloatingActionButton>(R.id.fab)
+        val fab = binding.fab
         fab.setOnClickListener {
             findNavController().navigate(
                 FirstFragmentDirections.actionFirstFragmentToSecondFragment(
@@ -64,13 +58,8 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
             )
         }
 
-        return firstFragmentView!!
+        return binding.root
     }
-
-/*    @ProvidePresenter
-    fun providePresenter(): FirstScreenPresenter{
-        return FirstScreenPresenter()
-    }*/
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.context, menu)
@@ -98,12 +87,12 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
                     val task: Task = tasks[it!!]
                     TaskDataSource.deleteTask(task)
                     tasks.removeAt(position)
-                    recyclerView.removeViewAt(position)
+                    binding.recyclerView.removeViewAt(position)
                     adapter.notifyItemRemoved(position)
                     adapter.notifyItemRangeChanged(position, tasks.size)
                 }
                 R.id.edit -> {
-                    firstFragmentView!!.findNavController().navigate(
+                    binding.coordLayout.findNavController().navigate(
                         FirstFragmentDirections.actionFirstFragmentToSecondFragment(
                             it!!,
                             false
@@ -118,5 +107,4 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
             actionMode = null
         }
     }
-
 }

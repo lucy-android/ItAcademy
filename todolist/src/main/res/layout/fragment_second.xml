@@ -1,51 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/coordLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".firstscreen.FirstFragment">
-
-    <TextView
-        android:id="@+id/task_name"
-        style="@style/texts"
-        android:text="@string/task_name" />
-
-    <EditText
-        android:id="@+id/enter_task_name"
-        android:hint="@string/name_the_task"
-        style="@style/edittexts"/>
-
-    <TextView
-        android:id="@+id/task_description"
-        android:text="@string/task_description"
-        style="@style/texts" />
-
-    <EditText
-        android:id="@+id/describe_task"
-        android:hint="@string/describe_the_task"
-        style="@style/edittexts" />
-
-    <TextView
-        android:id="@+id/current_date_time"
-        android:text="@string/deadline_date_and_time"
-        style="@style/texts" />
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
+        android:id="@+id/coordLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".firstscreen.FirstFragment">
 
-        <Button
-            android:id="@+id/timeButton"
-            style="@style/buttons"
-            android:text="@string/change_deadline_time" />
+        <TextView
+            android:id="@+id/task_name"
+            style="@style/texts"
+            android:text="@string/task_name" />
 
-        <Button
-            android:id="@+id/dateButton"
-            android:text="@string/change_deadline_date"
-            style="@style/buttons" />
+        <EditText
+            android:id="@+id/enter_task_name"
+            android:hint="@string/name_the_task"
+            style="@style/edittexts" />
 
+        <TextView
+            android:id="@+id/task_description"
+            android:text="@string/task_description"
+            style="@style/texts" />
+
+        <EditText
+            android:id="@+id/describe_task"
+            android:hint="@string/describe_the_task"
+            style="@style/edittexts" />
+
+        <TextView
+            android:id="@+id/current_date_time"
+            android:text="@string/deadline_date_and_time"
+            style="@style/texts" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/timeButton"
+                style="@style/buttons"
+                android:text="@string/change_deadline_time" />
+
+            <Button
+                android:id="@+id/dateButton"
+                android:text="@string/change_deadline_date"
+                style="@style/buttons" />
+
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</layout>
