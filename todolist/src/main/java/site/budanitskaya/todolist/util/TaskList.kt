@@ -1,6 +1,8 @@
-package site.budanitskaya.todolist.database
+package site.budanitskaya.todolist.util
 
 import site.budanitskaya.todolist.MainApplication
+import site.budanitskaya.todolist.database.Task
+import site.budanitskaya.todolist.database.TaskDatabase
 
 class TaskList {
 

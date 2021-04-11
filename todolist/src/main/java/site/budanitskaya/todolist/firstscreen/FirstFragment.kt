@@ -13,7 +13,7 @@ import moxy.presenter.InjectPresenter
 import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.adapter.ToDoListAdapter
 import site.budanitskaya.todolist.database.Task
-import site.budanitskaya.todolist.database.TaskList
+import site.budanitskaya.todolist.util.TaskList
 
 
 class FirstFragment : MvpAppCompatFragment(), FirstScreenView {

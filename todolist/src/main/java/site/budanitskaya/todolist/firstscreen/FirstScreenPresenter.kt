@@ -2,7 +2,7 @@ package site.budanitskaya.todolist.firstscreen
 
 import moxy.MvpPresenter
 import site.budanitskaya.todolist.database.Task
-import site.budanitskaya.todolist.database.TaskList
+import site.budanitskaya.todolist.util.TaskList
 
 class FirstScreenPresenter : MvpPresenter<FirstScreenView>() {
 
