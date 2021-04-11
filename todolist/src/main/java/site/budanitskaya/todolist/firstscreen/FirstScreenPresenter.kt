@@ -9,4 +9,11 @@ import site.budanitskaya.todolist.util.TaskDataSource
 @InjectViewState
 class FirstScreenPresenter : MvpPresenter<FirstScreenView>() {
     var tasks: MutableList<Task> = TaskDataSource.taskList.toMutableList()
+
+    fun deleteTask(position: Int) {
+        val task: Task = tasks[position]
+        tasks.removeAt(position)
+        TaskDataSource.deleteTask(task)
+        viewState.onItemRemoved(position)
+    }
 }

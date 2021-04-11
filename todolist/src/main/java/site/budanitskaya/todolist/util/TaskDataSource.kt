@@ -51,5 +51,4 @@ object TaskDataSource: ITaskDataSource {
             taskDatabaseDao!!.insert(task)
         }
     }
-
 }
