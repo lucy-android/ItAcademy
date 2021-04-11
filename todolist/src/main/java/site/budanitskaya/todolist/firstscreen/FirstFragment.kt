@@ -3,7 +3,6 @@ package site.budanitskaya.todolist.firstscreen
 import android.content.Context
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -90,11 +89,8 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
         override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
             when (item.itemId) {
                 R.id.delete -> {
-                    val task: Task = tasks[it!!]
-                    TaskList.deleteTask(task)
-                    recyclerView.removeViewAt(it!!)
-                    adapter.notifyItemRemoved(it!!)
-                    adapter.notifyItemRangeChanged(it!!, tasks.size)
+                    presenter.deleteTask(position)
+
                 }
                 R.id.edit -> {
                     firstFragmentView!!.findNavController().navigate(
@@ -111,5 +107,11 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
         override fun onDestroyActionMode(mode: ActionMode) {
             actionMode = null
         }
+    }
+
+    override fun updateView(position: Int) {
+        recyclerView.removeViewAt(position)
+        adapter.notifyItemRemoved(position)
+        adapter.notifyItemRangeChanged(position, tasks.size)
     }
 }

@@ -6,4 +6,6 @@ import moxy.viewstate.strategy.StateStrategyType
 
 @StateStrategyType(value = AddToEndSingleStrategy::class)
 interface FirstScreenView: MvpView {
+
+    fun updateView(position: Int)
 }
