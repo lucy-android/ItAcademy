@@ -20,21 +20,17 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
     @InjectPresenter
     lateinit var presenter: FirstScreenPresenter
     private lateinit var binding: FragmentFirstBinding
-    private var it: Int? = null
     private lateinit var adapter: ToDoListAdapter
-    private lateinit var tasks: MutableList<Task>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentFirstBinding.inflate(inflater)
-        tasks = TaskDataSource.taskList.toMutableList()
 
         adapter = ToDoListAdapter(
-            tasks
+            presenter.tasks
         ) {
-            this.it = it
             val actionModeCallback = ActionModeCallBackImpl(requireContext(), it)
             when (actionModeCallback.actionMode) {
                 null -> {
@@ -84,17 +80,17 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
         override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
             when (item.itemId) {
                 R.id.delete -> {
-                    val task: Task = tasks[it!!]
+                    val task: Task = presenter.tasks[position]
                     TaskDataSource.deleteTask(task)
-                    tasks.removeAt(position)
+                    presenter.tasks.removeAt(position)
                     binding.recyclerView.removeViewAt(position)
                     adapter.notifyItemRemoved(position)
-                    adapter.notifyItemRangeChanged(position, tasks.size)
+                    adapter.notifyItemRangeChanged(position, presenter.tasks.size)
                 }
                 R.id.edit -> {
                     binding.coordLayout.findNavController().navigate(
                         FirstFragmentDirections.actionFirstFragmentToSecondFragment(
-                            it!!,
+                            position,
                             false
                         )
                     )
