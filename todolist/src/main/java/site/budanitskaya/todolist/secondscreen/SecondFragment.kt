@@ -11,9 +11,7 @@ import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 
 import site.budanitskaya.todolist.R
-import site.budanitskaya.todolist.database.Task
 import site.budanitskaya.todolist.databinding.FragmentSecondBinding
-import site.budanitskaya.todolist.util.TaskDataSource
 import java.util.*
 
 
@@ -36,14 +34,12 @@ class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
         args = SecondFragmentArgs.fromBundle(requireArguments())
         presenter.loadTask(args.isNew, args.adapterPosition)
 
-        setInitialDateTime()
-
         binding.timeButton.setOnClickListener {
-            setTime()
+            showTimePickerDialog()
         }
 
         binding.dateButton.setOnClickListener {
-            setDate()
+            showDatePickerDialog()
         }
         return binding.root
     }
@@ -81,26 +77,26 @@ class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
         return false
     }
 
-    private fun setDate() {
+    override fun showDatePickerDialog() {
         DatePickerDialog(
-            requireContext(), date,
-            dateAndTime[Calendar.YEAR],
-            dateAndTime[Calendar.MONTH],
-            dateAndTime[Calendar.DAY_OF_MONTH]
+            requireContext(), onDateSetListener,
+            presenter.setDeadlineYear(),
+            presenter.setDeadlineMonth(),
+            presenter.setDeadlineDay()
         )
             .show()
     }
 
-    private fun setTime() {
+    override fun showTimePickerDialog() {
         TimePickerDialog(
-            requireContext(), time,
-            dateAndTime[Calendar.HOUR_OF_DAY],
-            dateAndTime[Calendar.MINUTE], true
+            requireContext(), onTimeSetListener,
+            presenter.setDeadlineHour(),
+            presenter.setDeadlineMinute(), true
         )
             .show()
     }
 
-    private fun setInitialDateTime() {
+    private fun setDateTime() {
         binding.currentDateTime.text = DateUtils.formatDateTime(
             requireContext(),
             dateAndTime.timeInMillis,
@@ -109,17 +105,17 @@ class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
         )
     }
 
-    private var time = TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
+    private var onTimeSetListener = TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
         dateAndTime[Calendar.HOUR_OF_DAY] = hourOfDay
         dateAndTime[Calendar.MINUTE] = minute
-        setInitialDateTime()
+        setDateTime()
     }
 
-    private var date = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+    private var onDateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
         dateAndTime[Calendar.YEAR] = year
         dateAndTime[Calendar.MONTH] = monthOfYear
         dateAndTime[Calendar.DAY_OF_MONTH] = dayOfMonth
-        setInitialDateTime()
+        setDateTime()
     }
 
     override fun loadView(title: String, description: String, deadline: String) {

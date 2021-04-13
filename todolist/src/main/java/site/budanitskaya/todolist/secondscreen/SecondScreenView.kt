@@ -10,6 +10,8 @@ interface SecondScreenView : MvpView {
     fun loadView(title: String, description: String, deadline: String)
     fun onTaskUpdated()
     fun onTaskInserted()
+    fun showTimePickerDialog()
+    fun showDatePickerDialog()
 
 
 }
