@@ -12,7 +12,7 @@ import site.budanitskaya.todolist.di.DataBaseModule
 @Module
 object TaskDataSource: ITaskDataSource {
 
-    private val taskDatabaseDao = DataBaseModule.provideTaskDao(DataBaseModule.provideDatabase(applicationContext()))
+    private val taskDatabaseDao = DataBaseModule.provideLogDao(DataBaseModule.provideDatabase(applicationContext()))
     private var _taskList: MutableList<Task>
 
     init {
