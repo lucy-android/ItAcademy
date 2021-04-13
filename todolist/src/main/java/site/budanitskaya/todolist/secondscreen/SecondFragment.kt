@@ -23,7 +23,6 @@ class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
     lateinit var presenter: SecondScreenPresenter
     private lateinit var args: SecondFragmentArgs
     private lateinit var binding: FragmentSecondBinding
-    private lateinit var task: Task
     private var dateAndTime: Calendar = Calendar.getInstance()
 
     override fun onCreateView(
@@ -35,16 +34,7 @@ class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
         setHasOptionsMenu(true)
 
         args = SecondFragmentArgs.fromBundle(requireArguments())
-        val isNew = args.isNew
-        val adapterPosition = args.adapterPosition
-
-        if (!isNew) {
-            task = TaskDataSource.taskList[adapterPosition]
-            binding.enterTaskName.setText(task.taskTitle)
-            binding.describeTask.setText(task.taskDescription)
-        } else {
-            task = Task()
-        }
+        presenter.loadTask(args.isNew, args.adapterPosition)
 
         setInitialDateTime()
 
@@ -71,22 +61,20 @@ class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.save -> {
-                if (binding.enterTaskName.text.toString() != "" && binding.describeTask.text.toString() != "" && args.isNew!!) {
-                    task.taskTitle = binding.enterTaskName.text.toString()
-                    task.taskDescription = binding.describeTask.text.toString()
-                    task.dateAndTime = "Deadline date: ${binding.currentDateTime.text as String}"
-
-                    TaskDataSource.insertTask(task)
-                    findNavController().navigate(SecondFragmentDirections.actionSecondFragmentToFirstFragment())
-
-                } else if (binding.enterTaskName.text.toString() != "" && binding.describeTask.text.toString() != "" && !args.isNew!!) {
-
-                    task.taskTitle = binding.enterTaskName.text.toString()
-                    task.taskDescription = binding.describeTask.text.toString()
-                    task.dateAndTime = "Deadline date: ${binding.currentDateTime.text as String}"
-
-                    TaskDataSource.updateTask(this.task)
-                    findNavController().navigate(SecondFragmentDirections.actionSecondFragmentToFirstFragment())
+                if (binding.enterTaskName.text.toString() != "" && binding.describeTask.text.toString() != "") {
+                    if (args.isNew) {
+                        presenter.insertTask(
+                            binding.enterTaskName.text.toString(),
+                            binding.describeTask.text.toString(),
+                            binding.currentDateTime.text as String
+                        )
+                    } else if (!args.isNew) {
+                        presenter.updateTask(
+                            binding.enterTaskName.text.toString(),
+                            binding.describeTask.text.toString(),
+                            binding.currentDateTime.text as String
+                        )
+                    }
                 }
             }
         }
@@ -132,5 +120,19 @@ class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
         dateAndTime[Calendar.MONTH] = monthOfYear
         dateAndTime[Calendar.DAY_OF_MONTH] = dayOfMonth
         setInitialDateTime()
+    }
+
+    override fun loadView(title: String, description: String, deadline: String) {
+        binding.enterTaskName.setText(title)
+        binding.describeTask.setText(description)
+        binding.currentDateTime.setText(deadline)
+    }
+
+    override fun onTaskUpdated() {
+        findNavController().navigate(SecondFragmentDirections.actionSecondFragmentToFirstFragment())
+    }
+
+    override fun onTaskInserted() {
+        findNavController().navigate(SecondFragmentDirections.actionSecondFragmentToFirstFragment())
     }
 }

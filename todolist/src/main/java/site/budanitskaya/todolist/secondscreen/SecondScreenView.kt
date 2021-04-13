@@ -6,7 +6,10 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 
 
 @StateStrategyType(value = AddToEndSingleStrategy::class)
-interface SecondScreenView: MvpView {
+interface SecondScreenView : MvpView {
+    fun loadView(title: String, description: String, deadline: String)
+    fun onTaskUpdated()
+    fun onTaskInserted()
 
 
 }
