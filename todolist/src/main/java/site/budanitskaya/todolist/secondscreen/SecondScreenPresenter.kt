@@ -7,7 +7,7 @@ import android.text.format.DateUtils
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import site.budanitskaya.todolist.database.Task
-import site.budanitskaya.todolist.datasource.TaskDataSource
+import site.budanitskaya.todolist.util.TaskDataSource
 import java.util.*
 
 @InjectViewState

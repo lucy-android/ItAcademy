@@ -10,7 +10,7 @@ import dagger.hilt.components.SingletonComponent
 import site.budanitskaya.todolist.database.Task
 import site.budanitskaya.todolist.database.TaskDatabase
 import site.budanitskaya.todolist.database.TaskDatabaseDao
-import site.budanitskaya.todolist.datasource.TaskDataSource
+import site.budanitskaya.todolist.util.TaskDataSource
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
