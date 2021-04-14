@@ -3,16 +3,13 @@ package site.budanitskaya.todolist.secondscreen
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
-import android.text.format.DateUtils
 import android.view.*
 import androidx.annotation.Nullable
 import androidx.navigation.fragment.findNavController
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
-
 import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.databinding.FragmentSecondBinding
-import java.util.*
 
 
 class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
@@ -21,7 +18,14 @@ class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
     lateinit var presenter: SecondScreenPresenter
     private lateinit var args: SecondFragmentArgs
     private lateinit var binding: FragmentSecondBinding
-    private var dateAndTime: Calendar = Calendar.getInstance()
+
+    private var onTimeSetListener = TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
+        presenter.setTime(hourOfDay, minute)
+    }
+
+    private var onDateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+        presenter.setDate(year, monthOfYear, dayOfMonth)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -96,26 +100,8 @@ class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
             .show()
     }
 
-    private fun setDateTime() {
-        binding.currentDateTime.text = DateUtils.formatDateTime(
-            requireContext(),
-            dateAndTime.timeInMillis,
-            DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_SHOW_YEAR
-                    or DateUtils.FORMAT_SHOW_TIME
-        )
-    }
-
-    private var onTimeSetListener = TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
-        dateAndTime[Calendar.HOUR_OF_DAY] = hourOfDay
-        dateAndTime[Calendar.MINUTE] = minute
-        setDateTime()
-    }
-
-    private var onDateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-        dateAndTime[Calendar.YEAR] = year
-        dateAndTime[Calendar.MONTH] = monthOfYear
-        dateAndTime[Calendar.DAY_OF_MONTH] = dayOfMonth
-        setDateTime()
+    override fun setDateTime() {
+        binding.currentDateTime.text = presenter.formatTimeDate(requireContext())
     }
 
     override fun loadView(title: String, description: String, deadline: String) {
@@ -124,11 +110,7 @@ class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
         binding.currentDateTime.setText(deadline)
     }
 
-    override fun onTaskUpdated() {
-        findNavController().navigate(SecondFragmentDirections.actionSecondFragmentToFirstFragment())
-    }
-
-    override fun onTaskInserted() {
+    override fun onTaskSaved() {
         findNavController().navigate(SecondFragmentDirections.actionSecondFragmentToFirstFragment())
     }
 }

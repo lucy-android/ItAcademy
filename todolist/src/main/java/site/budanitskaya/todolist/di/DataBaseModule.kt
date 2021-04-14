@@ -7,11 +7,10 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import site.budanitskaya.todolist.MainApplication
 import site.budanitskaya.todolist.database.Task
 import site.budanitskaya.todolist.database.TaskDatabase
 import site.budanitskaya.todolist.database.TaskDatabaseDao
-import site.budanitskaya.todolist.util.TaskDataSource
+import site.budanitskaya.todolist.data.TaskDataSource
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)

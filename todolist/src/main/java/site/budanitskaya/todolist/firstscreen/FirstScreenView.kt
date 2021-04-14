@@ -7,7 +7,5 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 
 @StateStrategyType(value = AddToEndSingleStrategy::class)
 interface FirstScreenView: MvpView {
-
     fun onItemRemoved(position: Int)
-
 }

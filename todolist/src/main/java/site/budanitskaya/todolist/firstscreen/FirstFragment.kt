@@ -28,7 +28,7 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
         adapter = ToDoListAdapter(
             presenter.tasks
         ) {
-            startOurAcionMode(it)
+            startThisAcionMode(it)
             return@ToDoListAdapter true
         }
 
@@ -42,7 +42,7 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
         return binding.root
     }
 
-    private fun startOurAcionMode(position: Int) {
+    private fun startThisAcionMode(position: Int) {
         val actionModeCallback = ActionModeCallBackImpl(requireContext(), position)
         when (actionModeCallback.actionMode) {
             null -> {
@@ -57,7 +57,7 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    inner class ActionModeCallBackImpl(val context: Context, val position: Int) :
+    inner class ActionModeCallBackImpl(val context: Context, private val position: Int) :
         ActionMode.Callback {
 
         var actionMode: ActionMode? = null

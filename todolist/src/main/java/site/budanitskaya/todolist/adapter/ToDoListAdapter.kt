@@ -45,7 +45,6 @@ class ToDoListAdapter(
             taskName.text = tasks[position].taskTitle
             taskDecription.text = tasks[position].taskDescription
             dateAndTime.text = tasks[position].dateAndTime
-
             root.setOnLongClickListener {
                 onLongClick(position)
             }
