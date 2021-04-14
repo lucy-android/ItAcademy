@@ -11,7 +11,6 @@ import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.adapter.ToDoListAdapter
 import site.budanitskaya.todolist.databinding.FragmentFirstBinding
 
-
 class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
 
     @InjectPresenter

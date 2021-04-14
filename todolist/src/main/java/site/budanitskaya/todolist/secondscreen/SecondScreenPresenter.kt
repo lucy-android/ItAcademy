@@ -47,12 +47,10 @@ class SecondScreenPresenter : MvpPresenter<SecondScreenView>() {
         else -> task.dateAndTime.substringAfterLast(", ").substring(0, 2).toInt()
     }
 
-
     fun setDeadlineMinute() = when (isNew) {
         true -> dateAndTime[Calendar.MINUTE]
         else -> task.dateAndTime.takeLast(2).toInt()
     }
-
 
     fun setDeadlineMonth() = when (isNew) {
         true -> dateAndTime[Calendar.MONTH]
@@ -75,12 +73,12 @@ class SecondScreenPresenter : MvpPresenter<SecondScreenView>() {
 
     fun setDeadlineYear() = when (isNew) {
         true -> dateAndTime[Calendar.YEAR]
-        else -> task.dateAndTime.substringAfter(' ').substring(4, 8).toInt()
+        else -> task.dateAndTime.substringAfter(", ").substring(0, 4).toInt()
     }
 
     fun setDeadlineDay() = when (isNew) {
         true -> dateAndTime[Calendar.DAY_OF_MONTH]
-        else -> task.dateAndTime.substringAfter(' ').substring(0, 2).toInt()
+        else -> task.dateAndTime.substringAfter(" ").substringBefore(", ").toInt()
     }
 
     fun formatTimeDate(context: Context): String {

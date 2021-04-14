@@ -4,14 +4,12 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
 import android.view.*
-import android.widget.SearchView
 import androidx.annotation.Nullable
 import androidx.navigation.fragment.findNavController
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.databinding.FragmentSecondBinding
-
 
 class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
 
