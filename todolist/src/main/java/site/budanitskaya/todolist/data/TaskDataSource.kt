@@ -29,7 +29,7 @@ object TaskDataSource: ITaskDataSource {
     override fun deleteTask(task: Task) {
         when {
             _taskList.isNotEmpty() -> {
-                CoroutineScope(Dispatchers.Main).launch {
+                CoroutineScope(Dispatchers.IO).launch {
                     taskDatabaseDao?.delete(task)
                     _taskList.remove(task)
                 }
@@ -40,13 +40,13 @@ object TaskDataSource: ITaskDataSource {
     }
 
     override fun updateTask(oldTask: Task) {
-        CoroutineScope(Dispatchers.Main).launch {
+        CoroutineScope(Dispatchers.IO).launch {
             taskDatabaseDao!!.update(oldTask)
         }
     }
 
     override fun insertTask(task: Task) {
-        CoroutineScope(Dispatchers.Main).launch {
+        CoroutineScope(Dispatchers.IO).launch {
             _taskList.add(task)
             taskDatabaseDao!!.insert(task)
         }
