@@ -1,5 +1,7 @@
 package site.budanitskaya.todolist.firstscreen
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.view.*
@@ -51,6 +53,25 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
         }
     }
 
+    override fun showTaskDeleteDialog(position: Int) {
+        AlertDialog.Builder(requireContext())
+            .setMessage(getString(R.string.note_deletion_message))
+            .setPositiveButton(getString(R.string.yes)) { dialog, which ->
+                when (which) {
+                    Dialog.BUTTON_POSITIVE -> {
+                        presenter.deleteTask(position)
+                    }
+                }
+            }
+            .setNegativeButton(getString(R.string.no)){
+                    dialog, which ->
+                when (which) {
+                    Dialog.BUTTON_NEGATIVE -> { }
+                }
+            }
+            .create().show()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.context, menu)
         super.onCreateOptionsMenu(menu, inflater)
@@ -74,8 +95,7 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
         override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
             when (item.itemId) {
                 R.id.delete -> {
-
-                    presenter.deleteTask(position)
+                    showTaskDeleteDialog(position)
                 }
                 R.id.edit -> {
                     navigateToFragementTwo(position, false)

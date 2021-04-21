@@ -1,7 +1,10 @@
 package site.budanitskaya.todolist.secondscreen
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.app.Dialog
 import android.app.TimePickerDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.*
 import androidx.annotation.Nullable
@@ -10,6 +13,7 @@ import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.databinding.FragmentSecondBinding
+
 
 class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
 
@@ -128,13 +132,14 @@ class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
         }
     }
 
-    override fun checkRadioButtonWithText(number: String){
+    override fun checkRadioButtonWithText(number: String) {
         when (number) {
-            binding.rbOne.text.toString() -> binding.rbOne.isChecked
-            binding.rbTwo.text.toString() -> binding.rbTwo.isChecked
-            binding.rbThree.text.toString() -> binding.rbThree.isChecked
-            binding.rbFour.text.toString() -> binding.rbFour.isChecked
-            binding.rbFive.text.toString() -> binding.rbFive.isChecked
+            binding.rbOne.text.toString() -> binding.rg.check(R.id.rb_one)
+            binding.rbTwo.text.toString() -> binding.rg.check(R.id.rb_two)
+            binding.rbThree.text.toString() -> binding.rg.check(R.id.rb_three)
+            binding.rbFour.text.toString() -> binding.rg.check(R.id.rb_four)
+            binding.rbFive.text.toString() -> binding.rg.check(R.id.rb_five)
         }
     }
-}
+
+    }

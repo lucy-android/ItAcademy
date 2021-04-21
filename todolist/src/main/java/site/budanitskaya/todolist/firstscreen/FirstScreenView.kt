@@ -8,4 +8,5 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 interface FirstScreenView: MvpView {
     fun onUpdateView(position: Int)
     fun showAcionMode(position: Int)
+    fun showTaskDeleteDialog(position: Int)
 }
