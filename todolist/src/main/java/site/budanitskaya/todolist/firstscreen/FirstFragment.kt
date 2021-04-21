@@ -27,7 +27,7 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
         adapter = ToDoListAdapter(
             presenter.tasks
         ) {
-            startThisAcionMode(it)
+            showAcionMode(it)
             return@ToDoListAdapter true
         }
 
@@ -41,7 +41,7 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
         return binding.root
     }
 
-    private fun startThisAcionMode(position: Int) {
+    override fun showAcionMode(position: Int) {
         val actionModeCallback = ActionModeCallBackImpl(requireContext(), position)
         when (actionModeCallback.actionMode) {
             null -> {
@@ -74,6 +74,7 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
         override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
             when (item.itemId) {
                 R.id.delete -> {
+
                     presenter.deleteTask(position)
                 }
                 R.id.edit -> {
@@ -88,7 +89,7 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
         }
     }
 
-    override fun onItemRemoved(position: Int) {
+    override fun onUpdateView(position: Int) {
         binding.recyclerView.removeViewAt(position)
         adapter.notifyItemRemoved(position)
         adapter.notifyItemRangeChanged(position, presenter.tasks.size)

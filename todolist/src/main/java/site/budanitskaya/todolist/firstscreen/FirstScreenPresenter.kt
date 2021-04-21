@@ -13,6 +13,6 @@ class FirstScreenPresenter : MvpPresenter<FirstScreenView>() {
         val task: Task = tasks[position]
         tasks.removeAt(position)
         TaskDataSource.deleteTask(task)
-        viewState.onItemRemoved(position)
+        viewState.onUpdateView(position)
     }
 }

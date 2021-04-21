@@ -1,11 +1,14 @@
-package site.budanitskaya.todolist.firstscreen
+package site.budanitskaya.todolist
 
 import com.arellomobile.mvp.MvpView
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 
+
 @StateStrategyType(value = AddToEndSingleStrategy::class)
-interface FirstScreenView: MvpView {
-    fun onUpdateView(position: Int)
-    fun showAcionMode(position: Int)
+interface MainView: MvpView {
+    fun showThemeSelectDialog()
+    fun setDarkMode()
+    fun setLightMode()
+    fun setDefaultMode()
 }
