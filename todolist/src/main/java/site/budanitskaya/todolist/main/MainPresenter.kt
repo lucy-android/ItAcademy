@@ -1,4 +1,4 @@
-package site.budanitskaya.todolist
+package site.budanitskaya.todolist.main
 
 import android.content.Context
 import com.arellomobile.mvp.InjectViewState

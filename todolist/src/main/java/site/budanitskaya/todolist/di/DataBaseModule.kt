@@ -27,13 +27,13 @@ object DataBaseModule {
     }
 
     @Provides
-    fun provideLogDao(database: TaskDatabase): TaskDatabaseDao? {
+    fun provideTaskDao(database: TaskDatabase): TaskDatabaseDao? {
         return database.taskDao()
     }
 
     @Provides
     @Singleton
-    fun provideTaskList(): List<Task> {
+    fun provideTaskDataSource(): List<Task> {
         return TaskDataSource.taskList
     }
 

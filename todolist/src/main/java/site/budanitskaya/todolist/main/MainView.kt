@@ -1,4 +1,4 @@
-package site.budanitskaya.todolist
+package site.budanitskaya.todolist.main
 
 import com.arellomobile.mvp.MvpView
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy

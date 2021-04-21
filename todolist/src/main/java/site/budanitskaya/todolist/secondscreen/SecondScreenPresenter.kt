@@ -32,7 +32,7 @@ class SecondScreenPresenter : MvpPresenter<SecondScreenView>() {
         task.taskDescription = description
         task.dateAndTime = deadline
         task.priority = priority
-        viewState.onTaskSaved()
+        viewState.navigateToFirstFragment()
     }
 
     fun insertTask(title: String, description: String, deadline: String, priority: Int) {
@@ -41,7 +41,7 @@ class SecondScreenPresenter : MvpPresenter<SecondScreenView>() {
         task.taskDescription = description
         task.dateAndTime = deadline
         task.priority = priority
-        viewState.onTaskSaved()
+        viewState.navigateToFirstFragment()
     }
 
     fun setDeadlineHour() = when (isNew) {
@@ -95,13 +95,13 @@ class SecondScreenPresenter : MvpPresenter<SecondScreenView>() {
     fun setTime(hourOfDay: Int, minute: Int) {
         dateAndTime[Calendar.HOUR_OF_DAY] = hourOfDay
         dateAndTime[Calendar.MINUTE] = minute
-        viewState.setDateTime()
+        viewState.updateDateTime()
     }
 
     fun setDate(year: Int, monthOfYear: Int, dayOfMonth: Int) {
         dateAndTime[Calendar.YEAR] = year
         dateAndTime[Calendar.MONTH] = monthOfYear
         dateAndTime[Calendar.DAY_OF_MONTH] = dayOfMonth
-        viewState.setDateTime()
+        viewState.updateDateTime()
     }
 }

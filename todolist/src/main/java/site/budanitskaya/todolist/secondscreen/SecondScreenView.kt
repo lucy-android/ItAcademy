@@ -7,9 +7,9 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 @StateStrategyType(value = AddToEndSingleStrategy::class)
 interface SecondScreenView : MvpView {
     fun loadView(title: String, description: String, deadline: String, priority: Int)
-    fun onTaskSaved()
+    fun navigateToFirstFragment()
     fun showTimePickerDialog()
     fun showDatePickerDialog()
-    fun setDateTime()
+    fun updateDateTime()
     fun checkRadioButtonWithText(text: String)
 }

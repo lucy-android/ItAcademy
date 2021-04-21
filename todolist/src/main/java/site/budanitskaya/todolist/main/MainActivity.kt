@@ -1,4 +1,4 @@
-package site.budanitskaya.todolist
+package site.budanitskaya.todolist.main
 
 import android.os.Bundle
 import android.view.Menu
@@ -10,11 +10,13 @@ import androidx.navigation.ui.NavigationUI
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import dagger.hilt.android.AndroidEntryPoint
+import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.prefs.Preferences
 import site.budanitskaya.todolist.secondscreen.SecondFragmentDirections
 
 @AndroidEntryPoint
-class MainActivity : MvpAppCompatActivity(), MainView {
+class MainActivity : MvpAppCompatActivity(),
+    MainView {
 
     @InjectPresenter
     lateinit var presenter: MainPresenter

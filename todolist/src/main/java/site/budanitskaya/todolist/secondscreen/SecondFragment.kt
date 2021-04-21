@@ -1,10 +1,7 @@
 package site.budanitskaya.todolist.secondscreen
 
-import android.app.AlertDialog
 import android.app.DatePickerDialog
-import android.app.Dialog
 import android.app.TimePickerDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.*
 import androidx.annotation.Nullable
@@ -106,7 +103,7 @@ class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
             .show()
     }
 
-    override fun setDateTime() {
+    override fun updateDateTime() {
         binding.currentDateTime.text = presenter.formatTimeDate(requireContext())
     }
 
@@ -117,7 +114,7 @@ class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
         checkRadioButtonWithText(priority.toString())
     }
 
-    override fun onTaskSaved() {
+    override fun navigateToFirstFragment() {
         findNavController().navigate(SecondFragmentDirections.actionSecondFragmentToFirstFragment())
     }
 
@@ -141,5 +138,4 @@ class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
             binding.rbFive.text.toString() -> binding.rg.check(R.id.rb_five)
         }
     }
-
-    }
+}
