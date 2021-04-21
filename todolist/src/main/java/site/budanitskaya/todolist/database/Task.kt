@@ -13,5 +13,7 @@ data class Task(
     @ColumnInfo(name = "task_description")
     var taskDescription: String = "default_task_description",
     @ColumnInfo(name = "date_and_time")
-    var dateAndTime: String = "default_date_and_time"
+    var dateAndTime: String = "default_date_and_time",
+    @ColumnInfo(name = "task_priority")
+    var priority: Int = 0
 )

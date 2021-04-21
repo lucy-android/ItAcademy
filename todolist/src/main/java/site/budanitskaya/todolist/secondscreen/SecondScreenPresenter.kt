@@ -19,26 +19,28 @@ class SecondScreenPresenter : MvpPresenter<SecondScreenView>() {
     fun loadTask(isNew: Boolean, position: Int) {
         if (!isNew) {
             task = TaskDataSource.taskList[position]
-            viewState.loadView(task.taskTitle, task.taskDescription, task.dateAndTime)
+            viewState.loadView(task.taskTitle, task.taskDescription, task.dateAndTime, task.priority)
             this.isNew = false
         } else {
             task = Task()
         }
     }
 
-    fun updateTask(title: String, description: String, deadline: String) {
+    fun updateTask(title: String, description: String, deadline: String, priority: Int) {
         TaskDataSource.updateTask(task)
         task.taskTitle = title
         task.taskDescription = description
         task.dateAndTime = deadline
+        task.priority = priority
         viewState.onTaskSaved()
     }
 
-    fun insertTask(title: String, description: String, deadline: String) {
+    fun insertTask(title: String, description: String, deadline: String, priority: Int) {
         TaskDataSource.insertTask(task)
         task.taskTitle = title
         task.taskDescription = description
         task.dateAndTime = deadline
+        task.priority = priority
         viewState.onTaskSaved()
     }
 

@@ -22,9 +22,10 @@ class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
         presenter.setTime(hourOfDay, minute)
     }
 
-    private var onDateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-        presenter.setDate(year, monthOfYear, dayOfMonth)
-    }
+    private var onDateSetListener =
+        DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            presenter.setDate(year, monthOfYear, dayOfMonth)
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,13 +66,15 @@ class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
                         presenter.insertTask(
                             binding.enterTaskName.text.toString(),
                             binding.describeTask.text.toString(),
-                            binding.currentDateTime.text as String
+                            binding.currentDateTime.text as String,
+                            getCheckedRadioButtonText().toInt()
                         )
                     } else if (!args.isNew) {
                         presenter.updateTask(
                             binding.enterTaskName.text.toString(),
                             binding.describeTask.text.toString(),
-                            binding.currentDateTime.text as String
+                            binding.currentDateTime.text as String,
+                            getCheckedRadioButtonText().toInt()
                         )
                     }
                 }
@@ -103,13 +106,35 @@ class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
         binding.currentDateTime.text = presenter.formatTimeDate(requireContext())
     }
 
-    override fun loadView(title: String, description: String, deadline: String) {
+    override fun loadView(title: String, description: String, deadline: String, priority: Int) {
         binding.enterTaskName.setText(title)
         binding.describeTask.setText(description)
         binding.currentDateTime.setText(deadline)
+        checkRadioButtonWithText(priority.toString())
     }
 
     override fun onTaskSaved() {
         findNavController().navigate(SecondFragmentDirections.actionSecondFragmentToFirstFragment())
+    }
+
+    private fun getCheckedRadioButtonText(): String {
+        return when {
+            binding.rbOne.isChecked -> binding.rbOne.text.toString()
+            binding.rbTwo.isChecked -> binding.rbTwo.text.toString()
+            binding.rbThree.isChecked -> binding.rbThree.text.toString()
+            binding.rbFour.isChecked -> binding.rbFour.text.toString()
+            binding.rbFive.isChecked -> binding.rbFive.text.toString()
+            else -> "0"
+        }
+    }
+
+    override fun checkRadioButtonWithText(number: String){
+        when (number) {
+            binding.rbOne.text.toString() -> binding.rbOne.isChecked
+            binding.rbTwo.text.toString() -> binding.rbTwo.isChecked
+            binding.rbThree.text.toString() -> binding.rbThree.isChecked
+            binding.rbFour.text.toString() -> binding.rbFour.isChecked
+            binding.rbFive.text.toString() -> binding.rbFive.isChecked
+        }
     }
 }

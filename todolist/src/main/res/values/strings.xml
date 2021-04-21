@@ -12,7 +12,8 @@
     <string name="task_description">Task description</string>
     <string name="describe_the_task">Describe the task</string>
     <string name="deadline_date_and_time">Date and time of the deadline:</string>
-    <string name="change_deadline_time">Change deadline time</string>
-    <string name="change_deadline_date">Change deadline date</string>
+    <string name="change_deadline_time">Time</string>
+    <string name="change_deadline_date">Date</string>
     <string name="to_do_app">TODO App</string>
+    <string name="set_task_priority">Set task priority</string>
 </resources>
