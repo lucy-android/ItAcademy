@@ -1,3 +1,4 @@
+include ':backgroundwork'
 include ':homework6'
 include ':todolist'
 include ':homework4_materialdesign'
