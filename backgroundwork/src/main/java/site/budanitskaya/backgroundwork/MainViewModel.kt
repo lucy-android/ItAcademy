@@ -1,6 +1,8 @@
 package site.budanitskaya.backgroundwork
 
 import android.app.Application
+import android.content.Context
+import android.location.Geocoder
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.work.OneTimeWorkRequest
@@ -41,5 +43,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
 
 
+    }
+    fun getLocation(address: String, context: Context){
+        viewModelScope.launch {
+            while (true){
+                makeNotification(address, context)
+                delay(1000 * 30)
+            }
+        }
     }
 }

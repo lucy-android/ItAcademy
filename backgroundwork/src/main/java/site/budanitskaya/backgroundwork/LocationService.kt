@@ -1,22 +1,23 @@
 package site.budanitskaya.backgroundwork
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.app.Service
+import android.Manifest
+import android.Manifest.permission.ACCESS_FINE_LOCATION
+import android.app.*
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Location
+import android.location.LocationManager
 import android.os.Build
 import android.os.IBinder
-import android.provider.SyncStateContract
+import android.provider.Settings
+import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import java.security.Permission
+
 
 class LocationService : Service() {
-
-    override fun onCreate() {
-        super.onCreate()
-    }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 /*        val input = intent?.getStringExtra(inputExtra)*/
@@ -39,13 +40,21 @@ class LocationService : Service() {
                 applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
 
             notificationManager?.createNotificationChannel(channel)
+
+            val lm =
+                getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            val location: Location? = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+/*        val longitude: Double = location.getLongitude()
+        val latitude: Double = location.getLatitude()*/
         }
+
+
 
         // Create the notification
         val builder = NotificationCompat.Builder(applicationContext, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentTitle(NOTIFICATION_TITLE)
-            .setContentText("534654562")
+            .setContentText("3453456")
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setVibrate(LongArray(0))
 
@@ -62,4 +71,17 @@ class LocationService : Service() {
     override fun onBind(intent: Intent?): IBinder? {
         return null
     }
+
+    private fun displayGpsStatus(): Boolean? {
+        val contentResolver = baseContext
+            .contentResolver
+        return Settings.Secure
+            .isLocationProviderEnabled(
+                contentResolver,
+                LocationManager.GPS_PROVIDER
+            )
+    }
+
+
 }
+
