@@ -11,6 +11,7 @@ import android.location.LocationManager
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -25,13 +26,11 @@ import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
-
-
     lateinit var locationManager: LocationManager
 
     val MY_PERMISSIONS_REQUEST_LOCATION = 99
 
-    fun checkLocationPermission(): Boolean {
+    private fun checkLocationPermission(): Boolean {
         return if (ContextCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -74,7 +73,7 @@ class MainActivity : AppCompatActivity() {
             MY_PERMISSIONS_REQUEST_LOCATION -> {
 
                 // If request is cancelled, the result arrays are empty.
-                if (grantResults.size > 0
+                if (grantResults.isNotEmpty()
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED
                 ) {
 
@@ -86,6 +85,7 @@ class MainActivity : AppCompatActivity() {
                         )
                         == PackageManager.PERMISSION_GRANTED
                     ) {
+                        binding.showUserLocation.visibility = View.GONE
 
                         //Request location updates:
                         locationManager =
@@ -143,13 +143,33 @@ class MainActivity : AppCompatActivity() {
 
         // Get the ViewModel
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        binding.showBatteryCharge.setOnClickListener{
+            if(binding.showBatteryCharge.isChecked){
+                viewModel.performWork()
+            } else if(!binding.showBatteryCharge.isChecked) {
+                viewModel.cancelWork()
+            }
+        }
+
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            )
+            == PackageManager.PERMISSION_GRANTED
+        ) {
+            binding.showUserLocation.visibility = View.GONE}
 
 
-        viewModel.performWork()
-
-        val myServiceIntent = Intent(this, LocationService::class.java)
 /*        myServiceIntent.putExtra(inputExtra, "546")*/
-        checkLocationPermission()
+
+
+        binding.showUserLocation.setOnClickListener{
+/*            if(binding.showUserLocation.isChecked){
+                Manifest.permission.ACCESS_FINE_LOCATION.di
+            }*/
+            checkLocationPermission()
+        }
+
 /*        ContextCompat.startForegroundService(this, myServiceIntent)*/
 
 
