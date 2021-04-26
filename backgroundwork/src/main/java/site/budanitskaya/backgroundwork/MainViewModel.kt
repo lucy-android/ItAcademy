@@ -2,11 +2,9 @@ package site.budanitskaya.backgroundwork
 
 import android.app.Application
 import android.content.Context
-import android.location.Geocoder
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.work.OneTimeWorkRequest
-import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
 import kotlinx.coroutines.*
 import java.util.concurrent.TimeUnit
@@ -28,13 +26,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     OneTimeWorkRequest.Builder(
                         AvailableMemoryWorker::class.java
                     ).setInitialDelay(10000, TimeUnit.MILLISECONDS)
-                        .addTag("11")
                         .build()
                 ).then(
                     OneTimeWorkRequest.Builder(
                         BatteryChargeWorker::class.java
                     ).setInitialDelay(10000, TimeUnit.MILLISECONDS)
-                        .addTag("11")
                         .build()
                 ).enqueue()
 
@@ -56,7 +52,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     fun getLocation(address: String, context: Context){
         viewModelScope.launch {
             while (true){
-                makeNotification(address, context)
+                makeNotification("Location Info", address, context)
                 delay(1000 * 30)
             }
         }

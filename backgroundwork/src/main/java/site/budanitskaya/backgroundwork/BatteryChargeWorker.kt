@@ -3,12 +3,9 @@ package site.budanitskaya.backgroundwork
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.graphics.BitmapFactory
 import android.os.BatteryManager
-import android.widget.Toast
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import java.lang.Exception
 
 class BatteryChargeWorker(private val ctx: Context, params: WorkerParameters) : Worker(ctx, params) {
 
@@ -24,7 +21,7 @@ class BatteryChargeWorker(private val ctx: Context, params: WorkerParameters) : 
                 val scale: Int = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1)
                 level * 100 / scale.toFloat()
             }
-            makeNotification(batteryPct.toString(), appContext)
+            makeNotification("Battery Info", "${batteryPct.toString()} %", appContext)
 
             Result.success()
         } catch (throwable: Throwable) {

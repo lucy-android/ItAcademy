@@ -1,62 +1,69 @@
 package site.budanitskaya.backgroundwork
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
-import android.text.TextUtils
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
-import org.json.JSONException
-import org.json.JSONObject
 import site.budanitskaya.backgroundwork.databinding.ActivityMainBinding
-import java.io.BufferedReader
-import java.io.InputStream
-import java.io.InputStreamReader
 import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
     lateinit var locationManager: LocationManager
 
-    val MY_PERMISSIONS_REQUEST_LOCATION = 99
+    private val REQUEST_LOCATION_FLAG = 99
+
+    private lateinit var viewModel: MainViewModel
+    private lateinit var binding: ActivityMainBinding
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        binding.showBatteryCharge.setOnClickListener {
+            if (binding.showBatteryCharge.isChecked) {
+                viewModel.performWork()
+            } else if (!binding.showBatteryCharge.isChecked) {
+                viewModel.cancelWork()
+            }
+        }
+
+        if (isPermissionGranted()
+        ) {
+            binding.showUserLocation.visibility = View.GONE
+        }
+
+
+        binding.showUserLocation.setOnClickListener {
+            checkLocationPermission()
+        }
+
+        getLocationInfo()
+    }
 
     private fun checkLocationPermission(): Boolean {
-        return if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            )
-            != PackageManager.PERMISSION_GRANTED
+        return if (!isPermissionGranted()
         ) {
-
-            // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(
                     this,
                     Manifest.permission.ACCESS_FINE_LOCATION
                 )
             ) {
-
-                ActivityCompat.requestPermissions(
-                    this@MainActivity,
-                    arrayOf<String>(Manifest.permission.ACCESS_FINE_LOCATION),
-                    MY_PERMISSIONS_REQUEST_LOCATION
-                )
+                requestPermission()
 
             } else {
-                // No explanation needed, we can request the permission.
-                ActivityCompat.requestPermissions(
-                    this, arrayOf<String>(Manifest.permission.ACCESS_FINE_LOCATION),
-                    MY_PERMISSIONS_REQUEST_LOCATION
-                )
+                requestPermission()
             }
             false
         } else {
@@ -64,34 +71,30 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun requestPermission() {
+        ActivityCompat.requestPermissions(
+            this@MainActivity,
+            arrayOf<String>(Manifest.permission.ACCESS_FINE_LOCATION),
+            REQUEST_LOCATION_FLAG
+        )
+    }
+
+    @SuppressLint("MissingPermission")
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
         when (requestCode) {
-            MY_PERMISSIONS_REQUEST_LOCATION -> {
-
-                // If request is cancelled, the result arrays are empty.
+            REQUEST_LOCATION_FLAG -> {
                 if (grantResults.isNotEmpty()
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED
                 ) {
-
-                    // permission was granted, yay! Do the
-                    // location-related task you need to do.
-                    if (ContextCompat.checkSelfPermission(
-                            this,
-                            Manifest.permission.ACCESS_FINE_LOCATION
-                        )
-                        == PackageManager.PERMISSION_GRANTED
+                    if (isPermissionGranted()
                     ) {
                         binding.showUserLocation.visibility = View.GONE
-
-                        //Request location updates:
                         locationManager =
                             getSystemService(Context.LOCATION_SERVICE) as LocationManager
-
-/*        makeNotification(location.toString(), applicationContext)*/
 
                         val providers = locationManager.getProviders(true)
                         for (provider in providers) {
@@ -119,7 +122,6 @@ class MainActivity : AppCompatActivity() {
                                     1
                                 )[0].getAddressLine(0)
                                 viewModel.getLocation(x, applicationContext)
-                                makeNotification(x, applicationContext)
                             }
                         }
                     }
@@ -134,49 +136,19 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private lateinit var viewModel: MainViewModel
-    private lateinit var binding: ActivityMainBinding
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        // Get the ViewModel
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        binding.showBatteryCharge.setOnClickListener{
-            if(binding.showBatteryCharge.isChecked){
-                viewModel.performWork()
-            } else if(!binding.showBatteryCharge.isChecked) {
-                viewModel.cancelWork()
-            }
-        }
-
-        if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            )
-            == PackageManager.PERMISSION_GRANTED
-        ) {
-            binding.showUserLocation.visibility = View.GONE}
 
 
-/*        myServiceIntent.putExtra(inputExtra, "546")*/
+    private fun isPermissionGranted(): Boolean {
+        return ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+    }
 
-
-        binding.showUserLocation.setOnClickListener{
-/*            if(binding.showUserLocation.isChecked){
-                Manifest.permission.ACCESS_FINE_LOCATION.di
-            }*/
-            checkLocationPermission()
-        }
-
-/*        ContextCompat.startForegroundService(this, myServiceIntent)*/
-
-
+    @SuppressLint("MissingPermission")
+    fun getLocationInfo() {
         locationManager =
             getSystemService(Context.LOCATION_SERVICE) as LocationManager
-
-/*        makeNotification(location.toString(), applicationContext)*/
 
         val providers = locationManager.getProviders(true)
         for (provider in providers) {
@@ -204,34 +176,10 @@ class MainActivity : AppCompatActivity() {
                     1
                 )[0].getAddressLine(0)
                 viewModel.getLocation(x, applicationContext)
-                makeNotification(x, applicationContext)
             }
 
         }
-
-/*    fun startService() {
-
-
     }
 
-
-    fun stopService() {
-        val serviceIntent = Intent(this, LocationService::class.java)
-        stopService(serviceIntent)
-    }*/
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-    }
-
-    fun isPermissionGranted(): Boolean {
-        return (ContextCompat.checkSelfPermission(
-            this,
-            Manifest.permission.ACCESS_FINE_LOCATION
-        )
-                == PackageManager.PERMISSION_GRANTED)
-    }
 
 }
