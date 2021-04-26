@@ -19,7 +19,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         viewModelJob.cancel()
     }
 
-    internal fun performWork() {
+    internal fun getAvailableMemoryAndBatteryCharge() {
         viewModelScope.launch {
             while (true) {
                 workManager.beginWith(
@@ -34,13 +34,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                         .build()
                 ).enqueue()
                 delay(
-                    1000 * 60 * 1
+                    1000 * 60 * 60
                 )
             }
         }
     }
 
-    fun cancelWork() {
+    fun cancelBatteryAndAvailableMemoryNotifications() {
         viewModelJob.cancel()
     }
 

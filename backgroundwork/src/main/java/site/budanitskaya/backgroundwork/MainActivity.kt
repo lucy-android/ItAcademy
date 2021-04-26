@@ -40,9 +40,9 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         binding.showBatteryCharge.setOnClickListener {
             if (binding.showBatteryCharge.isChecked) {
-                viewModel.performWork()
+                viewModel.getAvailableMemoryAndBatteryCharge()
             } else if (!binding.showBatteryCharge.isChecked) {
-                viewModel.cancelWork()
+                viewModel.cancelBatteryAndAvailableMemoryNotifications()
             }
         }
         if (isPermissionGranted()
