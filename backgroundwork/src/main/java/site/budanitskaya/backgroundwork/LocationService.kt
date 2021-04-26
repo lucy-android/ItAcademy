@@ -1,7 +1,6 @@
 package site.budanitskaya.backgroundwork
 
 import android.annotation.SuppressLint
-import android.app.Notification
 import android.app.Service
 import android.content.Context
 import android.content.Intent
