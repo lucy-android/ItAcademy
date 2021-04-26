@@ -2,9 +2,9 @@
 
 package site.budanitskaya.backgroundwork
 
-@JvmField val VERBOSE_NOTIFICATION_CHANNEL_NAME: CharSequence =
-        "Verbose WorkManager Notifications"
-const val VERBOSE_NOTIFICATION_CHANNEL_DESCRIPTION =
-        "Shows notifications whenever work starts"
-const val CHANNEL_ID = "VERBOSE_NOTIFICATION"
+@JvmField val NAME: CharSequence =
+        "Name"
+const val CHANNEL_ID = "Notification"
 const val NOTIFICATION_ID = 1
+
+const val REQUEST_LOCATION_FLAG = 99

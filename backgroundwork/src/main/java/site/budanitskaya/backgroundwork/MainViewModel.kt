@@ -33,25 +33,20 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     ).setInitialDelay(10000, TimeUnit.MILLISECONDS)
                         .build()
                 ).enqueue()
-
-
-                delay(1000 * 60 * 1
+                delay(
+                    1000 * 60 * 1
                 )
             }
-
-
         }
-
-
     }
 
-    fun cancelWork(){
+    fun cancelWork() {
         viewModelJob.cancel()
     }
 
-    fun getLocation(address: String, context: Context){
+    fun getLocation(address: String, context: Context) {
         viewModelScope.launch {
-            while (true){
+            while (true) {
                 makeNotification("Location Info", address, context)
                 delay(1000 * 30)
             }

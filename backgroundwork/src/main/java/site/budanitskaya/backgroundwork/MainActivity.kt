@@ -17,11 +17,8 @@ import androidx.lifecycle.ViewModelProviders
 import site.budanitskaya.backgroundwork.databinding.ActivityMainBinding
 import java.util.*
 
-
 class MainActivity : AppCompatActivity() {
     lateinit var locationManager: LocationManager
-
-    private val REQUEST_LOCATION_FLAG = 99
 
     private lateinit var viewModel: MainViewModel
     private lateinit var binding: ActivityMainBinding
@@ -38,17 +35,13 @@ class MainActivity : AppCompatActivity() {
                 viewModel.cancelWork()
             }
         }
-
         if (isPermissionGranted()
         ) {
             binding.showUserLocation.visibility = View.GONE
         }
-
-
         binding.showUserLocation.setOnClickListener {
             checkLocationPermission()
         }
-
         getLocationInfo()
     }
 
@@ -61,7 +54,6 @@ class MainActivity : AppCompatActivity() {
                 )
             ) {
                 requestPermission()
-
             } else {
                 requestPermission()
             }
@@ -125,18 +117,11 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                     }
-                } else {
-
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
                 }
                 return
             }
         }
     }
-
-
-
 
     private fun isPermissionGranted(): Boolean {
         return ContextCompat.checkSelfPermission(
@@ -177,9 +162,6 @@ class MainActivity : AppCompatActivity() {
                 )[0].getAddressLine(0)
                 viewModel.getLocation(x, applicationContext)
             }
-
         }
     }
-
-
 }
