@@ -1,13 +1,8 @@
 package site.budanitskaya.backgroundwork
 
 import android.Manifest
-import android.annotation.SuppressLint
-import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Geocoder
-import android.location.Location
-import android.location.LocationListener
-import android.location.LocationManager
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -15,11 +10,9 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import site.budanitskaya.backgroundwork.databinding.ActivityMainBinding
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var locationManager: LocationManager
     private lateinit var viewModel: MainViewModel
     private lateinit var binding: ActivityMainBinding
 
@@ -33,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         binding.showUserLocation.setOnClickListener {
             checkLocationPermission()
         }
-        getLocationInfo()
     }
 
     override fun onStart() {
@@ -48,6 +40,8 @@ class MainActivity : AppCompatActivity() {
         if (isPermissionGranted()
         ) {
             binding.showUserLocation.visibility = View.GONE
+            val serviceIntent = Intent(this, LocationService::class.java)
+            startService(serviceIntent)
         }
     }
 
@@ -77,7 +71,6 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    @SuppressLint("MissingPermission")
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -91,7 +84,8 @@ class MainActivity : AppCompatActivity() {
                     if (isPermissionGranted()
                     ) {
                         binding.showUserLocation.visibility = View.GONE
-                        getLocationInfo()
+                        val serviceIntent = Intent(this, LocationService::class.java)
+                        startService(serviceIntent)
                     }
                 }
                 return
@@ -106,37 +100,10 @@ class MainActivity : AppCompatActivity() {
         ) == PackageManager.PERMISSION_GRANTED
     }
 
-    @SuppressLint("MissingPermission")
-    fun getLocationInfo() {
-        locationManager =
-            getSystemService(Context.LOCATION_SERVICE) as LocationManager
-
-        val providers = locationManager.getProviders(true)
-        for (provider in providers) {
-            locationManager.requestLocationUpdates(
-                provider!!, 1000, 0f,
-                object : LocationListener {
-                    override fun onLocationChanged(location: Location) {}
-                    override fun onProviderDisabled(provider: String) {}
-                    override fun onProviderEnabled(provider: String) {}
-                    override fun onStatusChanged(
-                        provider: String, status: Int,
-                        extras: Bundle
-                    ) {
-                    }
-                })
-            val location =
-                locationManager.getLastKnownLocation(provider)
-            if (location != null) {
-                val latitude = location.latitude
-                val longitude = location.longitude
-                val address = Geocoder(this, Locale.ENGLISH).getFromLocation(
-                    latitude,
-                    longitude,
-                    1
-                )[0].getAddressLine(0)
-                viewModel.getLocation(address, applicationContext)
-            }
-        }
+    override fun onPause(){
+        super.onPause()
+        val serviceIntent = Intent(this, LocationService::class.java)
+        stopService(serviceIntent)
+        viewModel.cancelBatteryAndAvailableMemoryNotifications()
     }
 }

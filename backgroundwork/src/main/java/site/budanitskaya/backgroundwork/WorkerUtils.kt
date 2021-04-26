@@ -1,5 +1,6 @@
 package site.budanitskaya.backgroundwork
 
+import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
@@ -7,7 +8,7 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 
-fun makeNotification(header: String, message: String, context: Context) {
+fun makeNotification(header: String, message: String, context: Context): Notification {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         val importance = NotificationManager.IMPORTANCE_HIGH
         val channel = NotificationChannel(CHANNEL_ID, NAME, importance)
@@ -22,4 +23,5 @@ fun makeNotification(header: String, message: String, context: Context) {
         .setContentText(message)
 
     NotificationManagerCompat.from(context).notify(NOTIFICATION_ID, builder.build())
+    return builder.build()
 }

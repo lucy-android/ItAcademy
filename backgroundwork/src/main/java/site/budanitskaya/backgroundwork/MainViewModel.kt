@@ -43,13 +43,4 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     fun cancelBatteryAndAvailableMemoryNotifications() {
         viewModelJob.cancel()
     }
-
-    fun getLocation(address: String, context: Context) {
-        viewModelScope.launch {
-            while (true) {
-                makeNotification("Location Info", address, context)
-                delay(1000 * 30)
-            }
-        }
-    }
 }
