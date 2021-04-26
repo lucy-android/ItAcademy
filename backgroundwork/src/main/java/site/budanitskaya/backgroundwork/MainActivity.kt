@@ -18,16 +18,26 @@ import site.budanitskaya.backgroundwork.databinding.ActivityMainBinding
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
-    lateinit var locationManager: LocationManager
 
+    private lateinit var locationManager: LocationManager
     private lateinit var viewModel: MainViewModel
     private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+
+        binding.showUserLocation.setOnClickListener {
+            checkLocationPermission()
+        }
+        getLocationInfo()
+    }
+
+    override fun onStart() {
+        super.onStart()
         binding.showBatteryCharge.setOnClickListener {
             if (binding.showBatteryCharge.isChecked) {
                 viewModel.performWork()
@@ -39,10 +49,6 @@ class MainActivity : AppCompatActivity() {
         ) {
             binding.showUserLocation.visibility = View.GONE
         }
-        binding.showUserLocation.setOnClickListener {
-            checkLocationPermission()
-        }
-        getLocationInfo()
     }
 
     private fun checkLocationPermission(): Boolean {
@@ -85,37 +91,7 @@ class MainActivity : AppCompatActivity() {
                     if (isPermissionGranted()
                     ) {
                         binding.showUserLocation.visibility = View.GONE
-                        locationManager =
-                            getSystemService(Context.LOCATION_SERVICE) as LocationManager
-
-                        val providers = locationManager.getProviders(true)
-                        for (provider in providers) {
-                            locationManager.requestLocationUpdates(
-                                provider!!, 1000, 0f,
-                                object : LocationListener {
-                                    override fun onLocationChanged(location: Location) {}
-                                    override fun onProviderDisabled(provider: String) {}
-                                    override fun onProviderEnabled(provider: String) {}
-                                    override fun onStatusChanged(
-                                        provider: String, status: Int,
-                                        extras: Bundle
-                                    ) {
-                                    }
-                                })
-                            val location =
-                                locationManager.getLastKnownLocation(provider)
-                            if (location != null) {
-                                val latitude = location.latitude
-                                val longitude = location.longitude
-
-                                val x = Geocoder(this, Locale.ENGLISH).getFromLocation(
-                                    latitude,
-                                    longitude,
-                                    1
-                                )[0].getAddressLine(0)
-                                viewModel.getLocation(x, applicationContext)
-                            }
-                        }
+                        getLocationInfo()
                     }
                 }
                 return
@@ -154,13 +130,12 @@ class MainActivity : AppCompatActivity() {
             if (location != null) {
                 val latitude = location.latitude
                 val longitude = location.longitude
-
-                val x = Geocoder(this, Locale.ENGLISH).getFromLocation(
+                val address = Geocoder(this, Locale.ENGLISH).getFromLocation(
                     latitude,
                     longitude,
                     1
                 )[0].getAddressLine(0)
-                viewModel.getLocation(x, applicationContext)
+                viewModel.getLocation(address, applicationContext)
             }
         }
     }

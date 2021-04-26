@@ -8,6 +8,7 @@ import androidx.work.WorkerParameters
 
 class AvailableMemoryWorker(private val ctx: Context, params: WorkerParameters) :
     Worker(ctx, params) {
+
     override fun doWork(): Result {
         val appContext = applicationContext
         val memoryInfo = ActivityManager.MemoryInfo()

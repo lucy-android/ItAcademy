@@ -6,5 +6,4 @@ package site.budanitskaya.backgroundwork
         "Name"
 const val CHANNEL_ID = "Notification"
 const val NOTIFICATION_ID = 1
-
 const val REQUEST_LOCATION_FLAG = 99

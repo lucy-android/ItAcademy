@@ -8,15 +8,11 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 
 fun makeNotification(header: String, message: String, context: Context) {
-
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-
         val importance = NotificationManager.IMPORTANCE_HIGH
         val channel = NotificationChannel(CHANNEL_ID, NAME, importance)
-
         val notificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager?
-
         notificationManager?.createNotificationChannel(channel)
     }
 
@@ -27,4 +23,3 @@ fun makeNotification(header: String, message: String, context: Context) {
 
     NotificationManagerCompat.from(context).notify(NOTIFICATION_ID, builder.build())
 }
-
