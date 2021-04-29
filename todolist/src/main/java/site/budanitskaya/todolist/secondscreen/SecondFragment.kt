@@ -107,7 +107,8 @@ class SecondFragment : MvpAppCompatFragment(), SecondScreenView {
         binding.currentDateTime.text = presenter.formatTimeDate(requireContext())
     }
 
-    override fun loadView(title: String, description: String, deadline: String, priority: Int) {
+    override fun loadView(title: String, description: String, deadline: String,
+                          priority: Int) {
         binding.enterTaskName.setText(title)
         binding.describeTask.setText(description)
         binding.currentDateTime.setText(deadline)

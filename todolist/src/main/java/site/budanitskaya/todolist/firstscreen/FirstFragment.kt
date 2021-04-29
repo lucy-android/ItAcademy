@@ -12,6 +12,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.adapter.ToDoListAdapter
 import site.budanitskaya.todolist.databinding.FragmentFirstBinding
+import site.budanitskaya.todolist.impl.ActionModeCallBackImpl
 
 class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
 
@@ -44,7 +45,7 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
     }
 
     override fun showAcionMode(position: Int) {
-        val actionModeCallback = ActionModeCallBackImpl(requireContext(), position)
+        val actionModeCallback = ActionModeCallBackImpl(this, position)
         when (actionModeCallback.actionMode) {
             null -> {
                 actionModeCallback.actionMode = activity?.startActionMode(actionModeCallback)
@@ -77,45 +78,13 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    inner class ActionModeCallBackImpl(val context: Context, private val position: Int) :
-        ActionMode.Callback {
-
-        var actionMode: ActionMode? = null
-
-        override fun onCreateActionMode(p0: ActionMode?, p1: Menu?): Boolean {
-            val inflater: MenuInflater = p0!!.menuInflater
-            inflater.inflate(R.menu.context, p1)
-            return true
-        }
-
-        override fun onPrepareActionMode(mode: ActionMode, menu: Menu): Boolean {
-            return false
-        }
-
-        override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
-            when (item.itemId) {
-                R.id.delete -> {
-                    showTaskDeleteDialog(position)
-                }
-                R.id.edit -> {
-                    navigateToFragementTwo(position, false)
-                }
-            }
-            return true
-        }
-
-        override fun onDestroyActionMode(mode: ActionMode) {
-            actionMode = null
-        }
-    }
-
     override fun onUpdateView(position: Int) {
         binding.recyclerView.removeViewAt(position)
         adapter.notifyItemRemoved(position)
         adapter.notifyItemRangeChanged(position, presenter.tasks.size)
     }
 
-    private fun navigateToFragementTwo(position: Int, isNew: Boolean) {
+    fun navigateToFragementTwo(position: Int, isNew: Boolean) {
         findNavController().navigate(
             FirstFragmentDirections.actionFirstFragmentToSecondFragment(
                 position,
