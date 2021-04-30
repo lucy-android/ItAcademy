@@ -1,10 +1,15 @@
 package site.budanitskaya.todolist.adapter
 
+import android.animation.LayoutTransition
+import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.card.MaterialCardView
 import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.database.Task
 
@@ -42,6 +47,8 @@ class ToDoListAdapter(
         private val dateAndTime = root.findViewById<TextView>(R.id.date_and_time)
         private val priority = root.findViewById<TextView>(R.id.task_priority)
         fun bind(position: Int) {
+
+
             taskName.text = tasks[position].taskTitle
             taskDecription.text = tasks[position].taskDescription
             dateAndTime.text = tasks[position].dateAndTime

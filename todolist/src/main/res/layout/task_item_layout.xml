@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+
+
+<androidx.constraintlayout.motion.widget.MotionLayout android:id="@+id/motion_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_margin="5dp"
     style="@style/MyCardViewStyle"
-    card_view:layout_constraintVertical_weight="@android:integer/config_longAnimTime">
-
-    <androidx.constraintlayout.motion.widget.MotionLayout
-        android:id="@+id/motion_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/secondaryTextColor"
-        card_view:layoutDescription="@xml/task_item_layout_xml_linearlayout_scene">
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:background="@color/secondaryTextColor"
+    app:layoutDescription="@xml/task_item_layout_xml_linearlayout_scene"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
         <TextView
             android:id="@+id/date_and_time"
@@ -73,6 +70,4 @@
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/task_description"
             tools:text="Task priority" />
-
     </androidx.constraintlayout.motion.widget.MotionLayout>
-</androidx.cardview.widget.CardView>
