@@ -31,7 +31,7 @@ class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
             presenter.tasks
         ) {
             showAcionMode(it)
-            return@ToDoListAdapter true
+            return@ToDoListAdapter false
         }
 
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
