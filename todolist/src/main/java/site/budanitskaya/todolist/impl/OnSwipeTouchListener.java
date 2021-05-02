@@ -1,7 +1,6 @@
 package site.budanitskaya.todolist.impl;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,10 +18,22 @@ public class OnSwipeTouchListener implements View.OnTouchListener {
         if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
             if (view instanceof MotionLayout) {
 
-                if (((MotionLayout) view).getCurrentState() == R.id.click_start) {
-                    ((MotionLayout) view).setTransition(R.id.click_start, R.id.click_end);
+                if (((MotionLayout) view).getCurrentState() == R.id.start) {
+                    ((MotionLayout) view).setTransition(R.id.start, R.id.click_end);
                 } else {
-                    ((MotionLayout) view).setTransition(R.id.click_end, R.id.click_start);
+                    ((MotionLayout) view).setTransition(R.id.click_end, R.id.start);
+                }
+                ((MotionLayout) view).transitionToEnd();
+            }
+        }
+
+        if (motionEvent.getAction() == MotionEvent.ACTION_MOVE) {
+            if (view instanceof MotionLayout) {
+
+                if (((MotionLayout) view).getCurrentState() == R.id.swipe_end) {
+                    ((MotionLayout) view).setTransition(R.id.swipe_end, R.id.start);
+                } else {
+                    ((MotionLayout) view).setTransition(R.id.start, R.id.swipe_end);
                 }
                 ((MotionLayout) view).transitionToEnd();
             }
