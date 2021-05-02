@@ -1,19 +1,14 @@
 package site.budanitskaya.todolist.adapter
 
-import android.annotation.SuppressLint
-import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.recyclerview.widget.RecyclerView
 import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.database.Task
 import site.budanitskaya.todolist.impl.MotionLayoutTransitionListener
-import site.budanitskaya.todolist.impl.OnSwipeTouchListener
 
 
 class ToDoListAdapter(
@@ -49,9 +44,6 @@ class ToDoListAdapter(
         private val taskDecription = root.findViewById<TextView>(R.id.task_description)
         private val dateAndTime = root.findViewById<TextView>(R.id.date_and_time)
         private val priority = root.findViewById<TextView>(R.id.task_priority)
-        private val motionLayout = root.findViewById<MotionLayout>(R.id.motion_layout)
-
-        @SuppressLint("ClickableViewAccessibility")
         fun bind(position: Int) {
             taskName.text = tasks[position].taskTitle
             taskDecription.text = tasks[position].taskDescription
@@ -59,78 +51,8 @@ class ToDoListAdapter(
             priority.text = "Task priority: ${tasks[position].priority.toString()}"
 
             root.setOnLongClickListener { onLongClick(position) }
-            (root as MotionLayout).addTransitionListener(MotionLayoutTransitionListener(root.context))
-
-            /*root.setOnTouchListener(
-                Listener(
-                    root as MotionLayout,
-                    root.context,
-                    onLongClick,
-                    position
-                )
-            )*/
-
-        } /*{ view, motion ->
-
-                if(motion.action == MotionEvent.ACTION_DOWN){
-                    with(root as MotionLayout) {
-
-                        if (currentState == R.id.click_start) {
-                            onLongClick(position)
-                            setTransition(R.id.click_start, R.id.click_end)
-                            transitionToEnd()
-                        } else if (currentState == R.id.click_end) {
-                            setTransition(R.id.click_end, R.id.click_start)
-                            transitionToEnd()
-                        }
-                    }
-                } else if (motion.action == MotionEvent.ACTION_MOVE){
-
-                }
-
-                false
-            }*/
-
-    }
-
-    class Listener(
-        var root: MotionLayout,
-        val context: Context,
-        private val onLongClick: (Int) -> Boolean,
-        val position: Int
-    ) : OnSwipeTouchListener(context) {
-        override fun onSwipeRight() {
-            super.onSwipeRight()
-            Toast.makeText(context, "Swipe Right gesture detected", Toast.LENGTH_SHORT).show();
-
-            Log.d("root_root", "onSwipeRight: ${R.id.start}")
-            Log.d("root_root", "onSwipeRight: ${R.id.swipe_end}")
-            Log.d("root_root", "onSwipeRight: ${R.id.click_end}")
-
-
-            root.setTransition(R.id.start, R.id.swipe_end)
-
-            Log.d("root_root", "onSwipeRight: ${root.transitionState}")
-            root.transitionToEnd()
+            (root as MotionLayout).addTransitionListener(MotionLayoutTransitionListener())
         }
-
-        override fun onLongClick() {
-            super.onLongClick()
-            onLongClick(position)
-        }
-
-        override fun onSwipeLeft() {
-            super.onSwipeLeft()
-
-
-
-            if (root.currentState == R.id.swipe_end) {
-                root.setTransition(R.id.swipe_end, R.id.start)
-            }
-            Toast.makeText(context, "Swipe Left gesture detected", Toast.LENGTH_SHORT).show();
-        }
-
-
     }
 }
 

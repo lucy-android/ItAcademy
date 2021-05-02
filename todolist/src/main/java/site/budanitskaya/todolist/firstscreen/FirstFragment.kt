@@ -13,6 +13,7 @@ import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.adapter.ToDoListAdapter
 import site.budanitskaya.todolist.databinding.FragmentFirstBinding
 import site.budanitskaya.todolist.impl.ActionModeCallBackImpl
+import site.budanitskaya.todolist.impl.MotionLayoutTransitionListener
 
 class FirstFragment : MvpAppCompatFragment(), FirstScreenView {
 
