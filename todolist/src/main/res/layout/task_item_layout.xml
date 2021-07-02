@@ -8,71 +8,52 @@
     style="@style/MyCardViewStyle"
     card_view:layout_constraintVertical_weight="@android:integer/config_longAnimTime">
 
-    <androidx.constraintlayout.motion.widget.MotionLayout
-        android:id="@+id/motion_layout"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/secondaryTextColor"
-        card_view:layoutDescription="@xml/task_item_layout_xml_linearlayout_scene">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/date_and_time"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="end"
-            android:minHeight="20dp"
-            android:padding="@dimen/cardview_default_elevation"
             android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:minHeight="20dp"
             android:textColor="@color/primaryTextColor"
-            card_view:layout_constraintBottom_toTopOf="@+id/task_name"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintVertical_chainStyle="packed"
-            tools:text="Date and time" />
+            android:padding="@dimen/cardview_default_elevation"
+            tools:text="Date and time"
+            android:gravity="end"
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/task_name"
             style="@style/Base.TextAppearance.AppCompat.Headline"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="start"
+            android:layout_width="match_parent"
             android:minHeight="40dp"
             android:padding="@dimen/cardview_default_elevation"
+            tools:text="Task name"
             android:textColor="@color/primaryTextColor"
+            android:gravity="start"
             android:textStyle="bold"
-            card_view:layout_constraintBottom_toTopOf="@+id/task_description"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/date_and_time"
-            tools:text="Task name" />
+            android:layout_weight="3"
+            android:layout_height="0dp" />
 
         <TextView
             android:id="@+id/task_description"
             style="@style/Base.TextAppearance.AppCompat.Subhead"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
             android:minHeight="60dp"
             android:padding="@dimen/cardview_default_elevation"
             android:textColor="@color/primaryTextColor"
-            card_view:layout_constraintBottom_toTopOf="@+id/task_priority"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/task_name"
-            tools:text="Task description" />
-
+            tools:text="Task description"
+            android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/task_priority"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="1dp"
-            android:padding="@dimen/cardview_default_elevation"
+            android:layout_width="match_parent"
             android:textColor="@color/primaryTextColor"
-            card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toBottomOf="@+id/task_description"
-            tools:text="Task priority" />
+            android:padding="@dimen/cardview_default_elevation"
+            tools:text="Task priority"
+            android:layout_height="wrap_content" />
 
-    </androidx.constraintlayout.motion.widget.MotionLayout>
+    </LinearLayout>
 </androidx.cardview.widget.CardView>
