@@ -2,7 +2,6 @@ package site.budanitskaya.todolist.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.recyclerview.widget.RecyclerView
 import site.budanitskaya.todolist.R
 import site.budanitskaya.todolist.database.Task
-import site.budanitskaya.todolist.impl.MotionLayoutTransitionListener
 import site.budanitskaya.todolist.impl.OnSwipeTouchListener
 
 
@@ -58,17 +56,14 @@ class ToDoListAdapter(
             dateAndTime.text = tasks[position].dateAndTime
             priority.text = "Task priority: ${tasks[position].priority.toString()}"
 
-            root.setOnLongClickListener { onLongClick(position) }
-            (root as MotionLayout).addTransitionListener(MotionLayoutTransitionListener(root.context))
-
-            /*root.setOnTouchListener(
+            root.setOnTouchListener(
                 Listener(
                     root as MotionLayout,
                     root.context,
                     onLongClick,
                     position
                 )
-            )*/
+            )
 
         } /*{ view, motion ->
 
@@ -94,7 +89,7 @@ class ToDoListAdapter(
     }
 
     class Listener(
-        var root: MotionLayout,
+        val root: MotionLayout,
         val context: Context,
         private val onLongClick: (Int) -> Boolean,
         val position: Int
@@ -102,32 +97,17 @@ class ToDoListAdapter(
         override fun onSwipeRight() {
             super.onSwipeRight()
             Toast.makeText(context, "Swipe Right gesture detected", Toast.LENGTH_SHORT).show();
-
-            Log.d("root_root", "onSwipeRight: ${R.id.start}")
-            Log.d("root_root", "onSwipeRight: ${R.id.swipe_end}")
-            Log.d("root_root", "onSwipeRight: ${R.id.click_end}")
-
-
-            root.setTransition(R.id.start, R.id.swipe_end)
-
-            Log.d("root_root", "onSwipeRight: ${root.transitionState}")
+            if (root.currentState == R.id.swipe_start) {
+                root.setTransition(R.id.swipe_start, R.id.swipe_end)
+            } else {
+                root.setTransition(R.id.swipe_end, R.id.swipe_start)
+            }
             root.transitionToEnd()
         }
 
         override fun onLongClick() {
             super.onLongClick()
             onLongClick(position)
-        }
-
-        override fun onSwipeLeft() {
-            super.onSwipeLeft()
-
-
-
-            if (root.currentState == R.id.swipe_end) {
-                root.setTransition(R.id.swipe_end, R.id.start)
-            }
-            Toast.makeText(context, "Swipe Left gesture detected", Toast.LENGTH_SHORT).show();
         }
 
 

@@ -78,6 +78,7 @@
         android:src="@drawable/ic_baseline_delete_24"
         app:layout_constraintEnd_toStartOf="@id/task_priority" />
 
+
 </androidx.constraintlayout.motion.widget.MotionLayout>
 
 
