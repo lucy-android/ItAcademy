@@ -73,9 +73,85 @@
         android:id="@+id/delete"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:background="@color/secondaryLightColor"
+        android:background="#F44336"
         android:padding="12dp"
         android:src="@drawable/ic_baseline_delete_24"
         app:layout_constraintEnd_toStartOf="@id/task_priority" />
 
 </androidx.constraintlayout.motion.widget.MotionLayout>
+
+
+    <!--
+
+
+        <?xml version="1.0" encoding="utf-8"?>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/motion_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/secondaryTextColor"
+        app:layoutDescription="@xml/task_item_layout_xml_linearlayout_scene"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/c_l"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/date_and_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:minHeight="20dp"
+                android:padding="@dimen/cardview_default_elevation"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/primaryTextColor" />
+
+            <TextView
+                android:id="@+id/task_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:minHeight="40dp"
+                android:padding="@dimen/cardview_default_elevation"
+                android:textColor="@color/primaryTextColor"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/task_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="60dp"
+                android:padding="@dimen/cardview_default_elevation"
+                android:textColor="@color/primaryTextColor" />
+
+            <TextView
+                android:id="@+id/task_priority"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:padding="@dimen/cardview_default_elevation"
+                android:textColor="@color/primaryTextColor" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/delete"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@color/primaryLightColor"
+            android:padding="12dp"
+            android:src="@drawable/ic_baseline_delete_24"/>
+
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>-->
+

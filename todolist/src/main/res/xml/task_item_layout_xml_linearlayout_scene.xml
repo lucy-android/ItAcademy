@@ -3,8 +3,26 @@
     xmlns:motion="http://schemas.android.com/apk/res-auto">
 
     <Transition
-        motion:constraintSetStart="@+id/start"
-        motion:constraintSetEnd="@id/swipe_end"
+        motion:constraintSetEnd="@+id/click_end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000">
+    </Transition>
+
+    <Transition
+        motion:constraintSetEnd="@+id/start"
+        motion:constraintSetStart="@id/click_end"
+        motion:duration="1000">
+    </Transition>
+
+<!--    <Transition
+        motion:constraintSetEnd="@+id/swipe_end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000">
+    </Transition>-->
+
+    <Transition
+        motion:constraintSetEnd="@+id/start"
+        motion:constraintSetStart="@id/swipe_end"
         motion:duration="1000">
         <OnSwipe
             motion:dragDirection="dragRight"
@@ -17,7 +35,7 @@
             android:id="@+id/date_and_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            motion:layout_constraintBottom_toTopOf="@id/task_name" />
+            motion:layout_constraintBottom_toTopOf="@id/task_name"/>
 
         <Constraint
             android:id="@id/task_name"
@@ -35,7 +53,7 @@
             android:id="@id/task_priority"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            motion:layout_constraintTop_toBottomOf="@id/task_description" />
+            motion:layout_constraintTop_toBottomOf="@id/task_description"/>
 
         <Constraint
             android:id="@id/delete"
@@ -44,8 +62,42 @@
             android:background="#FFEB3B"
             motion:layout_constraintBottom_toBottomOf="@id/task_priority"
             motion:layout_constraintEnd_toStartOf="parent"
-            motion:layout_constraintTop_toTopOf="@id/date_and_time" />
+            motion:layout_constraintTop_toTopOf="@id/date_and_time"/>
 
+    </ConstraintSet>
+
+
+    <ConstraintSet android:id="@+id/click_end">
+
+        <Constraint
+            android:id="@+id/date_and_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toTopOf="@id/task_name"/>
+
+        <Constraint
+            android:id="@id/task_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toTopOf="@id/task_description"/>
+
+        <Constraint
+            android:id="@id/task_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toTopOf="@id/task_priority"/>
+
+        <Constraint
+            android:id="@id/task_priority"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@id/task_description"/>
+
+        <Constraint
+            android:id="@id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintEnd_toStartOf="@id/task_description"/>
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/swipe_end">
@@ -54,7 +106,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            motion:layout_constraintBottom_toTopOf="@id/task_name" />
+            motion:layout_constraintBottom_toTopOf="@id/task_name"/>
 
         <Constraint
             android:id="@id/task_name"
@@ -75,15 +127,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            motion:layout_constraintTop_toBottomOf="@id/task_description" />
+            motion:layout_constraintTop_toBottomOf="@id/task_description"/>
 
         <Constraint
             android:id="@id/delete"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+
             motion:layout_constraintBottom_toBottomOf="@id/task_priority"
             motion:layout_constraintStart_toStartOf="parent"
-            motion:layout_constraintTop_toTopOf="@id/task_name" />
+            motion:layout_constraintTop_toTopOf="@id/task_name"/>
+
+
 
     </ConstraintSet>
 </MotionScene>
