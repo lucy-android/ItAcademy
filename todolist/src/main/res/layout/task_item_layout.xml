@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/secondaryTextColor"
-    app:layoutDescription="@xml/task_item_layout_xml_scene">
+    app:layoutDescription="@xml/task_item_layout_xml_linearlayout_scene">
 
 
     <TextView
